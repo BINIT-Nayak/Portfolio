@@ -1,0 +1,59 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  height: 3rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding: 1px;
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 15rem;
+    margin-top: 2.5rem;
+  }
+}
+
+.shimmer {
+  position: absolute;
+  inset: -1000%;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    #e2cbff 0%,
+    #393bb2 50%,
+    #e2cbff 100%
+  );
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button__content {
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: rgb(15, 23, 42);
+  padding: 0 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  backdrop-filter: blur(120px);
+  gap: 0.5rem;
+}
