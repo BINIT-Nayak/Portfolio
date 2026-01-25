@@ -1,38 +1,40 @@
+import type { ReactNode } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
 
 import { CanvasRevealEffect } from "../ui/CanvasRevealEffect";
+
 import style from "./Approach.module.css";
 
-const Approach = () => {
+export const Approach = () => {
   return (
-    <section className={style.section}>
-      <h1 className="heading">
-        My <span className="text-purple">approach</span>
+    <section className={style.approach}>
+      <h1 className={style.approach__heading}>
+        My <span className={style.approach__heading__highlight}>approach</span>
       </h1>
-      <div className={style.cardsContainer}>
+      <div className={style.approach__cards_container}>
         <Card
           title="Planning & Strategy"
-          icon={<AceternityIcon order="Phase 1" />}
+          icon={<AceternityIcon phaseText="Phase 1" />}
           des="We'll collaborate to map out your website's goals, target audience, 
           and key functionalities. We'll discuss things like site structure, 
           navigation, and content requirements."
         >
           <CanvasRevealEffect
             animationSpeed={3}
-            containerClassName="bg-emerald-600 rounded-3xl overflow-hidden"
+            containerClassName={style.approach__canvas_emerald}
           />
         </Card>
         <Card
           title="Development & Progress Update"
-          icon={<AceternityIcon order="Phase 2" />}
+          icon={<AceternityIcon phaseText="Phase 2" />}
           des="Once we agree on the plan, I cue my lofi playlist and dive into
           coding. From initial sketches to polished code, I keep you updated
           every step of the way."
         >
           <CanvasRevealEffect
             animationSpeed={3}
-            containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
+            containerClassName={style.approach__canvas_pink}
             colors={[
               [255, 166, 158],
               [221, 255, 247],
@@ -42,14 +44,14 @@ const Approach = () => {
         </Card>
         <Card
           title="Development & Launch"
-          icon={<AceternityIcon order="Phase 3" />}
+          icon={<AceternityIcon phaseText="Phase 3" />}
           des="This is where the magic happens! Based on the approved design, 
           I'll translate everything into functional code, building your website
           from the ground up."
         >
           <CanvasRevealEffect
             animationSpeed={3}
-            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
+            containerClassName={style.approach__canvas_sky}
             colors={[[125, 211, 252]]}
           />
         </Card>
@@ -58,8 +60,6 @@ const Approach = () => {
   );
 };
 
-export default Approach;
-
 const Card = ({
   title,
   icon,
@@ -67,60 +67,63 @@ const Card = ({
   des,
 }: {
   title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
+  icon: ReactNode;
+  children?: ReactNode;
   des: string;
 }) => {
-  const [hovered, setHovered] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={style.card}
-      style={{
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-      }}
+      className={style.approach__card}
     >
-      <Icon className={`${style.corner} ${style.cornerTopLeft}`} />
-      <Icon className={`${style.corner} ${style.cornerBottomLeft}`} />
-      <Icon className={`${style.corner} ${style.cornerTopRight}`} />
-      <Icon className={`${style.corner} ${style.cornerBottomRight}`} />
+      <Icon
+        className={`${style.approach__corner} ${style.approach__corner_top_left}`}
+      />
+      <Icon
+        className={`${style.approach__corner} ${style.approach__corner_bottom_left}`}
+      />
+      <Icon
+        className={`${style.approach__corner} ${style.approach__corner_top_right}`}
+      />
+      <Icon
+        className={`${style.approach__corner} ${style.approach__corner_bottom_right}`}
+      />
 
       <AnimatePresence>
-        {hovered && (
+        {hovered ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
+            className={style.approach__animation_overlay}
           >
             {children}
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
 
-      <div className={style.cardContent}>
-        <div className={style.iconWrapper}>{icon}</div>
-        <h2 className={style.title}>{title}</h2>
-        <p className={style.description}>{des}</p>
+      <div className={style.approach__card_content}>
+        <div className={style.approach__icon_wrapper}>{icon}</div>
+        <h2 className={style.approach__title}>{title}</h2>
+        <p className={style.approach__description}>{des}</p>
       </div>
     </div>
   );
 };
 
-const AceternityIcon = ({ order }: { order: string }) => {
+const AceternityIcon = ({ phaseText }: { phaseText: string }) => {
   return (
     <div>
-      <button className={style.phaseButton}>
-        <span className={style.phaseButtonGradient} />
-        <span className={style.phaseButtonInner}>{order}</span>
-      </button>
+      <div className={style.approach__phase_button}>
+        <span className={style.approach__phase_button__gradient} />
+        <span className={style.approach__phase_button__inner}>{phaseText}</span>
+      </div>
     </div>
   );
 };
 
-export const Icon = ({ className, ...rest }: any) => {
+const Icon = ({ className, ...rest }: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

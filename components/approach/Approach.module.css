@@ -1,10 +1,31 @@
-.section {
+/* BEM: Block - Approach */
+.approach {
   width: 100%;
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
-.cardsContainer {
+/* Element - heading */
+.approach__heading {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .approach__heading {
+    font-size: 2rem;
+  }
+}
+
+/* Element - heading highlight */
+.approach__heading__highlight {
+  color: #a78bfa;
+}
+
+/* Element - cards container */
+.approach__cards_container {
   margin-top: 5rem;
   margin-bottom: 5rem;
   display: flex;
@@ -16,12 +37,13 @@
 }
 
 @media (min-width: 1024px) {
-  .cardsContainer {
+  .approach__cards_container {
     flex-direction: row;
   }
 }
 
-.card {
+/* Element - card */
+.approach__card {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1.5rem;
   display: flex;
@@ -42,12 +64,13 @@
 }
 
 @media (min-width: 1024px) {
-  .card {
+  .approach__card {
     height: 35rem;
   }
 }
 
-.corner {
+/* Element - corner */
+.approach__corner {
   position: absolute;
   width: 2.5rem;
   height: 2.5rem;
@@ -56,39 +79,42 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .corner {
+  .approach__corner {
     color: white;
   }
 }
 
-.cornerTopLeft {
+/* Modifier - corner position */
+.approach__corner_top_left {
   top: -0.75rem;
   left: -0.75rem;
 }
 
-.cornerBottomLeft {
+.approach__corner_bottom_left {
   bottom: -0.75rem;
   left: -0.75rem;
 }
 
-.cornerTopRight {
+.approach__corner_top_right {
   top: -0.75rem;
   right: -0.75rem;
 }
 
-.cornerBottomRight {
+.approach__corner_bottom_right {
   bottom: -0.75rem;
   right: -0.75rem;
 }
 
-.cardContent {
+/* Element - card content */
+.approach__card_content {
   position: relative;
   z-index: 20;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
 
-.iconWrapper {
+/* Element - icon wrapper */
+.approach__icon_wrapper {
   text-align: center;
   position: absolute;
   top: 50%;
@@ -103,12 +129,13 @@
   justify-content: center;
 }
 
-.card:hover .iconWrapper {
+.approach__card:hover .approach__icon_wrapper {
   opacity: 0;
   transform: translate(-50%, -50%) translateY(-1rem);
 }
 
-.title {
+/* Element - title */
+.approach__title {
   color: white;
   text-align: center;
   font-size: 1.875rem;
@@ -121,13 +148,14 @@
   transition: all 0.2s ease-in-out;
 }
 
-.card:hover .title {
+.approach__card:hover .approach__title {
   opacity: 1;
   color: white;
   transform: translateY(-0.5rem);
 }
 
-.description {
+/* Element - description */
+.approach__description {
   font-size: 0.875rem;
   opacity: 0;
   position: relative;
@@ -138,13 +166,14 @@
   color: #e4ecff;
 }
 
-.card:hover .description {
+.approach__card:hover .approach__description {
   opacity: 1;
   color: white;
   transform: translateY(-0.5rem);
 }
 
-.phaseButton {
+/* Element - phase button */
+.approach__phase_button {
   position: relative;
   display: inline-flex;
   overflow: hidden;
@@ -152,26 +181,24 @@
   padding: 1px;
 }
 
-.phaseButtonInner {
+/* Nested element - phase button inner */
+.approach__phase_button__inner {
   display: inline-flex;
   height: 100%;
   width: 100%;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
   background-color: rgb(15, 23, 42);
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1.25rem;
   color: #a78bfa;
   backdrop-filter: blur(120px);
   font-weight: 700;
   font-size: 1.5rem;
 }
 
-.phaseButtonGradient {
+/* Nested element - phase button gradient */
+.approach__phase_button__gradient {
   position: absolute;
   inset: -1000%;
   background: conic-gradient(
@@ -180,14 +207,46 @@
     #393bb2 50%,
     #e2cbff 100%
   );
-  animation: spin 2s linear infinite;
+  animation: approach__spin 2s linear infinite;
 }
 
-@keyframes spin {
+@keyframes approach__spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Element - canvas container emerald */
+.approach__canvas_emerald {
+  background-color: #059669;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+/* Element - canvas container pink */
+.approach__canvas_pink {
+  background-color: #881337;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+/* Element - canvas container sky */
+.approach__canvas_sky {
+  background-color: #0369a1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+/* Element - animation overlay */
+.approach__animation_overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
