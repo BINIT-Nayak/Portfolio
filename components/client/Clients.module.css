@@ -1,0 +1,36 @@
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .container {
+    margin-top: 2.5rem;
+  }
+}
+
+.cardsWrapper {
+  height: 50vh;
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cardsWrapper {
+    height: 30rem;
+  }
+}

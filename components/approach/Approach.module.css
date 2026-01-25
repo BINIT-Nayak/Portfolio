@@ -1,0 +1,193 @@
+.section {
+  width: 100%;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.cardsContainer {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .cardsContainer {
+    flex-direction: row;
+  }
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 28rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  position: relative;
+  background: rgb(4, 7, 29);
+  background-image: linear-gradient(
+    90deg,
+    rgba(4, 7, 29, 1) 0%,
+    rgba(12, 14, 35, 1) 100%
+  );
+}
+
+@media (min-width: 1024px) {
+  .card {
+    height: 35rem;
+  }
+}
+
+.corner {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.3;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .corner {
+    color: white;
+  }
+}
+
+.cornerTopLeft {
+  top: -0.75rem;
+  left: -0.75rem;
+}
+
+.cornerBottomLeft {
+  bottom: -0.75rem;
+  left: -0.75rem;
+}
+
+.cornerTopRight {
+  top: -0.75rem;
+  right: -0.75rem;
+}
+
+.cornerBottomRight {
+  bottom: -0.75rem;
+  right: -0.75rem;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 20;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.iconWrapper {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in-out;
+  min-width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover .iconWrapper {
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(-1rem);
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 1.875rem;
+  opacity: 0;
+  position: relative;
+  z-index: 10;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover .title {
+  opacity: 1;
+  color: white;
+  transform: translateY(-0.5rem);
+}
+
+.description {
+  font-size: 0.875rem;
+  opacity: 0;
+  position: relative;
+  z-index: 10;
+  margin-top: 1rem;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  color: #e4ecff;
+}
+
+.card:hover .description {
+  opacity: 1;
+  color: white;
+  transform: translateY(-0.5rem);
+}
+
+.phaseButton {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 1px;
+}
+
+.phaseButtonInner {
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: rgb(15, 23, 42);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #a78bfa;
+  backdrop-filter: blur(120px);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.phaseButtonGradient {
+  position: absolute;
+  inset: -1000%;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    #e2cbff 0%,
+    #393bb2 50%,
+    #e2cbff 100%
+  );
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
