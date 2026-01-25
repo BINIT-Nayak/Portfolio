@@ -6,6 +6,24 @@ import { CanvasRevealEffect } from "../ui/CanvasRevealEffect";
 
 import style from "./Approach.module.css";
 
+const APPROACH_PHASES = [
+  {
+    title: "Planning & Strategy",
+    description:
+      "We'll collaborate to map out your website's goals, target audience, and key functionalities. We'll discuss things like site structure, navigation, and content requirements.",
+  },
+  {
+    title: "Development & Progress Update",
+    description:
+      "Once we agree on the plan, I cue my lofi playlist and dive into coding. From initial sketches to polished code, I keep you updated every step of the way.",
+  },
+  {
+    title: "Development & Launch",
+    description:
+      "This is where the magic happens! Based on the approved design, I'll translate everything into functional code, building your website from the ground up.",
+  },
+];
+
 export const Approach = () => {
   return (
     <section className={style.approach}>
@@ -14,11 +32,9 @@ export const Approach = () => {
       </h1>
       <div className={style.approach__cards_container}>
         <Card
-          title="Planning & Strategy"
+          title={APPROACH_PHASES[0].title}
           icon={<AceternityIcon phaseText="Phase 1" />}
-          des="We'll collaborate to map out your website's goals, target audience, 
-          and key functionalities. We'll discuss things like site structure, 
-          navigation, and content requirements."
+          des={APPROACH_PHASES[0].description}
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -26,11 +42,9 @@ export const Approach = () => {
           />
         </Card>
         <Card
-          title="Development & Progress Update"
+          title={APPROACH_PHASES[1].title}
           icon={<AceternityIcon phaseText="Phase 2" />}
-          des="Once we agree on the plan, I cue my lofi playlist and dive into
-          coding. From initial sketches to polished code, I keep you updated
-          every step of the way."
+          des={APPROACH_PHASES[1].description}
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -43,11 +57,9 @@ export const Approach = () => {
           />
         </Card>
         <Card
-          title="Development & Launch"
+          title={APPROACH_PHASES[2].title}
           icon={<AceternityIcon phaseText="Phase 3" />}
-          des="This is where the magic happens! Based on the approved design, 
-          I'll translate everything into functional code, building your website
-          from the ground up."
+          des={APPROACH_PHASES[2].description}
         >
           <CanvasRevealEffect
             animationSpeed={3}

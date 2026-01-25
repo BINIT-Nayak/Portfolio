@@ -4,56 +4,67 @@ import { FaLocationArrow } from "react-icons/fa6";
 
 import { projects } from "@/data";
 import { PinContainer } from "../ui/Pin";
+
 import style from "./RecentProjects.module.css";
 
-const RecentProjects = () => {
+export const RecentProjects = () => {
   return (
-    <div className={style.container} id="projects">
-      <h1 className="heading">
+    <div className={style.recent_projects} id="projects">
+      <h1 className={style.recent_projects__heading}>
         A small selection of{" "}
-        <span className="text-purple">recent projects</span>
+        <span className={style.recent_projects__heading__highlight}>
+          recent projects
+        </span>
       </h1>
-      <div className={style.wrapper}>
+      <div className={style.recent_projects__wrapper}>
         {projects.map((item) => (
-          <div className={style.projectCard} key={item.id}>
+          <div className={style.recent_projects__card} key={item.id}>
             <PinContainer
               title="github.com/BINIT-Nayak"
               href="https://github.com/BINIT-Nayak"
             >
-              <div className={style.imageContainer}>
-                <div className={style.imageWrapper}>
+              <div className={style.recent_projects__image_container}>
+                <div className={style.recent_projects__image_wrapper}>
                   <img src="/assests/bg.png" alt="bgimg" />
                 </div>
                 <img
                   src={item.img}
                   alt="cover"
-                  className={style.projectImage}
+                  className={style.recent_projects__image}
                 />
               </div>
 
-              <h1 className={style.title}>{item.title}</h1>
+              <h1 className={style.recent_projects__title}>{item.title}</h1>
 
-              <p className={style.description}>{item.des}</p>
+              <p className={style.recent_projects__description}>{item.des}</p>
 
-              <div className={style.footer}>
-                <div className={style.iconContainer}>
+              <div className={style.recent_projects__footer}>
+                <div className={style.recent_projects__icon_container}>
                   {item.iconLists.map((icon, index) => (
                     <div
                       key={index}
-                      className={style.iconItem}
+                      className={style.recent_projects__icon_item}
                       style={{
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <img
+                        src={icon}
+                        alt="icon5"
+                        className={style.recent_projects__icon_image}
+                      />
                     </div>
                   ))}
                 </div>
 
                 <a href={item.link}>
-                  <div className={style.linkSection}>
-                    <p className={style.linkText}>Check Repository</p>
-                    <FaLocationArrow className={style.linkIcon} />
+                  <div className={style.recent_projects__link_section}>
+                    <p className={style.recent_projects__link_text}>
+                      Check Repository
+                    </p>
+                    <FaLocationArrow
+                      className={style.recent_projects__link_icon}
+                    />
                   </div>
                 </a>
               </div>
@@ -64,5 +75,3 @@ const RecentProjects = () => {
     </div>
   );
 };
-
-export default RecentProjects;

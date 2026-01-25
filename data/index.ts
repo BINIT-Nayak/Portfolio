@@ -13,7 +13,7 @@ export const gridItems = [
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full myphoto-width",
-    titleClassName: "justify-end linear-gradient title-width",
+    titleClassName: "justify-end  title-width",
     img: "/assests/myPhoto.jpg",
     spareImg: "",
   },
@@ -191,7 +191,7 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Associate Software Enginner",
+    title: "Software Development Enginner",
     company: "Arrise (powering Pragmatic Play)",
     desc: "Developed and maintained user-facing features using modern frontend technologies.",
     className: "md:col-span-2",
@@ -215,7 +215,7 @@ export const workExperience = [
     id: 4,
     title: "Software Intern",
     company: "Arrise (powering Pragmatic Play)",
-    desc: "Assisted in the development of promotions and automation tools using React.js, enhancing interactivity.",
+    desc: "Assisted in the development of tools using React.js, enhancing interactivity.",
     className: "md:col-span-2",
     thumbnail: "/assests/exp4.svg",
   },

@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+
 import style from "./Button.module.css";
 
 export const Button = ({
@@ -16,7 +17,7 @@ export const Button = ({
 }) => {
   return (
     <button className={style.button} onClick={handleClick}>
-      <span className={style.shimmer} />
+      <span className={style.button__shimmer} />
 
       <span className={`${style.button__content} ${otherClasses}`}>
         {position === "left" && icon}

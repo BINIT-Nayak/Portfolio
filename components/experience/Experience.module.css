@@ -1,9 +1,26 @@
-.container {
+.experience {
   padding: 5rem 0;
   width: 100%;
 }
 
-.gridContainer {
+.experience__heading {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .experience__heading {
+    font-size: 2rem;
+  }
+}
+
+.experience__heading__highlight {
+  color: #a78bfa;
+}
+
+.experience__grid {
   width: 100%;
   margin-top: 3rem;
   display: grid;
@@ -12,12 +29,42 @@
 }
 
 @media (min-width: 1024px) {
-  .gridContainer {
+  .experience__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-.cardContent {
+.experience__card {
+  flex: 1;
+  color: black;
+  border: 1px solid #e5e7eb;
+  background: rgb(4, 7, 29);
+  background-image: linear-gradient(
+    90deg,
+    rgba(4, 7, 29, 1) 0%,
+    rgba(12, 14, 35, 1) 100%
+  );
+  border-radius: calc(1.75rem * 0.96);
+}
+
+@media (prefers-color-scheme: dark) {
+  .experience__card {
+    color: white;
+    border-color: #1e293b;
+  }
+}
+
+.experience__card__bg {
+  background: rgb(4, 7, 29);
+  background-image: linear-gradient(
+    90deg,
+    rgba(4, 7, 29, 1) 0%,
+    rgba(12, 14, 35, 1) 100%
+  );
+  border-radius: calc(1.75rem * 0.96);
+}
+
+.experience__card_content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -27,63 +74,63 @@
 }
 
 @media (min-width: 768px) {
-  .cardContent {
+  .experience__card_content {
     padding: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .cardContent {
+  .experience__card_content {
     flex-direction: row;
     align-items: center;
     padding: 2.5rem;
   }
 }
 
-.image {
+.experience__image {
   width: 4rem;
 }
 
 @media (min-width: 768px) {
-  .image {
+  .experience__image {
     width: 5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .image {
+  .experience__image {
     width: 8rem;
   }
 }
 
-.textContent {
+.experience__text_content {
   margin-left: 0;
 }
 
 @media (min-width: 1024px) {
-  .textContent {
+  .experience__text_content {
     margin-left: 1.25rem;
   }
 }
 
-.title {
+.experience__title {
   text-align: start;
   font-size: 1.25rem;
   font-weight: 700;
 }
 
 @media (min-width: 768px) {
-  .title {
+  .experience__title {
     font-size: 1.5rem;
   }
 }
 
-.company {
+.experience__company {
   text-align: start;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.description {
+.experience__description {
   text-align: start;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 0.75rem;

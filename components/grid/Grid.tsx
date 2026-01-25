@@ -2,7 +2,7 @@ import { gridItems } from "@/data";
 import { BentoGrid, BentoGridItem } from "../ui/BentoGrid";
 import style from "./Grid.module.css";
 
-const Grid = () => {
+export const Grid = () => {
   return (
     <section id="about" className={style.section}>
       <BentoGrid>
@@ -23,5 +23,3 @@ const Grid = () => {
     </section>
   );
 };
-
-export default Grid;

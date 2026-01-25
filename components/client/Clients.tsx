@@ -2,18 +2,22 @@
 
 import { testimonials } from "@/data";
 import { InfiniteMovingCards } from "../ui/InfiniteCards";
+
 import style from "./Clients.module.css";
 
-const Clients = () => {
+export const Clients = () => {
   return (
-    <section id="testimonials" className={style.section}>
-      <h1 className="heading">
+    <section id="testimonials" className={style.clients}>
+      <h1 className={style.clients__heading}>
         Kind words from
-        <span className="text-purple"> happy colleague</span>
+        <span className={style.clients__heading__highlight}>
+          {" "}
+          happy colleague
+        </span>
       </h1>
 
-      <div className={style.container}>
-        <div className={style.cardsWrapper}>
+      <div className={style.clients__container}>
+        <div className={style.clients__cards_wrapper}>
           <InfiniteMovingCards
             items={testimonials}
             direction="right"
@@ -24,5 +28,3 @@ const Clients = () => {
     </section>
   );
 };
-
-export default Clients;

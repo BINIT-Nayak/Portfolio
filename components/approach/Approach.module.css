@@ -1,11 +1,8 @@
-/* BEM: Block - Approach */
 .approach {
   width: 100%;
   padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
-/* Element - heading */
 .approach__heading {
   font-size: 3.75rem;
   line-height: 1;
@@ -19,12 +16,10 @@
   }
 }
 
-/* Element - heading highlight */
 .approach__heading__highlight {
   color: #a78bfa;
 }
 
-/* Element - cards container */
 .approach__cards_container {
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -84,7 +79,6 @@
   }
 }
 
-/* Modifier - corner position */
 .approach__corner_top_left {
   top: -0.75rem;
   left: -0.75rem;
@@ -105,7 +99,6 @@
   right: -0.75rem;
 }
 
-/* Element - card content */
 .approach__card_content {
   position: relative;
   z-index: 20;
@@ -113,7 +106,6 @@
   padding-right: 2.5rem;
 }
 
-/* Element - icon wrapper */
 .approach__icon_wrapper {
   text-align: center;
   position: absolute;
@@ -134,7 +126,6 @@
   transform: translate(-50%, -50%) translateY(-1rem);
 }
 
-/* Element - title */
 .approach__title {
   color: white;
   text-align: center;
@@ -154,7 +145,6 @@
   transform: translateY(-0.5rem);
 }
 
-/* Element - description */
 .approach__description {
   font-size: 0.875rem;
   opacity: 0;
@@ -172,7 +162,6 @@
   transform: translateY(-0.5rem);
 }
 
-/* Element - phase button */
 .approach__phase_button {
   position: relative;
   display: inline-flex;
@@ -181,7 +170,6 @@
   padding: 1px;
 }
 
-/* Nested element - phase button inner */
 .approach__phase_button__inner {
   display: inline-flex;
   height: 100%;
@@ -197,7 +185,6 @@
   font-size: 1.5rem;
 }
 
-/* Nested element - phase button gradient */
 .approach__phase_button__gradient {
   position: absolute;
   inset: -1000%;
@@ -240,7 +227,6 @@
   overflow: hidden;
 }
 
-/* Element - animation overlay */
 .approach__animation_overlay {
   height: 100%;
   width: 100%;

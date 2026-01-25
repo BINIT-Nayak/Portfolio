@@ -20,7 +20,7 @@
   }
 }
 
-.shimmer {
+.button__shimmer {
   position: absolute;
   inset: -1000%;
   background: conic-gradient(
@@ -29,10 +29,10 @@
     #393bb2 50%,
     #e2cbff 100%
   );
-  animation: spin 2s linear infinite;
+  animation: button__spin 2s linear infinite;
 }
 
-@keyframes spin {
+@keyframes button__spin {
   from {
     transform: rotate(0deg);
   }

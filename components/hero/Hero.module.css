@@ -1,9 +1,9 @@
-.container {
+.hero {
   padding-bottom: 5rem;
   padding-top: 9rem;
 }
 
-.backgroundGrid {
+.hero__background_grid {
   height: 100vh;
   width: 100%;
   background-color: white;
@@ -17,7 +17,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .backgroundGrid {
+  .hero__background_grid {
     background-color: rgb(17, 24, 39);
     background-image: linear-gradient(
       rgba(255, 255, 255, 0.03) 1px,
@@ -26,7 +26,7 @@
   }
 }
 
-.gradientMask {
+.hero__gradient_mask {
   position: absolute;
   pointer-events: none;
   inset: 0;
@@ -38,12 +38,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .gradientMask {
+  .hero__gradient_mask {
     background-color: rgb(17, 24, 39);
   }
 }
 
-.contentWrapper {
+.hero__content_wrapper {
   display: flex;
   justify-content: center;
   position: relative;
@@ -52,7 +52,7 @@
   z-index: 10;
 }
 
-.contentBox {
+.hero__content_box {
   max-width: 89vw;
   display: flex;
   flex-direction: column;
@@ -61,24 +61,63 @@
 }
 
 @media (min-width: 768px) {
-  .contentBox {
+  .hero__content_box {
     max-width: 42rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .contentBox {
+  .hero__content_box {
     max-width: 60vw;
   }
 }
 
-.tagline {
+.hero__tagline {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.75rem;
   text-align: center;
   color: #dbeafe;
-  max-width: 20rem;
+}
+
+.hero__text_generate {
+  text-align: center;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .hero__text_generate {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__text_generate {
+    font-size: 3.75rem;
+  }
+}
+
+.hero__description {
+  text-align: center;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .hero__description {
+    letter-spacing: 0.05em;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__description {
+    font-size: 1.5rem;
+  }
 }
 
 .description {
@@ -97,5 +136,48 @@
 @media (min-width: 1024px) {
   .description {
     font-size: 1.5rem;
+  }
+}
+
+.hero__spotlight_purple_right {
+  position: absolute;
+  height: 80vh;
+  width: 50vw;
+  top: 2.5rem;
+  right: 100%;
+}
+
+.hero__spotlight_blue_right {
+  position: absolute;
+  right: 20rem;
+  top: 7rem;
+  height: 80vh;
+  width: 50vw;
+}
+
+.hero__arrow_icon {
+  width: 20px;
+  padding-left: 15px;
+  animation: slideDown 1.5s infinite;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  20% {
+    transform: translateY(-4px);
+  }
+
+  60% {
+    transform: translateY(6px);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
   }
 }
