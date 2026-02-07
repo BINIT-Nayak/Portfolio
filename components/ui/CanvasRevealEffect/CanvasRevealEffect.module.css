@@ -1,0 +1,24 @@
+.canvasRevealEffect {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.canvasRevealEffect__container {
+  height: 100%;
+  width: 100%;
+}
+
+.canvasRevealEffect__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(5, 5, 5), transparent 84%);
+}
+
+.canvasRevealEffect__canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}

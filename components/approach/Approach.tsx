@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { CanvasRevealEffect } from "../ui/CanvasRevealEffect";
+import { CanvasRevealEffect } from "../ui/CanvasRevealEffect/CanvasRevealEffect";
 
 import style from "./Approach.module.css";
 

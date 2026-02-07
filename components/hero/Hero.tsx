@@ -37,15 +37,17 @@ export const Hero = () => {
             Hi! I&apos;m Binit, a Software Developer based in India.
           </p>
 
-          <Button
-            title="Scroll Down to Explore"
-            icon={
-              <div className={style.hero__arrow_icon}>
-                <FaCircleArrowDown />
-              </div>
-            }
-            position="right"
-          />
+          <div style={{ pointerEvents: "none" }}>
+            <Button
+              title="Scroll Down to Explore"
+              icon={
+                <div className={style.hero__arrow_icon}>
+                  <FaCircleArrowDown />
+                </div>
+              }
+              position="right"
+            />
+          </div>
         </div>
       </div>
     </div>

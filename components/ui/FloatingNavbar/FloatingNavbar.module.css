@@ -1,0 +1,72 @@
+.floatingNav {
+  display: flex;
+  max-width: fit-content;
+  position: fixed;
+  z-index: 5000;
+  top: 2.5rem;
+  justify-self: center;
+  margin: 0 auto;
+  padding: 1.25rem 2.5rem;
+  border-radius: 0.75rem;
+  box-shadow:
+    0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+@media (min-width: 768px) {
+  .floatingNav {
+    min-width: 70vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .floatingNav {
+    min-width: fit-content;
+  }
+}
+
+.floatingNav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.floatingNav__item:hover {
+  color: rgb(255, 255, 255);
+}
+
+@media (prefers-color-scheme: dark) {
+  .floatingNav__item {
+    color: rgb(209, 213, 219);
+  }
+
+  .floatingNav__item:hover {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.floatingNav__itemIcon {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .floatingNav__itemIcon {
+    display: none;
+  }
+}
+
+.floatingNav__itemText {
+  font-size: 0.875rem;
+  cursor: pointer;
+}

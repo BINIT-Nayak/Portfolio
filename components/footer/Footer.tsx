@@ -38,7 +38,7 @@ export const Footer = () => {
         </a>
       </div>
       <div className={style.footer__bottom_container}>
-        <p className={style.footer__copyright_text}>Copyright © 2024 Binit</p>
+        {/* <p className={style.footer__copyright_text}>Copyright © 2024 Binit</p> */}
 
         <div className={style.footer__social_container}>
           {socialMedia.map((info) => (

@@ -1,5 +1,5 @@
 import { workExperience } from "@/data";
-import { Button } from "../ui/MovingBorders";
+import { Button } from "../ui/MovingBorders/MovingBorders";
 
 import style from "./Experience.module.css";
 

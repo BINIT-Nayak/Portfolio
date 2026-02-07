@@ -1,7 +1,7 @@
 "use client";
 
 import { testimonials } from "@/data";
-import { InfiniteMovingCards } from "../ui/InfiniteCards";
+import { InfiniteMovingCards } from "../ui/InfiniteCards/InfiniteCards";
 
 import style from "./Clients.module.css";
 

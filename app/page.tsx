@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer/Footer";
 import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
 import { RecentProjects } from "@/components/project/RecentProjects";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
+import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
 
 import style from "./page.module.css";
 
