@@ -1,15 +1,33 @@
 .page__main {
   position: relative;
-  background-color: rgb(13, 27, 42);
+  background:
+    linear-gradient(rgba(100, 116, 139, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 34%),
+    var(--portfolio-bg);
+  background-size:
+    56px 56px,
+    56px 56px,
+    auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: clip;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.page__main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(34, 211, 238, 0.1), transparent 32%),
+    linear-gradient(245deg, rgba(100, 116, 139, 0.16), transparent 35%);
 }
 
 @media (min-width: 640px) {
@@ -20,6 +38,8 @@
 }
 
 .page__container {
+  position: relative;
+  z-index: 1;
   max-width: 80rem;
   width: 100%;
 }

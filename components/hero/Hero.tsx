@@ -1,8 +1,7 @@
-import { FaCircleArrowDown } from "react-icons/fa6";
-
 import { Button } from "../button/Button";
 import { Spotlight } from "../ui/Spotlight";
 import { TextGenerateEffect } from "../ui/TextGenerateEffect";
+import { ScrollExploreIcon } from "./ScrollExploreIcon";
 
 import style from "./Hero.module.css";
 
@@ -37,17 +36,12 @@ export const Hero = () => {
             Hi! I&apos;m Binit, a Software Developer based in India.
           </p>
 
-          <div style={{ pointerEvents: "none" }}>
-            <Button
-              title="Scroll Down to Explore"
-              icon={
-                <div className={style.hero__arrow_icon}>
-                  <FaCircleArrowDown />
-                </div>
-              }
-              position="right"
-            />
-          </div>
+          <Button
+            title="Scroll Down to Explore"
+            icon={<ScrollExploreIcon />}
+            position="right"
+            href="#about"
+          />
         </div>
       </div>
     </div>

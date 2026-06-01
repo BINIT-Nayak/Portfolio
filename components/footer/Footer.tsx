@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import { socialMedia } from "@/data";
@@ -11,9 +12,11 @@ export const Footer = () => {
   return (
     <footer className={style.footer} id="contact">
       <div className={style.footer__grid_container}>
-        <img
+        <Image
           src="/assests/footer-grid.svg"
           alt="grid"
+          fill
+          sizes="100vw"
           className={style.footer__grid_image}
         />
       </div>
@@ -29,22 +32,27 @@ export const Footer = () => {
           Reach out to me today and let&apos;s discuss how I can help you
           achieve your goals.
         </p>
-        <a href={EMAIL}>
-          <Button
-            title="Let's get in touch"
-            icon={<FaLocationArrow />}
-            position="right"
-          />
-        </a>
+        <Button
+          title="Let's get in touch"
+          icon={<FaLocationArrow />}
+          position="right"
+          href={EMAIL}
+        />
       </div>
       <div className={style.footer__bottom_container}>
         {/* <p className={style.footer__copyright_text}>Copyright © 2024 Binit</p> */}
 
         <div className={style.footer__social_container}>
           {socialMedia.map((info) => (
-            <a href={info.link} key={info.id}>
+            <a
+              href={info.link}
+              key={info.id}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit Binit on ${info.id === 1 ? "GitHub" : info.id === 2 ? "X" : "LinkedIn"}`}
+            >
               <div key={info.id} className={style.footer__social_icon}>
-                <img src={info.img} alt="icons" width={20} height={20} />
+                <Image src={info.img} alt="" width={20} height={20} />
               </div>
             </a>
           ))}

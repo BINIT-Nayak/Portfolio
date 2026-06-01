@@ -1,13 +1,15 @@
 .approach {
   width: 100%;
-  padding-top: 5rem;
+  padding-top: 6rem;
+  scroll-margin-top: 7rem;
 }
 
 .approach__heading {
   font-size: 3.75rem;
   line-height: 1;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  color: var(--portfolio-text);
 }
 
 @media (max-width: 768px) {
@@ -17,7 +19,7 @@
 }
 
 .approach__heading__highlight {
-  color: #a78bfa;
+  color: var(--portfolio-accent);
 }
 
 .approach__cards_container {
@@ -39,8 +41,8 @@
 
 /* Element - card */
 .approach__card {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,14 +50,13 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 1rem;
+  padding: 1.25rem;
   position: relative;
-  background: rgb(4, 7, 29);
-  background-image: linear-gradient(
-    90deg,
-    rgba(4, 7, 29, 1) 0%,
-    rgba(12, 14, 35, 1) 100%
-  );
+  background:
+    linear-gradient(145deg, rgba(34, 211, 238, 0.08), transparent 44%),
+    var(--portfolio-panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
@@ -69,13 +70,13 @@
   position: absolute;
   width: 2.5rem;
   height: 2.5rem;
-  opacity: 0.3;
-  color: black;
+  opacity: 0.26;
+  color: var(--portfolio-accent);
 }
 
 @media (prefers-color-scheme: dark) {
   .approach__corner {
-    color: white;
+    color: var(--portfolio-text);
   }
 }
 
@@ -127,7 +128,6 @@
 }
 
 .approach__title {
-  color: white;
   text-align: center;
   font-size: 1.875rem;
   opacity: 0;
@@ -135,7 +135,7 @@
   z-index: 10;
   margin-top: 1rem;
   font-weight: 700;
-  color: black;
+  color: var(--portfolio-text);
   transition: all 0.2s ease-in-out;
 }
 
@@ -153,7 +153,7 @@
   margin-top: 1rem;
   text-align: center;
   transition: all 0.2s ease-in-out;
-  color: #e4ecff;
+  color: #cbd5e1;
 }
 
 .approach__card:hover .approach__description {
@@ -166,7 +166,7 @@
   position: relative;
   display: inline-flex;
   overflow: hidden;
-  border-radius: 9999px;
+  border-radius: 0.5rem;
   padding: 1px;
 }
 
@@ -176,10 +176,10 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  background-color: rgb(15, 23, 42);
+  border-radius: 0.5rem;
+  background-color: var(--portfolio-bg);
   padding: 0.5rem 1.25rem;
-  color: #a78bfa;
+  color: var(--portfolio-accent);
   backdrop-filter: blur(120px);
   font-weight: 700;
   font-size: 1.5rem;
@@ -190,9 +190,9 @@
   inset: -1000%;
   background: conic-gradient(
     from 90deg at 50% 50%,
-    #e2cbff 0%,
-    #393bb2 50%,
-    #e2cbff 100%
+    var(--portfolio-accent) 0%,
+    var(--portfolio-muted) 50%,
+    var(--portfolio-text) 100%
   );
   animation: approach__spin 2s linear infinite;
 }
@@ -208,22 +208,22 @@
 
 /* Element - canvas container emerald */
 .approach__canvas_emerald {
-  background-color: #059669;
-  border-radius: 1.5rem;
+  background-color: #164e63;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
 /* Element - canvas container pink */
 .approach__canvas_pink {
-  background-color: #881337;
-  border-radius: 1.5rem;
+  background-color: #334155;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
 /* Element - canvas container sky */
 .approach__canvas_sky {
-  background-color: #0369a1;
-  border-radius: 1.5rem;
+  background-color: #0e7490;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 

@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import { projects } from "@/data";
-import { PinContainer } from "../ui/Pin";
 
 import style from "./RecentProjects.module.css";
 
@@ -18,46 +18,52 @@ export const RecentProjects = () => {
       </h1>
       <div className={style.recent_projects__wrapper}>
         {projects.map((item) => (
-          <div className={style.recent_projects__card} key={item.id}>
-            <PinContainer
-              title="github.com/BINIT-Nayak"
-              href="https://github.com/BINIT-Nayak"
+          <article className={style.recent_projects__card} key={item.id}>
+            <a
+              className={style.recent_projects__cardLink}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className={style.recent_projects__image_container}>
                 <div className={style.recent_projects__image_wrapper}>
-                  <img src="/assests/bg.png" alt="bgimg" />
+                  <Image
+                    src="/assests/bg.png"
+                    alt=""
+                    fill
+                    sizes="(min-width: 640px) 24rem, 80vw"
+                    className={style.recent_projects__background_image}
+                  />
                 </div>
-                <img
+                <Image
                   src={item.img}
-                  alt="cover"
+                  alt={`${item.title} project preview`}
+                  fill
+                  sizes="(min-width: 640px) 24rem, 80vw"
                   className={style.recent_projects__image}
                 />
               </div>
 
-              <h1 className={style.recent_projects__title}>{item.title}</h1>
+              <div className={style.recent_projects__body}>
+                <h1 className={style.recent_projects__title}>{item.title}</h1>
 
-              <p className={style.recent_projects__description}>{item.des}</p>
+                <p className={style.recent_projects__description}>{item.des}</p>
 
-              <div className={style.recent_projects__footer}>
-                <div className={style.recent_projects__icon_container}>
-                  {item.iconLists.map((icon, index) => (
-                    <div
-                      key={index}
-                      className={style.recent_projects__icon_item}
-                      style={{
-                        transform: `translateX(-${5 * index + 2}px)`,
-                      }}
-                    >
-                      <img
-                        src={icon}
-                        alt="icon5"
-                        className={style.recent_projects__icon_image}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <div className={style.recent_projects__footer}>
+                  <div className={style.recent_projects__icon_container}>
+                    {item.iconLists.map((icon) => (
+                      <div key={icon} className={style.recent_projects__icon_item}>
+                        <Image
+                          src={icon}
+                          alt=""
+                          width={40}
+                          height={40}
+                          className={style.recent_projects__icon_image}
+                        />
+                      </div>
+                    ))}
+                  </div>
 
-                <a href={item.link}>
                   <div className={style.recent_projects__link_section}>
                     <p className={style.recent_projects__link_text}>
                       Check Repository
@@ -66,10 +72,10 @@ export const RecentProjects = () => {
                       className={style.recent_projects__link_icon}
                     />
                   </div>
-                </a>
+                </div>
               </div>
-            </PinContainer>
-          </div>
+            </a>
+          </article>
         ))}
       </div>
     </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { workExperience } from "@/data";
 import { Button } from "../ui/MovingBorders/MovingBorders";
 
@@ -17,13 +18,15 @@ export const Experience = () => {
         {workExperience.map((card) => (
           <Button
             key={card.id}
-            duration={Math.floor(Math.random() * 10000) + 10000}
+            duration={12000 + card.id * 1200}
             className={style.experience__card}
           >
             <div className={style.experience__card_content}>
-              <img
+              <Image
                 src={card.thumbnail}
-                alt={card.thumbnail}
+                alt=""
+                width={128}
+                height={128}
                 className={style.experience__image}
               />
               <div className={style.experience__text_content}>

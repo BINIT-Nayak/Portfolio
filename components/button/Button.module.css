@@ -25,11 +25,11 @@
   inset: -1000%;
   background: conic-gradient(
     from 90deg at 50% 50%,
-    #e2cbff 0%,
-    #393bb2 50%,
-    #e2cbff 100%
+    var(--portfolio-accent) 0%,
+    #64748b 45%,
+    #f4f4f4 100%
   );
-  animation: button__spin 2s linear infinite;
+  animation: button__spin 3s linear infinite;
 }
 
 @keyframes button__spin {
@@ -49,11 +49,21 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
-  background-color: rgb(15, 23, 42);
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
   padding: 0 1.75rem;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
+  font-weight: 700;
+  color: var(--portfolio-text);
   backdrop-filter: blur(120px);
   gap: 0.5rem;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.button:hover .button__content {
+  transform: translateY(-1px);
+  background:
+    linear-gradient(180deg, rgba(34, 211, 238, 0.18), rgba(15, 23, 42, 0.98));
 }

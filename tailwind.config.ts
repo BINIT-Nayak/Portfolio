@@ -26,10 +26,8 @@ const config = {
       },
     },
     extend: {
-      extend: {
-        screens: {
-          "md-lg": { min: "600px", max: "1024px" },
-        },
+      screens: {
+        "md-lg": { min: "600px", max: "1024px" },
       },
       colors: {
         black: {

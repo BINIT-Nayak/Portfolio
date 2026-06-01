@@ -1,5 +1,3 @@
-"use client";
-
 import { navItems } from "@/data";
 
 import { Approach } from "@/components/approach/Approach";

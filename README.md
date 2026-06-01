@@ -1,23 +1,53 @@
-# Binit's Portfolio Website
+# Binit Nayak Portfolio
 
-Welcome to my portfolio website repository! This project showcases my professional skills, projects, and experiences.
+A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS, CSS Modules, Framer Motion, and Three.js. The site showcases projects, work experience, testimonials, tech stack, social links, resume download, and contact actions.
 
-## About the Project
+## Live Links
 
-This portfolio website is designed to provide an overview of my work, including:
+- Live site: [https://binit-nayak.netlify.app/](https://binit-nayak.netlify.app/)
+- Repository: [https://github.com/BINIT-Nayak/my-portfolio-website](https://github.com/BINIT-Nayak/my-portfolio-website)
 
-- **Personal Bio:** Information about my background, education, and interests.
-- **Projects:** Detailed descriptions and links to my key projects.
-- **Skills:** A list of my technical and professional skills.
-- **Contact:** Ways to get in touch with me.
+## Features
 
-## Built With
+- Sticky responsive navigation with smooth section scrolling
+- Hero section with scroll-to-about CTA
+- Bento-style about and tech stack section
+- Interactive globe and animated visual effects
+- Responsive project cards with repository links
+- Work experience cards
+- Infinite testimonial carousel
+- Contact section with email and social links
+- Resume download
+- SEO metadata with Open Graph and Twitter card support
 
-- **Next.js:** React framework for building server-side rendered applications.
-- **Tailwind CSS:** Utility-first CSS framework for styling.
-- **TypeScript:** Typed superset of JavaScript for enhanced development experience.
+## Design System
 
-## Links
+Current palette:
 
-- **Project Link:** [GitHub Repository](https://github.com/BINIT-Nayak/my-portfolio-website)
-- **Hosted Link:** [Live Site](https://binit-nayak.netlify.app/)
+- Background: `#0F172A`
+- Primary text: `#F4F4F4`
+- Layout elements: `#64748B`
+- Accent / CTA: `#22D3EE`
+
+Shared palette variables live in [app/globals.css](app/globals.css).
+
+## Tech Stack
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- CSS Modules
+- Framer Motion
+- Three.js / React Three Fiber
+- Sentry integration, enabled only when Sentry env vars are present
+
+## Project Structure
+
+```text
+app/                  App Router pages, layout, providers, global styles
+components/           UI sections and shared interactive components
+data/                 Navigation, projects, testimonials, and experience data
+public/assests/       Images, SVGs, resume, and static media
+lib/                  Shared utility helpers
+```

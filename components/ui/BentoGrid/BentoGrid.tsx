@@ -1,17 +1,28 @@
+"use client";
+
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { FaFileAlt } from "react-icons/fa";
 import { IoCopyOutline } from "react-icons/io5";
 
-import Lottie from "react-lottie";
-
 import { cn, downloadFile } from "@/lib/utils";
 import styles from "./BentoGrid.module.css";
 
-import animationData from "@/data/confetti.json";
 import { Button } from "../../button/Button";
 import { BackgroundGradientAnimation } from "../GradientBg";
 import GridGlobe from "../GridGlobe";
+
+type BentoGridItemProps = {
+  className?: string;
+  id: number;
+  title?: string | ReactNode;
+  description?: string | ReactNode;
+  img?: string;
+  imgClassName?: string;
+  titleClassName?: string;
+  spareImg?: string;
+};
 
 export const BentoGrid = ({
   className,
@@ -32,30 +43,12 @@ export const BentoGridItem = ({
   imgClassName,
   titleClassName,
   spareImg,
-}: {
-  className?: string;
-  id: number;
-  title?: string | ReactNode;
-  description?: string | ReactNode;
-  img?: string;
-  imgClassName?: string;
-  titleClassName?: string;
-  spareImg?: string;
-}) => {
+}: BentoGridItemProps) => {
   const leftLists = ["Python", "Java", "TypeScript"];
   const rightLists = ["ReactJS", "SQL", "MongoDb"];
   const fileName = "Binit_s_Resume.pdf";
 
   const [copied, setCopied] = useState(false);
-
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   // copy to clipboard function
   const handleCopy = () => {
@@ -79,10 +72,11 @@ export const BentoGridItem = ({
       >
         <div className={styles.bentoGridItem__imageWrapper}>
           {img && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={img}
-              alt={img}
+              alt={typeof title === "string" ? title : "Portfolio feature image"}
+              fill
+              sizes="(min-width: 1024px) 60vw, 100vw"
               className={cn(styles.bentoGridItem__image, imgClassName)}
             />
           )}
@@ -95,9 +89,11 @@ export const BentoGridItem = ({
           }
         >
           {spareImg && (
-            <img
+            <Image
               src={spareImg}
-              alt={spareImg}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className={styles.bentoGridItem__spareImage}
             />
           )}
@@ -141,9 +137,19 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className={styles.bentoGridItem__contact}>
-              <div className={styles.bentoGridItem__lottie}>
-                <Lottie options={defaultOptions} height={200} width={400} />
-              </div>
+              {copied && (
+                <div
+                  className={styles.bentoGridItem__confetti}
+                  aria-hidden="true"
+                >
+                  {Array.from({ length: 18 }).map((_, index) => (
+                    <span
+                      key={index}
+                      className={styles.bentoGridItem__confettiPiece}
+                    />
+                  ))}
+                </div>
+              )}
 
               <Button
                 title={copied ? "Email is Copied!" : "Copy my email address"}
