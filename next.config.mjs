@@ -2,9 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 const nextConfig = {};
 
 const hasSentryConfig =
-  process.env.SENTRY_AUTH_TOKEN &&
-  process.env.SENTRY_ORG &&
-  process.env.SENTRY_PROJECT;
+  process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT;
 
 export default hasSentryConfig
   ? withSentryConfig(
@@ -20,6 +18,6 @@ export default hasSentryConfig
         hideSourceMaps: true,
         disableLogger: true,
         automaticVercelMonitors: true,
-      },
+      }
     )
   : nextConfig;

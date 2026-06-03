@@ -2,15 +2,10 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { useState } from "react";
-import { FaFileAlt } from "react-icons/fa";
-import { IoCopyOutline } from "react-icons/io5";
 
-import { cn, downloadFile } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import styles from "./BentoGrid.module.css";
 
-import { Button } from "../../button/Button";
-import { BackgroundGradientAnimation } from "../GradientBg";
 import GridGlobe from "../GridGlobe";
 
 type BentoGridItemProps = {
@@ -23,6 +18,22 @@ type BentoGridItemProps = {
   titleClassName?: string;
   spareImg?: string;
 };
+
+const techStackItems = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Python",
+  "Redux",
+  "Next.js",
+  "Java",
+  "Spring Boot",
+  "PostgreSQL",
+  "Redis",
+  "Kafka",
+  "Docker",
+  "Jest",
+];
 
 export const BentoGrid = ({
   className,
@@ -44,30 +55,11 @@ export const BentoGridItem = ({
   titleClassName,
   spareImg,
 }: BentoGridItemProps) => {
-  const leftLists = ["Python", "Java", "TypeScript"];
-  const rightLists = ["ReactJS", "SQL", "MongoDb"];
-  const fileName = "Binit_s_Resume.pdf";
-
-  const [copied, setCopied] = useState(false);
-
-  // copy to clipboard function
-  const handleCopy = () => {
-    const text = "binitnayak48@gmail.com";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-  };
-
-  const handleDownload = () => {
-    downloadFile(`/assests/${fileName}`, fileName);
-  };
-
   return (
     <div className={cn(styles.bentoGridItem, className)}>
       <div
         className={
-          id === 6
-            ? styles.bentoGridItem__container_flex
-            : styles.bentoGridItem__container
+          id === 6 ? styles.bentoGridItem__container_flex : styles.bentoGridItem__container
         }
       >
         <div className={styles.bentoGridItem__imageWrapper}>
@@ -98,72 +90,26 @@ export const BentoGridItem = ({
             />
           )}
         </div>
-        {id === 6 && (
-          <BackgroundGradientAnimation>
-            <div className={styles.bentoGridItem__gradientAnimation} />
-          </BackgroundGradientAnimation>
-        )}
-
         <div className={cn(styles.bentoGridItem__titleSection, titleClassName)}>
           <div className={styles.bentoGridItem__description}>{description}</div>
-          <div className={styles.bentoGridItem__title}>{title}</div>
+          <div
+            className={cn(
+              styles.bentoGridItem__title,
+              titleClassName?.includes("title-black") && styles.bentoGridItem__title_black
+            )}
+          >
+            {title}
+          </div>
 
           {id === 2 && <GridGlobe />}
 
-          {id === 3 && (
+          {id === 5 && (
             <div className={styles.bentoGridItem__techStack}>
-              {/* tech stack lists */}
-              <div className={styles.bentoGridItem__techStackColumn}>
-                {leftLists.map((item, i) => (
-                  <span key={i} className={styles.bentoGridItem__techStackItem}>
-                    {item}
-                  </span>
-                ))}
-                <span
-                  className={styles.bentoGridItem__techStackItem_empty}
-                ></span>
-              </div>
-              <div className={styles.bentoGridItem__techStackColumn}>
-                <span
-                  className={styles.bentoGridItem__techStackItem_empty}
-                ></span>
-                {rightLists.map((item, i) => (
-                  <span key={i} className={styles.bentoGridItem__techStackItem}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-          {id === 6 && (
-            <div className={styles.bentoGridItem__contact}>
-              {copied && (
-                <div
-                  className={styles.bentoGridItem__confetti}
-                  aria-hidden="true"
-                >
-                  {Array.from({ length: 18 }).map((_, index) => (
-                    <span
-                      key={index}
-                      className={styles.bentoGridItem__confettiPiece}
-                    />
-                  ))}
-                </div>
-              )}
-
-              <Button
-                title={copied ? "Email is Copied!" : "Copy my email address"}
-                icon={<IoCopyOutline />}
-                position="left"
-                handleClick={handleCopy}
-                otherClasses={styles.bentoGridItem__emailButton}
-              />
-              <Button
-                title={"My Resume"}
-                icon={<FaFileAlt />}
-                position="left"
-                handleClick={handleDownload}
-              />
+              {techStackItems.map((item) => (
+                <span key={item} className={styles.bentoGridItem__techStackItem}>
+                  {item}
+                </span>
+              ))}
             </div>
           )}
         </div>

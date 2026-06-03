@@ -1,0 +1,14 @@
+.next
+node_modules
+out
+build
+coverage
+.vercel
+
+package-lock.json
+next-env.d.ts
+*.tsbuildinfo
+
+public/assests/*.pdf
+public/assests/*.gif
+public/assests/*.webp

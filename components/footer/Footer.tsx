@@ -1,12 +1,18 @@
 import Image from "next/image";
-import { FaLocationArrow } from "react-icons/fa6";
 
 import { socialMedia } from "@/data";
-import { Button } from "../button/Button";
 
 import style from "./Footer.module.css";
 
 const EMAIL = "mailto:binitnayak48@gmail.com";
+const RESUME = "/assests/Binit_s_Resume.pdf";
+const LINKEDIN = "https://www.linkedin.com/in/binitnayak2002/";
+const GITHUB = "https://github.com/BINIT-Nayak";
+
+const contactActions = [
+  { label: "Email Me", href: EMAIL },
+  { label: "Download Resume", href: RESUME },
+];
 
 export const Footer = () => {
   return (
@@ -22,26 +28,33 @@ export const Footer = () => {
       </div>
 
       <div className={style.footer__main_container}>
-        {/* TODO: Add heading back */}
         <h1 className={style.footer__heading}>
-          Ready to take{" "}
-          <span className={style.footer__heading__highlight}>your</span> digital
-          presence to the next level?
+          Let&apos;s build{" "}
+          <span className={style.footer__heading__highlight}>scalable products</span> together.
         </h1>
         <p className={style.footer__description}>
-          Reach out to me today and let&apos;s discuss how I can help you
-          achieve your goals.
+          I&apos;m open to Frontend Engineer, React Developer, and Full-Stack Engineer opportunities
+          where I can work on production UI systems, product engineering, and modern web
+          applications.
         </p>
-        <Button
-          title="Let's get in touch"
-          icon={<FaLocationArrow />}
-          position="right"
-          href={EMAIL}
-        />
+        <div className={style.footer__actions}>
+          {contactActions.map((action) => {
+            const isExternal = action.href.startsWith("http");
+            return (
+              <a
+                className={style.footer__action}
+                href={action.href}
+                key={action.label}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+              >
+                {action.label}
+              </a>
+            );
+          })}
+        </div>
       </div>
       <div className={style.footer__bottom_container}>
-        {/* <p className={style.footer__copyright_text}>Copyright © 2024 Binit</p> */}
-
         <div className={style.footer__social_container}>
           {socialMedia.map((info) => (
             <a

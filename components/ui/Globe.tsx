@@ -91,7 +91,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       maxRings: 3,
       ...globeConfig,
     }),
-    [globeConfig],
+    [globeConfig]
   );
 
   const _buildMaterial = useCallback(() => {
@@ -135,9 +135,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     const filteredPoints = points.filter(
       (v, i, a) =>
         a.findIndex((v2) =>
-          ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
-          )
+          ["lat", "lng"].every((k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"])
         ) === i
     );
 
@@ -184,9 +182,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringColor((e: any) => (t: any) => e.color(t))
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
-      .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
-      );
+      .ringRepeatPeriod((defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings);
   }, [data, defaultProps, globeData]);
 
   useEffect(() => {
@@ -210,15 +206,9 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return;
-      numbersOfRings = genRandomNumbers(
-        0,
-        data.length,
-        Math.floor((data.length * 4) / 5)
-      );
+      numbersOfRings = genRandomNumbers(0, data.length, Math.floor((data.length * 4) / 5));
 
-      globeRef.current.ringsData(
-        globeData.filter((d, i) => numbersOfRings.includes(i))
-      );
+      globeRef.current.ringsData(globeData.filter((d, i) => numbersOfRings.includes(i)));
     }, 2000);
 
     return () => {

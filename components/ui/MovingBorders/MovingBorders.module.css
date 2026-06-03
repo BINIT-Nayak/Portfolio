@@ -1,11 +1,61 @@
 /* Block: moving-border-button */
 .movingBorderButton {
   background-color: transparent;
-  position: relative;
+  border-radius: 0.5rem;
   font-size: 1.25rem;
-  padding: 1px;
   overflow: hidden;
-  border-radius: 0.5rem !important;
+  padding: 1px;
+  position: relative;
+}
+
+/* Element: moving-border-button__border-container */
+.movingBorderButton__borderContainer {
+  inset: 0;
+  position: absolute;
+}
+
+/* Element: moving-border-button__border-gradient */
+.movingBorderButton__borderGradient {
+  background: radial-gradient(
+    var(--portfolio-accent) 30%,
+    rgba(100, 116, 139, 0.7) 52%,
+    transparent 70%
+  );
+  height: 5rem;
+  opacity: 0.8;
+  width: 5rem;
+}
+
+/* Element: moving-border-button__content */
+.movingBorderButton__content {
+  align-items: center;
+  backdrop-filter: blur(20px);
+  background: var(--portfolio-panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: white;
+  display: flex;
+  font-size: 0.875rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+/* Block: moving-border */
+.movingBorder__svg {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+/* Element: moving-border__indicator */
+.movingBorder__indicator {
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
 @media (min-width: 768px) {
@@ -13,51 +63,4 @@
     grid-column: span 2;
     grid-row: span 1;
   }
-}
-
-/* Element: moving-border-button__border-container */
-.movingBorderButton__borderContainer {
-  position: absolute;
-  inset: 0;
-}
-
-/* Element: moving-border-button__border-gradient */
-.movingBorderButton__borderGradient {
-  height: 5rem;
-  width: 5rem;
-  opacity: 0.8;
-  background: radial-gradient(var(--portfolio-accent) 30%, rgba(100, 116, 139, 0.7) 52%, transparent 70%);
-}
-
-/* Element: moving-border-button__content */
-.movingBorderButton__content {
-  position: relative;
-  background: var(--portfolio-panel);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  font-size: 0.875rem;
-  border-radius: 0.5rem !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Block: moving-border */
-.movingBorder__svg {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-/* Element: moving-border__indicator */
-.movingBorder__indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
 }

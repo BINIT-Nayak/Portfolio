@@ -41,8 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Binit Nayak | Software Developer",
-    description:
-      "Software developer portfolio featuring projects, experience, and contact links.",
+    description: "Software developer portfolio featuring projects, experience, and contact links.",
     images: ["/assests/myPhoto.jpg"],
   },
 };
@@ -58,12 +57,7 @@ export default function RootLayout({
         <link rel="icon" href="/assests/favIcon.svg" sizes="any" />
       </head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>

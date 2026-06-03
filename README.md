@@ -1,6 +1,6 @@
 # Binit Nayak Portfolio
 
-A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS, CSS Modules, Framer Motion, and Three.js. The site showcases projects, work experience, testimonials, tech stack, social links, resume download, and contact actions.
+A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS, CSS Modules, Framer Motion, and Three.js. The site showcases projects, work experience, engineering case studies, tech stack, social links, resume download, and contact actions.
 
 ## Live Links
 
@@ -13,9 +13,10 @@ A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS, CS
 - Hero section with scroll-to-about CTA
 - Bento-style about and tech stack section
 - Interactive globe and animated visual effects
-- Responsive project cards with repository links
+- Responsive project cards with repository links and case study actions
+- Interactive engineering case study modals
 - Work experience cards
-- Infinite testimonial carousel
+- "What I Bring" recruiter-focused strengths section
 - Contact section with email and social links
 - Resume download
 - SEO metadata with Open Graph and Twitter card support
@@ -47,7 +48,7 @@ Shared palette variables live in [app/globals.css](app/globals.css).
 ```text
 app/                  App Router pages, layout, providers, global styles
 components/           UI sections and shared interactive components
-data/                 Navigation, projects, testimonials, and experience data
+data/                 Navigation, projects, experience, and social data
 public/assests/       Images, SVGs, resume, and static media
 lib/                  Shared utility helpers
 ```

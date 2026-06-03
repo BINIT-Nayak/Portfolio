@@ -2,25 +2,27 @@ export const navItems = [
   { name: "About", link: "#about" },
   { name: "Experience", link: "#experience" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "Case Studies", link: "#case-studies" },
+  { name: "What I Bring", link: "#what-i-bring" },
   { name: "Contact", link: "#contact" },
 ];
 
 export const gridItems = [
   {
     id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
+    title: " Production Frontend Engineering.",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full myphoto-width",
-    titleClassName: "justify-end  title-width",
+    titleClassName: "justify-end  title-width title-black",
     img: "/assests/myPhoto.jpg",
     spareImg: "",
   },
   {
     id: 2,
-    title: "I'm very flexible with time zone communications",
-    description: "",
+    title:
+      "I build full-stack projects using Spring Boot, PostgreSQL, Redis, Kafka, Docker, JWT, and React.",
+    description: "Full-Stack Product Building",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-start",
@@ -29,18 +31,21 @@ export const gridItems = [
   },
   {
     id: 3,
-    title: "My tech stack",
-    description: "I constantly try to improve",
+    title:
+      "I work on shared components, scalable frontend patterns, reusable betting logic, and maintainable React/TypeScript systems.",
+    description: "Reusable UI Architecture",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
     img: "",
     spareImg: "",
   },
+
   {
     id: 4,
-    title: "Tech enthusiast with a passion for development.",
-    description: "",
+    title:
+      "TypeScript discipline, Jest testing, Figma-to-code accuracy, performance-aware implementation, code reviews, and AI-assisted productivity.",
+    description: "Modern Engineering Practices",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
     titleClassName: "justify-start",
@@ -50,21 +55,22 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a Full Stack Website",
-    description: "The Inside Scoop",
+    title: "",
+    description: "Tech Stack",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/assests/b5.svg",
-    spareImg: "/assests/grid.svg",
+    img: "",
+    spareImg: "/assests/b5.svg",
   },
   {
     id: 6,
-    title: "Do you want to start a project together?",
-    description: "",
+    title:
+      "System design, Next.js, performance optimization, CI/CD, and production-grade full-stack deployment.",
+    description: "Currently Improving",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
-    titleClassName: "justify-center md:max-w-full max-w-60 text-center",
+    titleClassName: "justify-center md:max-w-full text-start",
     img: "",
     spareImg: "",
   },
@@ -73,150 +79,127 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "YouTube ReImagined",
-    des: "YouTube Reimagined is a cutting-edge web application that transforms the YouTube viewing experience. By leveraging modern web technologies, this project aims to offer users a more intuitive, engaging, and personalized platform for exploring and enjoying YouTube content.",
-    img: "/assests/youTube_banner.jpg",
-    iconLists: [
-      "/assests/re.svg",
-      "/assests/tail.svg",
-      "/assests/ts.svg",
-      "/assests/redux.svg",
+    title: "Sneaky",
+    subtitle: "Full-Stack Fashion Discovery Platform",
+    des: "A swipe-based fashion discovery platform with personalized recommendations, wishlist, cart, merchant checkout, product analytics, admin flows, and Dockerized development.",
+    img: "/assests/p1.svg",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Spring Boot",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "Docker",
+      "JWT",
     ],
-    link: "https://github.com/BINIT-Nayak/YouTube-Reimagned",
+    highlights: [
+      "Built 2 applications: React frontend and Spring Boot backend",
+      "Developed 20+ API flows",
+      "Implemented recommendation engine using 8+ ranking signals",
+      "Added Kafka/Redis analytics for 3+ user activity types",
+      "Added Docker Compose setup for frontend, backend, PostgreSQL, and Redis",
+    ],
+    actions: [
+      { label: "Live Demo", href: "", disabled: true },
+      { label: "GitHub Frontend", href: "https://github.com/BINIT-Nayak/Sneaky" },
+      {
+        label: "GitHub Backend",
+        href: "https://github.com/BINIT-Nayak/Sneaky_Backend",
+      },
+      { label: "Case Study", href: "#case-study-sneaky-platform" },
+    ],
+    featured: true,
   },
   {
     id: 2,
     title: "Snapgram",
-    des: "Snapgram is a dynamic social media application that combines the best features of Snapchat and Instagram. It’s designed to provide users with a seamless and engaging experience of sharing moments through photos and videos.",
+    subtitle: "Social Media Web Application",
+    des: "A responsive social media app with authentication, post creation/editing, image uploads, feed browsing, profile pages, likes, saves, search, and responsive navigation.",
     img: "/assests/snapgramBanner.png",
-    iconLists: [
-      "/assests/re.svg",
-      "/assests/tail.svg",
-      "/assests/ts.svg",
-      "/assests/reactquery.svg",
-      "/assests/appwrite.svg",
+    techStack: [
+      "React 18",
+      "TypeScript",
+      "Appwrite",
+      "TanStack React Query",
+      "React Hook Form",
+      "Zod",
+      "Tailwind CSS",
+      "Radix UI",
     ],
-    link: "https://github.com/BINIT-Nayak/Snapgram",
+    highlights: [
+      "Built 8+ core features",
+      "Integrated 3 Appwrite services: Auth, Database, Storage",
+      "Designed 3 primary collections: users, posts, saves",
+      "Used React Query for caching, query keys, and invalidation",
+      "Used React Hook Form + Zod for type-safe validation",
+    ],
+    actions: [
+      { label: "Live Demo", href: "", disabled: true },
+      { label: "GitHub", href: "https://github.com/BINIT-Nayak/Snapgram" },
+      { label: "Case Study", href: "#case-study-snapgram" },
+    ],
   },
   {
     id: 3,
-    title: "Agriculture Portal",
-    des: "It is one stop solution php website for farmers and sellers",
-    img: "/assests/portal.webp",
-    iconLists: [
-      "/assests/python.svg",
-      "/assests/php.svg",
-      "/assests/javascript.svg",
-      "/assests/openai.svg",
-      "/assests/skl.svg",
+    title: "VibeJournal",
+    subtitle: "Mood Journal and Reflection Platform",
+    des: "An in-development private mood journal for quick emotional check-ins, deeper reflection, CBT-inspired insights, trend visualization, and future music recommendations.",
+    img: "/assests/p2.svg",
+    techStack: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "CSS Modules",
+      "Canvas Charts",
+      "OpenAI",
+      "Spotify API",
     ],
-    link: "https://github.com/BINIT-Nayak/Agriculture-Portal",
-  },
-  {
-    id: 4,
-    title: "Music for U",
-    des: "This innovative project aims to create a unique and engaging music recommendation system that leverages facial expressions to understand user emotions and preferences.",
-    img: "/assests/musicAppbanner.png",
-    iconLists: [
-      "/assests/python.svg",
-      "/assests/skl.svg",
-      "/assests/opencv.svg",
-      "/assests/keras.svg",
-      "/assests/tensorflow.svg",
+    highlights: [
+      "Built an MVP flow for mood check-ins with energy, stress, valence, notes, and tags",
+      "Designed Prisma models for users, mood entries, journal entries, and playlist recommendation runs",
+      "Added native Canvas chart foundations for visualizing mood and emotional patterns",
+      "Planned OpenAI-powered reflection insights and Spotify-based playlist suggestions",
+      "Upcoming: authentication, persisted database entries, journal history, and recommendation workflows",
     ],
-    link: "https://github.com/BINIT-Nayak/Music-Recommendation-using-facial-expression",
-  },
-];
-
-export const testimonials = [
-  {
-    quote:
-      "Collaborating with Binit was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Binit's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your software and elevate your brand, Binit is the ideal partner.",
-    name: "Abhijit Bose Das",
-    title: "Software Developer in Kuhoo",
-  },
-  {
-    quote:
-      "Engaging with Binit was an exceptional experience. His professionalism, swift responses, and dedication to superior results were apparent from start to finish. Binit's fervor for development truly stands out. For those looking to elevate their website and brand, Binit is the ideal partner.",
-    name: "Madhyam Patra",
-    title: "Software Developer in CloudSek",
-  },
-  {
-    quote:
-      "Partnering with Binit exceeded my expectations. His exceptional professionalism, quick turnaround times, and meticulous attention to detail were impressive. Binit's passion for development shines through in every task he undertakes. If you want to elevate your website and brand, Binit is the partner you need.",
-    name: "Susobhit Mohapatra",
-    title: "Cyber Security Analyst",
-  },
-  {
-    quote:
-      "Working alongside Binit was an absolute delight. His professionalism, promptness, and unwavering commitment to excellence were apparent throughout our collaboration. Binit's passion for development is unmatched. If you're looking to take your website and brand to the next level, Binit is the ideal partner.",
-    name: "Ayan Sinha",
-    title: "Salesforce Developer in PWC",
-  },
-];
-
-export const companies = [
-  {
-    id: 1,
-    name: "cloudinary",
-    img: "/cloud.svg",
-    nameImg: "/cloudName.svg",
-  },
-  {
-    id: 2,
-    name: "appwrite",
-    img: "/app.svg",
-    nameImg: "/appName.svg",
-  },
-  {
-    id: 3,
-    name: "HOSTINGER",
-    img: "/host.svg",
-    nameImg: "/hostName.svg",
-  },
-  {
-    id: 4,
-    name: "stream",
-    img: "/s.svg",
-    nameImg: "/streamName.svg",
-  },
-  {
-    id: 5,
-    name: "docker.",
-    img: "/dock.svg",
-    nameImg: "/dockerName.svg",
+    actions: [
+      { label: "Live Demo", href: "", disabled: true },
+      { label: "GitHub", href: "https://github.com/BINIT-Nayak/VibeJournal" },
+    ],
   },
 ];
 
 export const workExperience = [
   {
     id: 1,
-    title: "Software Development Enginner",
-    company: "Arrise (powering Pragmatic Play)",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
-    className: "md:col-span-2",
+    title: "Software Development Engineer I",
+    company: "Arrise Solutions",
+    period: "Jul 2024 – Present",
+    highlights: [
+      "Built production-level React casino game UI across desktop, portrait, large portrait, and landscape layouts.",
+      "Delivered Toast Messages 2.0, replacing 5+ legacy blocking popups with lightweight, localized toast notifications.",
+      "Owned major Plinko UI areas across 20+ feature areas including BetSpot, Bet on All, BetPool, crowd meter, animations, tooltips, store setup, and browser-specific fixes.",
+      "Implemented 8+ gameplay animation flows including chip placement, win chip, BetSpot transitions, booster animations, and ball drop interactions.",
+      "Acted as a primary MR reviewer for Plinko, reviewing feature logic, edge cases, maintainability, and regression risks.",
+      "Collaborated with Product, Design, QA, Video, and Game Framework teams to clarify requirements and stabilize production delivery.",
+    ],
     thumbnail: "/assests/exp1.svg",
   },
-  // {
-  //   id: 2,
-  //   title: "Mobile App Dev - JSM Tech",
-  //   desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-  //   className: "md:col-span-2", // change to md:col-span-2
-  //   thumbnail: "/assests/exp2.svg",
-  // },
-  // {
-  //   id: 3,
-  //   title: "Freelance App Dev Project",
-  //   desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-  //   className: "md:col-span-2", // change to md:col-span-2
-  //   thumbnail: "/assests/exp3.svg",
-  // },
   {
     id: 4,
     title: "Software Intern",
-    company: "Arrise (powering Pragmatic Play)",
-    desc: "Assisted in the development of tools using React.js, enhancing interactivity.",
-    className: "md:col-span-2",
+    company: "Arrise Solutions",
+    period: "Jan 2024 – Jun 2024",
+    highlights: [
+      "Implemented frontend logic for Free Chips / Free Bet Bonus Campaign across multiple React games and shared frameworks.",
+      "Worked on bonus chip-based betting flows including balance validation, chip selection, bet restrictions, campaign eligibility, and low-balance handling.",
+      "Revised Privé table validation to support both real-money balance and Free Chips.",
+      "Collaborated with Product, QA, Backend, and Game Framework teams to validate API behavior and release production-ready features.",
+      "Built reusable game history UI components with unit tests.",
+    ],
     thumbnail: "/assests/exp4.svg",
   },
 ];

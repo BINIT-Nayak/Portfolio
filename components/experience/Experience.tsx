@@ -8,10 +8,7 @@ export const Experience = () => {
   return (
     <div className={style.experience} id="experience">
       <h1 className={style.experience__heading}>
-        My{" "}
-        <span className={style.experience__heading__highlight}>
-          work experience
-        </span>
+        My <span className={style.experience__heading__highlight}>work experience</span>
       </h1>
 
       <div className={style.experience__grid}>
@@ -22,17 +19,30 @@ export const Experience = () => {
             className={style.experience__card}
           >
             <div className={style.experience__card_content}>
-              <Image
-                src={card.thumbnail}
-                alt=""
-                width={128}
-                height={128}
-                className={style.experience__image}
-              />
+              <div className={style.experience__image_container}>
+                <Image
+                  src={card.thumbnail}
+                  alt=""
+                  width={128}
+                  height={128}
+                  className={style.experience__image}
+                />
+                <div>
+                  <h1 className={style.experience__title}>{card.title}</h1>
+                  <div className={style.experience__meta}>
+                    <p className={style.experience__company}>{card.company}</p>
+                    <p className={style.experience__period}>{card.period}</p>
+                  </div>
+                </div>
+              </div>
               <div className={style.experience__text_content}>
-                <h1 className={style.experience__title}>{card.title}</h1>
-                <p className={style.experience__company}>{card.company}</p>
-                <p className={style.experience__description}>{card.desc}</p>
+                <ul className={style.experience__highlights}>
+                  {card.highlights.map((highlight) => (
+                    <li className={style.experience__highlight} key={highlight}>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </Button>
