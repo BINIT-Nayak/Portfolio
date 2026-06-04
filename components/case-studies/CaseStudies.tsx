@@ -16,10 +16,35 @@ const caseStudies = [
     role: "Frontend ownership, shared UI patterns, localization-ready behavior, interaction review",
     outcome:
       "Reduced blocking UI friction and created a lighter feedback pattern that could scale across game experiences.",
+    metrics: [
+      { label: "Visible Stack", value: "3", detail: "Smart stacked toast limit" },
+      { label: "Default Timer", value: "7s", detail: "Auto-dismiss with hover pause" },
+      { label: "Gesture Axis", value: "3", detail: "Left, right, and up swipe dismiss" },
+      { label: "Toast Types", value: "5", detail: "Standard, action, bet, support, undo" },
+    ],
+    architecture: [
+      "ToasterService dispatches and manages toast events, duplicate handling, support-chat messages, undo actions, and close notifications.",
+      "ToasterStackComponent manages stacked layout, expand/collapse behavior, max visible size, dynamic height, and responsive stack positioning.",
+      "ToasterAlertComponent renders individual toast content, timer state, gestures, icons, actions, accessibility attributes, and dismissal behavior.",
+      "The stacking logic uses CSS transforms, z-index ordering, offset positioning, and scale changes to keep multiple notifications readable without blocking gameplay.",
+      "Performance and cleanup were handled with OnPush change detection, requestAnimationFrame-driven layout updates, timer cleanup, and destroy-safe subscriptions.",
+    ],
+    challengesSolved: [
+      "Legacy blocking popups interrupted gameplay, so I replaced them with lightweight non-blocking toast feedback that preserved visibility without stopping the user flow.",
+      "Multiple concurrent messages could become noisy, so I implemented smart stacking with a 3-toast collapsed limit, visual offsets, scaling, expand/collapse behavior, and close-all/collapse-all interactions.",
+      "Duplicate notifications could spam the UI, so I added duplicate-content handling to remove existing matching toasts before showing a new one.",
+      "Timer behavior had to feel fair across devices, so I supported a 7-second default timer, optional no-timer action toasts, hover pause on desktop, and cleanup when toasts are destroyed.",
+      "Mobile users needed touch-friendly dismissal, so I supported left/right/up swipe dismiss behavior, down-swipe cancel behavior, and a 30px gesture threshold.",
+      "The component had to work across desktop, tablet, mobile, and orientation changes, so I added responsive sizing, dynamic max-height calculation, and automatic stack collapse on rotation.",
+      "The system needed to support multiple toast types, so I handled standard notifications, action toasts, bet/chip toasts, undo toasts, and customer-support chat integration through one predictable API.",
+      "Accessibility and performance were important, so I used alert semantics, polite live regions, focus considerations, CSS transforms, and safe timer/subscription cleanup.",
+    ],
     details: [
       "Moved high-friction blocking popups into lightweight non-blocking toast flows.",
       "Supported localized messaging, gesture interactions, and reusable frontend patterns across game UI surfaces.",
       "Improved production UX by reducing interruption while preserving critical feedback visibility.",
+      "Added smart duplicate handling, configurable actions, custom icons, undo support, support-chat messaging, and timer-based auto-dismiss behavior.",
+      "Documented usage patterns, best practices, API methods, toast types, troubleshooting notes, testing recommendations, and migration guidance for team adoption.",
     ],
   },
   {
@@ -32,6 +57,13 @@ const caseStudies = [
     role: "Primary UI contributor and MR reviewer for feature logic, edge cases, maintainability, and regressions",
     outcome:
       "Stabilized a complex real-time betting interface across desktop, portrait, large portrait, and landscape layouts.",
+    challengesSolved: [
+      "The Bet on All approach was not clear at the start, so I rebuilt the implementation through 3 approaches, clarified behavior with Product and Design, and stabilized the final flow across mobile, desktop, and responsive betting-grid layouts.",
+      "Plinko had many layout-specific edge cases across desktop, portrait, large portrait, and landscape, so I handled responsive grid scaling, BetSpot island pixel perfection, crowd meter alignment, size/color/opacity mismatches, and visual overlap issues.",
+      "Some production issues were browser and platform specific, including Safari Booster visibility/color bugs and Linux blur issues, so I refactored the Booster component and added targeted fixes for cross-browser visual consistency.",
+      "TooltipContextMessage was causing BetSpot remounting issues, so I replaced it with a normal tooltip approach to preserve component stability during interactions.",
+      "Stream and UI synchronization had initial desync concerns, so I coordinated with the video team, handled Relu UI sync, and kept the main game branch stable through core updates and breaking changes.",
+    ],
     details: [
       "Delivered game UI across desktop, portrait, large portrait, and landscape experiences.",
       "Owned multiple betting and gameplay surfaces including BetSpot, BetPool, tooltips, and animation flows.",
@@ -307,6 +339,19 @@ export const CaseStudies = () => {
                 <p className={style.caseStudies__modal_label}>Architecture</p>
                 <ul className={style.caseStudies__detail_list}>
                   {activeCaseStudy.architecture.map((detail) => (
+                    <li className={style.caseStudies__detail_item} key={detail}>
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {activeCaseStudy.challengesSolved && (
+              <div className={style.caseStudies__modal_details}>
+                <p className={style.caseStudies__modal_label}>Challenges Solved</p>
+                <ul className={style.caseStudies__detail_list}>
+                  {activeCaseStudy.challengesSolved.map((detail) => (
                     <li className={style.caseStudies__detail_item} key={detail}>
                       {detail}
                     </li>

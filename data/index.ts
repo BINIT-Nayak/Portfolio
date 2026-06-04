@@ -82,7 +82,7 @@ export const projects = [
     title: "Sneaky",
     subtitle: "Full-Stack Fashion Discovery Platform",
     des: "A swipe-based fashion discovery platform with personalized recommendations, wishlist, cart, merchant checkout, product analytics, admin flows, and Dockerized development.",
-    img: "/assests/p1.svg",
+    img: "/assests/sneaky_thumbnail.png",
     techStack: [
       "React",
       "TypeScript",
@@ -102,7 +102,7 @@ export const projects = [
       "Added Docker Compose setup for frontend, backend, PostgreSQL, and Redis",
     ],
     actions: [
-      { label: "Live Demo", href: "", disabled: true },
+      { label: "Live Demo", href: "https://sneaky-4zjb.onrender.com/", disabled: false },
       { label: "GitHub Frontend", href: "https://github.com/BINIT-Nayak/Sneaky" },
       {
         label: "GitHub Backend",
@@ -117,7 +117,7 @@ export const projects = [
     title: "Snapgram",
     subtitle: "Social Media Web Application",
     des: "A responsive social media app with authentication, post creation/editing, image uploads, feed browsing, profile pages, likes, saves, search, and responsive navigation.",
-    img: "/assests/snapgramBanner.png",
+    img: "/assests/snapgram_thumbnail.png",
     techStack: [
       "React 18",
       "TypeScript",
@@ -136,7 +136,7 @@ export const projects = [
       "Used React Hook Form + Zod for type-safe validation",
     ],
     actions: [
-      { label: "Live Demo", href: "", disabled: true },
+      { label: "Live Demo", href: "https://snapgram-two-kappa.vercel.app/", disabled: false },
       { label: "GitHub", href: "https://github.com/BINIT-Nayak/Snapgram" },
       { label: "Case Study", href: "#case-study-snapgram" },
     ],
@@ -146,7 +146,7 @@ export const projects = [
     title: "VibeJournal",
     subtitle: "Mood Journal and Reflection Platform",
     des: "An in-development private mood journal for quick emotional check-ins, deeper reflection, CBT-inspired insights, trend visualization, and future music recommendations.",
-    img: "/assests/p2.svg",
+    img: "/assests/VibeJournal_thumbnail.png",
     techStack: [
       "Next.js 15",
       "React 19",

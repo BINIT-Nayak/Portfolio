@@ -20,13 +20,15 @@ export const Experience = () => {
           >
             <div className={style.experience__card_content}>
               <div className={style.experience__image_container}>
-                <Image
-                  src={card.thumbnail}
-                  alt=""
-                  width={128}
-                  height={128}
-                  className={style.experience__image}
-                />
+                <div className={style.experience__image_frame}>
+                  <Image
+                    src={card.thumbnail}
+                    alt=""
+                    width={128}
+                    height={128}
+                    className={style.experience__image}
+                  />
+                </div>
                 <div>
                   <h1 className={style.experience__title}>{card.title}</h1>
                   <div className={style.experience__meta}>
