@@ -12,3 +12,4 @@ next-env.d.ts
 public/assests/*.pdf
 public/assests/*.gif
 public/assests/*.webp
+data/case-studies/sneaky-recommendation-system.md

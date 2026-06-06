@@ -15,6 +15,10 @@ const HERO_LINKS = [
     href: "#projects",
   },
   {
+    label: "Case Studies",
+    href: "#case-studies",
+  },
+  {
     label: "View GitHub",
     href: "https://github.com/BINIT-Nayak",
   },

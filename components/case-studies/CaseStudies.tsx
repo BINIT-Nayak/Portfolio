@@ -1,14 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { FaArrowRight, FaXmark } from "react-icons/fa6";
+import { FaArrowRight, FaCalendarDays, FaClock, FaXmark } from "react-icons/fa6";
 
 import style from "./CaseStudies.module.css";
 
 const caseStudies = [
   {
     id: "toast-messages",
-    title: "Toast Messages 2.0",
+    title: "Arrise Project: Toast Messages 2.0",
+    date: "2025",
+    readTime: "5 min read",
+    tags: ["React UI", "Localization", "Gestures", "Production UX"],
     summary:
       "Replaced 5+ legacy blocking popups with a shared, localized, gesture-supported toast notification system for React casino games.",
     description:
@@ -49,9 +53,11 @@ const caseStudies = [
   },
   {
     id: "plinko-ui",
-    title: "Plinko Game UI",
-    summary:
-      "Built responsive, animation-heavy betting UI across 4 layouts with BetSpot, Bet on All, BetPool, crowd meter, tooltips, and gameplay animations.",
+    title: "Arrise Project: Plinko Game UI",
+    date: "2026",
+    readTime: "5 min read",
+    tags: ["React", "Game UI", "Responsive Layouts", "Animation"],
+    summary: "Built responsive, animation-heavy betting UI across 4 layouts gameplay animations.",
     description:
       "A production casino game UI implementation with responsive layout work, animation-heavy state changes, betting interactions, browser-specific fixes, and MR review responsibility.",
     role: "Primary UI contributor and MR reviewer for feature logic, edge cases, maintainability, and regressions",
@@ -73,6 +79,9 @@ const caseStudies = [
   {
     id: "sneaky-platform",
     title: "Sneaky Full-Stack Platform",
+    date: "2026",
+    readTime: "5 min read",
+    tags: ["React", "Spring Boot", "PostgreSQL", "Redis", "Kafka"],
     summary:
       "Designed and built a full-stack fashion discovery platform with Spring Boot APIs, Redis/Kafka analytics, recommendations, Docker setup, and React frontend.",
     description:
@@ -117,8 +126,57 @@ const caseStudies = [
     ],
   },
   {
+    id: "sneaky-recommendations",
+    title:
+      "Building Sneaky’s Recommendation System: Why I Chose Points-Based Recommendation Before Machine Learning",
+    date: "2026",
+    readTime: "8 min read",
+    detailHref: "/case-studies/sneaky-recommendation-system",
+    tags: ["Recommendations", "Redis", "Kafka", "System Design", "Ranking"],
+    summary:
+      "Built a practical points-based recommendation system for Sneaky before moving to ML, using explainable product signals, Redis caching, diversity reranking, and frontend prefetching.",
+    description:
+      "Sneaky needed a recommendation flow that could feel personal without waiting for a large ML dataset. The system had to promote wishlist/cart/recently viewed preferences, reduce rejected or repeated products, support guest users, and stay fast for swipe-based browsing.",
+    role: "Backend and product-engineering design across scoring signals, recommendation API behavior, Redis cache strategy, Kafka-ready refresh flow, and frontend prefetch coordination",
+    outcome:
+      "Created an explainable, tunable recommendation architecture that works with existing product behavior data today and can evolve into ML-based reranking later.",
+    metrics: [
+      { label: "Signals", value: "8+", detail: "Wishlist, cart, views, passes, metadata" },
+      { label: "Threshold", value: "20", detail: "Minimum signals before personalization" },
+      { label: "Candidates", value: "250", detail: "Scored before diversity reranking" },
+      { label: "Cache TTL", value: "15m", detail: "Redis ranked product cache" },
+    ],
+    architecture: [
+      "Recommendation API follows a cache-first flow: check Redis, fetch cached product IDs in ranked order, or run scoring when the cache is missing.",
+      "Positive scoring boosts brand, category, merchant, price similarity, and popularity signals from wishlist, cart, viewed, and product metadata.",
+      "Negative scoring reduces products already passed, recently viewed, or already saved/carted so the feed does not feel repetitive.",
+      "Diversity reranking applies recent-window penalties for repeated category, brand, and merchant values before returning the final product list.",
+      "Kafka-ready analytics refresh flow can update recommendation caches in the background when product views, passes, wishlist, or cart events happen.",
+      "Frontend prefetch sends excludeIds near the end of the current feed so Redux can append fresh unique products before users hit an empty state.",
+    ],
+    challengesSolved: [
+      "ML would have added pipeline complexity before Sneaky had enough behavior data, so I chose an explainable points-based recommender as the first production-ready version.",
+      "Weak early signals could over-personalize the feed, so the system uses a minimum personalization threshold of 20 signals before switching from guest ranking to user-specific ranking.",
+      "Positive and negative preferences can conflict, so the scoring model combines boosts and penalties instead of relying only on liked products.",
+      "High-scoring products can become repetitive, so diversity reranking temporarily penalizes repeated category, brand, and merchant values within a recent window.",
+      "Full scoring on every request would become expensive, so Redis stores ranked product IDs and the API preserves cached ranking order for faster responses.",
+      "Swipe feeds can feel broken when duplicates appear, so the frontend sends already loaded product IDs and appends only new products.",
+    ],
+    details: [
+      "Used guest ranking based on popularity, recency, and diversity for users without enough personal behavior signals.",
+      "Used user-specific cache keys such as recommendations:user:{userId} and a guest recommendation cache for logged-out users.",
+      "Kept popularity as a small boost instead of allowing it to overpower personal preferences.",
+      "Limited recently viewed and passed-product memory so ranking stays relevant without growing unbounded.",
+      "Designed the future ML path as reranking, where rules generate candidate products and ML improves ordering once enough real behavior data exists.",
+      "Kept the system practical for Sneaky's stage: fast to build, easy to debug, easy to tune, Redis-compatible, and future-ready.",
+    ],
+  },
+  {
     id: "css-module-class-utils",
-    title: "css-module-class-utils",
+    title: "NPM package: css-module-class-utils",
+    date: "2026",
+    readTime: "5 min read",
+    tags: ["npm", "TypeScript", "CSS Modules", "DX"],
     summary:
       "Published a lightweight npm utility package for cleaner, type-safe CSS Module class composition in React and TypeScript projects.",
     description:
@@ -153,6 +211,9 @@ const caseStudies = [
   {
     id: "snapgram",
     title: "Snapgram Social Platform",
+    date: "2025",
+    readTime: "5 min read",
+    tags: ["React", "Appwrite", "React Query", "Zod"],
     summary:
       "Built a React social media application with Appwrite Auth, Database, Storage, query caching, form validation, and responsive navigation.",
     description:
@@ -263,8 +324,25 @@ export const CaseStudies = () => {
           >
             <div className={style.caseStudies__card_body}>
               <p className={style.caseStudies__eyebrow}>Case Study</p>
+              <div className={style.caseStudies__meta}>
+                <span className={style.caseStudies__meta_item}>
+                  <FaCalendarDays />
+                  {caseStudy.date}
+                </span>
+                <span className={style.caseStudies__meta_item}>
+                  <FaClock />
+                  {caseStudy.readTime}
+                </span>
+              </div>
               <h2 className={style.caseStudies__title}>{caseStudy.title}</h2>
               <p className={style.caseStudies__summary}>{caseStudy.summary}</p>
+              <div className={style.caseStudies__tags}>
+                {caseStudy.tags.slice(0, 3).map((tag) => (
+                  <span className={style.caseStudies__tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <span className={style.caseStudies__link}>
@@ -299,10 +377,27 @@ export const CaseStudies = () => {
 
             <div className={style.caseStudies__modal_header}>
               <p className={style.caseStudies__modal_eyebrow}>Engineering Case Study</p>
+              <div className={style.caseStudies__modal_meta}>
+                <span className={style.caseStudies__meta_item}>
+                  <FaCalendarDays />
+                  {activeCaseStudy.date}
+                </span>
+                <span className={style.caseStudies__meta_item}>
+                  <FaClock />
+                  {activeCaseStudy.readTime}
+                </span>
+              </div>
               <h2 className={style.caseStudies__modal_title} id="case-study-modal-title">
                 {activeCaseStudy.title}
               </h2>
               <p className={style.caseStudies__modal_summary}>{activeCaseStudy.summary}</p>
+              <div className={style.caseStudies__modal_tags}>
+                {activeCaseStudy.tags.map((tag) => (
+                  <span className={style.caseStudies__tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className={style.caseStudies__modal_body}>
@@ -370,6 +465,15 @@ export const CaseStudies = () => {
                 ))}
               </ul>
             </div>
+
+            {activeCaseStudy.detailHref && (
+              <div className={style.caseStudies__modal_actions}>
+                <Link className={style.caseStudies__detail_link} href={activeCaseStudy.detailHref}>
+                  Read in Detail
+                  <FaArrowRight className={style.caseStudies__link_icon} />
+                </Link>
+              </div>
+            )}
           </article>
         </div>
       )}
