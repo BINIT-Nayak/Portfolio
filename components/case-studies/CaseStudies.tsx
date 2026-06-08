@@ -9,7 +9,7 @@ import style from "./CaseStudies.module.css";
 const caseStudies = [
   {
     id: "toast-messages",
-    title: "Arrise Project: Toast Messages 2.0",
+    title: " Project: Toast Messages 2.0",
     date: "2025",
     readTime: "5 min read",
     tags: ["React UI", "Localization", "Gestures", "Production UX"],
@@ -53,7 +53,7 @@ const caseStudies = [
   },
   {
     id: "plinko-ui",
-    title: "Arrise Project: Plinko Game UI",
+    title: " Project: Plinko Game UI",
     date: "2026",
     readTime: "5 min read",
     tags: ["React", "Game UI", "Responsive Layouts", "Animation"],
