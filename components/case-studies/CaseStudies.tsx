@@ -186,9 +186,12 @@ const caseStudies = [
       "Published a focused npm package that reduces repetitive class-composition code, improves component readability, standardizes CSS Module modifier handling, and demonstrates reusable frontend tooling beyond application feature work.",
     metrics: [
       { label: "Package Type", value: "npm", detail: "Reusable frontend utility package" },
-      { label: "API Surface", value: "1", detail: "Focused getClasses helper" },
-      { label: "Dependencies", value: "0", detail: "Lightweight utility-first approach" },
-      { label: "Language", value: "TS", detail: "TypeScript-friendly API design" },
+      { label: "Dependencies", value: "0", detail: "No runtime dependencies" },
+      { label: "Package Size", value: "5.5 kB", detail: "Unpacked npm package size" },
+      { label: "Runtime JS", value: "855 B", detail: "Small published JavaScript output" },
+    ],
+    externalLinks: [
+      { label: "View on npm", href: "https://www.npmjs.com/package/css-module-class-utils" },
     ],
     architecture: [
       "CSS Modules-first API accepts the imported styles object directly, keeping usage aligned with real React component styling patterns.",
@@ -203,7 +206,7 @@ const caseStudies = [
       "Moved repetitive class array/filter/join logic into one reusable utility so component code can describe state instead of string-building details.",
       "Kept the modifier API object-based, making class conditions easier to scan in components with multiple states or variants.",
       "Kept TypeScript types simple with a readable modifier shape instead of over-engineering the package API.",
-      "Published the package to npm, gaining experience with package naming, versioning, documentation, and distribution.",
+      "Published the package to npm as a dependency-free TypeScript utility with declarations, about 2.1 kB compressed and 5.5 kB unpacked.",
       "Improved developer experience by reducing boilerplate and encouraging consistent CSS Module class handling across reusable components.",
       "Demonstrated the ability to turn a repeated engineering pain point into a small reusable tool.",
     ],
@@ -398,6 +401,23 @@ export const CaseStudies = () => {
                   </span>
                 ))}
               </div>
+
+              {activeCaseStudy.externalLinks && (
+                <div className={style.caseStudies__modal_actions}>
+                  {activeCaseStudy.externalLinks.map((link) => (
+                    <Link
+                      className={style.caseStudies__detail_link}
+                      href={link.href}
+                      key={link.href}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {link.label}
+                      <FaArrowRight className={style.caseStudies__link_icon} />
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className={style.caseStudies__modal_body}>
