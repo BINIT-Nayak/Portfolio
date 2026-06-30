@@ -319,6 +319,8 @@
 
 .caseStudies__modal_actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
   justify-content: flex-end;
   margin-top: 1rem;
 }

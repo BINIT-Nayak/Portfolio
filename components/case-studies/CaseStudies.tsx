@@ -212,6 +212,53 @@ const caseStudies = [
     ],
   },
   {
+    id: "friendly-error-messages",
+    title: "friendly-error-messages",
+    date: "Jun 2026",
+    readTime: "6 min read",
+    tags: ["npm", "TypeScript", "Error Handling", "Developer Experience"],
+    summary:
+      "Published a dependency-free TypeScript package that turns unknown application and API errors into safe, user-friendly messages and actionable UI metadata.",
+    description:
+      "Frontend applications receive failures in many inconsistent shapes: native Error objects, strings, fetch failures, Axios-style responses, HTTP payloads, and rejected state-library values. Showing raw technical messages creates poor UX, while rewriting error parsing in every component creates duplicated and inconsistent behavior.",
+    role: "Package author responsible for API design, unknown-error normalization, TypeScript types, category detection, configurable rules, ESM packaging, tests, documentation, and npm publishing",
+    outcome:
+      "Published version 0.1.0 as a focused, dependency-free utility that gives applications consistent user-facing messages while also exposing metadata for retries, auth redirects, severity, and category-aware UI behavior.",
+    metrics: [
+      { label: "Error Categories", value: "10", detail: "Network through unknown fallbacks" },
+      { label: "Runtime Deps", value: "0", detail: "Small dependency-free package" },
+      { label: "Core APIs", value: "3", detail: "Message, parser, and mapper APIs" },
+      { label: "Published", value: "v0.1.0", detail: "Typed ESM package on npm" },
+    ],
+    externalLinks: [
+      { label: "View on npm", href: "https://www.npmjs.com/package/friendly-error-messages" },
+    ],
+    architecture: [
+      "The normalization layer accepts unknown values and reads common fields such as message, status, statusCode, code, response.status, and response.data.message.",
+      "The classification layer maps normalized failures into network, timeout, unauthorized, forbidden, notFound, conflict, validation, rateLimit, server, or unknown categories.",
+      "getFriendlyErrorMessage provides a safe UI string for toasts, alerts, form errors, and modals without exposing raw technical details.",
+      "parseFriendlyError returns structured metadata including category, message, status, rawMessage, code, shouldRetry, and severity for behavior-aware interfaces.",
+      "createErrorMessageMapper creates reusable app-specific handlers with shared fallback messages, category copy, and custom matching rules.",
+      "The package ships as side-effect-free ESM with bundled TypeScript declarations and no additional type package requirement.",
+    ],
+    challengesSolved: [
+      "Error values can be almost anything at runtime, so I designed the public API around unknown input instead of assuming every failure is an Error instance.",
+      "Fetch, Axios, backend APIs, and state libraries expose status and message data differently, so the parser safely inspects several common nested shapes through one consistent normalization path.",
+      "Raw backend messages are often too technical for users, so category-based defaults separate diagnostic input from safe UI copy.",
+      "Applications still need custom product language, so messages can override category copy without replacing the package's detection logic.",
+      "Domain-specific errors cannot all be predicted by a generic package, so custom rules can match status codes, error codes, and message patterns while controlling retry behavior.",
+      "Some interfaces need more than text, so the structured parser exposes metadata for redirecting unauthorized users, showing retry actions, and selecting severity-aware UI.",
+    ],
+    details: [
+      "Supports native Error instances, string errors, fetch/network failures, Axios-style response objects, API payloads, and rejected state-library values.",
+      "Provides built-in friendly messages for ten common failure categories with a configurable fallback for unknown errors.",
+      "Supports custom category messages and ordered matching rules using status, code, and message patterns.",
+      "Keeps simple use cases concise while allowing advanced consumers to read status, retry, severity, category, and raw-message metadata.",
+      "Includes TypeScript declarations, an explicit ESM export map, sideEffects: false, build-before-publish behavior, and Node-based package tests.",
+      "Documented when to use message generation, structured parsing, custom messages, custom rules, and reusable mappers.",
+    ],
+  },
+  {
     id: "snapgram",
     title: "Snapgram Social Platform",
     date: "2025",
