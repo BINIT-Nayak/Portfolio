@@ -10,19 +10,20 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: " Production Frontend Engineering.",
+    title:
+      "Building production-grade frontend systems with React, TypeScript, responsive UI architecture, and animation-heavy user experiences.",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full myphoto-width",
-    titleClassName: "justify-end  title-width title-black",
+    titleClassName: "justify-end  title-width title-white",
     img: "/assests/myPhoto.jpg",
     spareImg: "",
   },
   {
     id: 2,
     title:
-      "I build full-stack projects using Spring Boot, PostgreSQL, Redis, Kafka, Docker, JWT, and React.",
-    description: "Full-Stack Product Building",
+      "Designing and developing full-stack applications using Spring Boot, PostgreSQL, Redis, Kafka, Docker, JWT, and modern React ecosystems.",
+    description: "Full-Stack Product Development",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-start",
@@ -32,8 +33,8 @@ export const gridItems = [
   {
     id: 3,
     title:
-      "I work on shared components, scalable frontend patterns, reusable betting logic, and maintainable React/TypeScript systems.",
-    description: "Reusable UI Architecture",
+      "Creating reusable component libraries, scalable frontend architecture, shared design systems, and maintainable TypeScript codebases.",
+    description: "Scalable Frontend Architecture",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -44,7 +45,7 @@ export const gridItems = [
   {
     id: 4,
     title:
-      "TypeScript discipline, Jest testing, Figma-to-code accuracy, performance-aware implementation, code reviews, and AI-assisted productivity.",
+      "Focused on performance, testing, Figma-to-code precision, clean code reviews, and AI-assisted engineering to deliver reliable software faster.",
     description: "Modern Engineering Practices",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
@@ -179,26 +180,26 @@ export const workExperience = [
     company: "Arrise Solutions",
     period: "Jul 2024 – Present",
     highlights: [
-      "Built production-level React casino game UI across desktop, portrait, large portrait, and landscape layouts.",
-      "Delivered Toast Messages 2.0, replacing 5+ legacy blocking popups with lightweight, localized toast notifications.",
-      "Owned major Plinko UI areas across 20+ feature areas including BetSpot, Bet on All, BetPool, crowd meter, animations, tooltips, store setup, and browser-specific fixes.",
-      "Implemented 8+ gameplay animation flows including chip placement, win chip, BetSpot transitions, booster animations, and ball drop interactions.",
-      "Acted as a primary MR reviewer for Plinko, reviewing feature logic, edge cases, maintainability, and regression risks.",
-      "Collaborated with Product, Design, QA, Video, and Game Framework teams to clarify requirements and stabilize production delivery.",
+      "Owned frontend development for production React-based gaming applications, delivering responsive, interactive experiences across desktop and multiple mobile layouts.",
+      "Designed and implemented Toast Messages 2.0, a reusable notification framework that replaced 5+ legacy blocking popups with lightweight, localized, and animation-driven toasts.",
+      "Built reusable gameplay UI components, responsive layouts, and complex state-driven interactions while ensuring pixel-perfect Figma implementation and cross-browser compatibility.",
+      "Implemented performant animation systems and optimized rendering for real-time user interactions, improving responsiveness and maintaining smooth gameplay experiences.",
+      "Served as a primary merge request reviewer, improving code quality, maintainability, architecture consistency, and reducing regression risks across the team.",
+      "Collaborated with Product, Design, QA, Backend, and Framework teams to deliver production features, resolve edge cases, and maintain stable releases.",
     ],
     thumbnail: "/assests/exp1.svg",
   },
   {
-    id: 4,
+    id: 2,
     title: "Software Intern",
     company: "Arrise Solutions",
     period: "Jan 2024 – Jun 2024",
     highlights: [
-      "Implemented frontend logic for Free Chips / Free Bet Bonus Campaign across multiple React games and shared frameworks.",
-      "Worked on bonus chip-based betting flows including balance validation, chip selection, bet restrictions, campaign eligibility, and low-balance handling.",
-      "Revised Privé table validation to support both real-money balance and Free Chips.",
-      "Collaborated with Product, QA, Backend, and Game Framework teams to validate API behavior and release production-ready features.",
-      "Built reusable game history UI components with unit tests.",
+      "Implemented the Free Chips (Free Bet Bonus Campaign) feature across multiple React games and shared frameworks, enabling bonus-based betting workflows.",
+      "Developed reusable business logic for balance validation, campaign eligibility, betting restrictions, and shared gameplay flows across multiple products.",
+      "Enhanced gameplay validation to support promotional balance alongside cash balance, improving campaign accessibility and user experience.",
+      "Partnered with Product, QA, Backend, and Framework teams to validate APIs, troubleshoot production issues, and deliver reliable releases.",
+      "Built reusable game history components and comprehensive unit tests, improving maintainability and reliability of shared frontend modules.",
     ],
     thumbnail: "/assests/exp4.svg",
   },

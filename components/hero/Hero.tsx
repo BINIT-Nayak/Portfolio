@@ -51,14 +51,16 @@ export const Hero = () => {
 
           <div className={style.hero__copy}>
             <p className={style.hero__lead}>
-              Full-Stack Engineer building scalable React applications, production UI, and modern
-              web platforms.
+              Frontend / Full-Stack Engineer building scalable React applications, production-grade
+              UI systems, and modern web platforms.
             </p>
 
             <p className={style.hero__description}>
-              I work with React, TypeScript, Redux, Web Components, Jest, Spring Boot, PostgreSQL,
-              Redis, Kafka, Docker, and JWT to build production-grade frontend systems and
-              full-stack products.
+              Currently building real-time gaming experiences at Tech giant, where I develop
+              responsive interfaces, reusable frontend architecture, and animation-heavy UI.
+              Passionate about product engineering, I also build full-stack applications using
+              Spring Boot, PostgreSQL, Redis, Kafka, and Docker while continuously exploring cloud
+              technologies and AI-assisted engineering workflows.
             </p>
           </div>
 

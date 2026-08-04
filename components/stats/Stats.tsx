@@ -8,18 +8,18 @@ const stats = [
   },
   {
     value: "10+",
-    label: "Major Features",
-    detail: "Shipped across products",
+    label: "Features",
+    detail: "Shipped to Production",
   },
   {
-    value: "20+",
-    label: "API Flows",
-    detail: "Integrated end to end",
+    value: "50+",
+    label: "Code Reviews",
+    detail: "Improving Quality",
   },
   {
-    value: "20+",
-    label: "Production Bugs",
-    detail: "Solved and Deployed",
+    value: "350+",
+    label: "DSA Problems",
+    detail: "Solved",
   },
 ];
 
