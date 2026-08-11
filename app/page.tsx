@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer/Footer";
 import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
 import { RecentProjects } from "@/components/project/RecentProjects";
-import { Stats } from "@/components/stats/Stats";
+// import { Stats } from "@/components/stats/Stats";
 import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
 
 import style from "./page.module.css";
@@ -19,7 +19,7 @@ const Home = () => {
       <div className={style.page__container}>
         <FloatingNav navItems={navItems} />
         <Hero />
-        <Stats />
+        {/* <Stats /> */}
         <Grid />
         <Experience />
         <RecentProjects />

@@ -56,7 +56,7 @@ export const Hero = () => {
             </p>
 
             <p className={style.hero__description}>
-              Currently building real-time gaming experiences at Tech giant, where I develop
+              Currently building real-time gaming experiences at a Tech giant, where I develop
               responsive interfaces, reusable frontend architecture, and animation-heavy UI.
               Passionate about product engineering, I also build full-stack applications using
               Spring Boot, PostgreSQL, Redis, Kafka, and Docker while continuously exploring cloud
