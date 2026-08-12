@@ -1,11 +1,86 @@
 "use client";
 import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
   ssr: false,
 });
 
+const isWebGLAvailable = () => {
+  try {
+    const canvas = document.createElement("canvas");
+    const context =
+      canvas.getContext("webgl2") ||
+      canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl");
+
+    return Boolean(context);
+  } catch {
+    return false;
+  }
+};
+
+const GlobeFallback = () => (
+  <div className="flex h-full w-full items-center justify-center">
+    <div className="relative h-52 w-52 rounded-full border border-cyan-300/30 bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.35),rgba(15,23,42,0.8)_48%,rgba(2,6,23,0.95)_72%)] shadow-[0_0_80px_rgba(34,211,238,0.22)]">
+      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-cyan-200/20" />
+      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-cyan-200/20" />
+      <span className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/20" />
+      <span className="absolute left-8 top-14 h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.9)]" />
+      <span className="absolute right-10 top-20 h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />
+      <span className="absolute bottom-12 left-20 h-2 w-2 rounded-full bg-indigo-400 shadow-[0_0_18px_rgba(129,140,248,0.9)]" />
+    </div>
+  </div>
+);
+
 const GridGlobe = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(true);
+  const [webGLSupported, setWebGLSupported] = useState(false);
+
+  useEffect(() => {
+    setWebGLSupported(isWebGLAvailable());
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+
+    updateMotionPreference();
+    mediaQuery.addEventListener("change", updateMotionPreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        rootMargin: "160px",
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -392,10 +467,15 @@ const GridGlobe = () => {
     },
   ];
 
+  const shouldRenderGlobe = webGLSupported && isVisible && !prefersReducedMotion;
+
   return (
     // remove dark:bg-black bg-white h-screen md:h-auto  w-full flex-row py-20
     // change absolute -left-5 top-36, add w-full h-full md:top-40
-    <div className="absolute -left-5 top-36 flex h-full w-full items-center justify-center md:top-40">
+    <div
+      ref={containerRef}
+      className="absolute -left-5 top-36 flex h-full w-full items-center justify-center md:top-40"
+    >
       {/* remove h-full md:h-[40rem] */}
       <div className="relative mx-auto h-96 w-full max-w-7xl overflow-hidden px-4">
         {/* remove these text divs */}
@@ -424,7 +504,11 @@ const GridGlobe = () => {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none bg-gradient-to-b from-transparent to-white dark:to-black" />
         {/* remove -bottom-20 */}
         <div className="absolute z-10 h-72 w-full md:h-full">
-          <World data={sampleArcs} globeConfig={globeConfig} />
+          {shouldRenderGlobe ? (
+            <World data={sampleArcs} globeConfig={globeConfig} />
+          ) : (
+            <GlobeFallback />
+          )}
         </div>
       </div>
     </div>

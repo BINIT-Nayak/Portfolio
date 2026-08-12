@@ -1,6 +1,5 @@
 import { navItems } from "@/data";
 
-import { Approach } from "@/components/approach/Approach";
 import { CaseStudies } from "@/components/case-studies/CaseStudies";
 import { Clients } from "@/components/client/Clients";
 import { Experience } from "@/components/experience/Experience";
@@ -25,7 +24,6 @@ const Home = () => {
         <RecentProjects />
         <CaseStudies />
         <Clients />
-        <Approach />
         <Footer />
       </div>
     </main>

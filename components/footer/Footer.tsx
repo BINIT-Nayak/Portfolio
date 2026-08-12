@@ -9,10 +9,7 @@ const RESUME = "/assests/Binit_s_Resume.pdf";
 const LINKEDIN = "https://www.linkedin.com/in/binitnayak2002/";
 const GITHUB = "https://github.com/BINIT-Nayak";
 
-const contactActions = [
-  { label: "Email Me", href: EMAIL },
-  { label: "Download Resume", href: RESUME },
-];
+const contactActions = [{ label: "Email Me", href: EMAIL }];
 
 export const Footer = () => {
   return (

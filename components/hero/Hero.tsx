@@ -7,10 +7,6 @@ import style from "./Hero.module.css";
 
 const HERO_LINKS = [
   {
-    label: "View Resume",
-    href: "/assests/Binit_s_Resume.pdf",
-  },
-  {
     label: "View Projects",
     href: "#projects",
   },

@@ -58,6 +58,10 @@
   top: 0;
 }
 
+.movingBorder__indicator_reducedMotion {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .movingBorderButton {
     grid-column: span 2;

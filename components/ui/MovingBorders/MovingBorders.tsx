@@ -5,6 +5,7 @@ import {
   useAnimationFrame,
   useMotionTemplate,
   useMotionValue,
+  useReducedMotion,
   useTransform,
 } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -71,7 +72,9 @@ export const MovingBorder = ({
 }) => {
   const pathRef = useRef<SVGPathElement | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
   const progress = useMotionValue<number>(0);
+  const [isVisible, setIsVisible] = useState(false);
   const [size, setSize] = useState({ height: 0, width: 0 });
 
   useEffect(() => {
@@ -93,6 +96,30 @@ export const MovingBorder = ({
 
     return () => {
       resizeObserver.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+
+    if (!svg) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        rootMargin: "120px",
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(svg);
+
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -138,6 +165,10 @@ export const MovingBorder = ({
   }, [radius, size.height, size.width]);
 
   useAnimationFrame((time) => {
+    if (prefersReducedMotion || !isVisible) {
+      return;
+    }
+
     const length = pathRef.current?.getTotalLength();
     if (length) {
       const pxPerMillisecond = length / duration;
@@ -164,7 +195,10 @@ export const MovingBorder = ({
         {path && <path d={path} fill="none" ref={pathRef} />}
       </svg>
       <motion.div
-        className={styles.movingBorder__indicator}
+        className={cn(
+          styles.movingBorder__indicator,
+          prefersReducedMotion && styles.movingBorder__indicator_reducedMotion
+        )}
         style={{
           transform,
         }}

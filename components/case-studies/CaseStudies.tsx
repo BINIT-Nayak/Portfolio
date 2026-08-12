@@ -9,71 +9,200 @@ import style from "./CaseStudies.module.css";
 const caseStudies = [
   {
     id: "toast-messages",
-    title: " Project: Toast Messages 2.0",
+    title: "Toast Messages 2.0 — Shared Notification Platform",
     date: "2025",
-    readTime: "5 min read",
-    tags: ["React UI", "Localization", "Gestures", "Production UX"],
+    readTime: "6 min read",
+    tags: [
+      "React",
+      "TypeScript",
+      "UI Architecture",
+      "Gestures",
+      "Animations",
+      "Accessibility",
+      "Production UX",
+    ],
+
     summary:
-      "Replaced 5+ legacy blocking popups with a shared, localized, gesture-supported toast notification system for React casino games.",
+      "Architected and implemented a configurable notification system adopted across 50+ games, consolidating ~120 toast variants and 20+ blocking popups into a shared, service-driven architecture.",
+
     description:
-      "A production UI refactor focused on reducing interruption in real-time game flows while keeping critical feedback visible, localized, and reusable across multiple React game surfaces.",
-    role: "Frontend ownership, shared UI patterns, localization-ready behavior, interaction review",
+      "Toast 2.0 redesigned game notifications from a single-message, blocking feedback model into a scalable notification platform supporting concurrent messages, richer content, actions, gesture interactions, coordinated animations, localization, and responsive behavior across real-time gaming experiences.",
+
+    role: "Architecture, implementation, interaction design, shared component engineering, migration strategy, performance optimization, and cross-game integration",
+
     outcome:
-      "Reduced blocking UI friction and created a lighter feedback pattern that could scale across game experiences.",
+      "Established a reusable notification architecture for 50+ games, reducing fragmented toast and popup implementations while enabling richer, non-blocking player feedback through a consistent configurable API.",
+
     metrics: [
-      { label: "Visible Stack", value: "3", detail: "Smart stacked toast limit" },
-      { label: "Default Timer", value: "7s", detail: "Auto-dismiss with hover pause" },
-      { label: "Gesture Axis", value: "3", detail: "Left, right, and up swipe dismiss" },
-      { label: "Toast Types", value: "5", detail: "Standard, action, bet, support, undo" },
+      {
+        label: "Game Adoption",
+        value: "50+",
+        detail: "Games supported by the shared notification architecture",
+      },
+      {
+        label: "Toast Variants",
+        value: "~120",
+        detail: "Existing notification variants consolidated",
+      },
+      {
+        label: "Legacy Popups",
+        value: "20+",
+        detail: "Blocking popup use cases migrated toward Toast 2.0",
+      },
+      {
+        label: "Animations",
+        value: "10",
+        detail: "Coordinated stack and interaction animations",
+      },
     ],
+
     architecture: [
-      "ToasterService dispatches and manages toast events, duplicate handling, support-chat messages, undo actions, and close notifications.",
-      "ToasterStackComponent manages stacked layout, expand/collapse behavior, max visible size, dynamic height, and responsive stack positioning.",
-      "ToasterAlertComponent renders individual toast content, timer state, gestures, icons, actions, accessibility attributes, and dismissal behavior.",
-      "The stacking logic uses CSS transforms, z-index ordering, offset positioning, and scale changes to keep multiple notifications readable without blocking gameplay.",
-      "Performance and cleanup were handled with OnPush change detection, requestAnimationFrame-driven layout updates, timer cleanup, and destroy-safe subscriptions.",
+      "Designed a service-driven architecture that separates notification creation and lifecycle management from rendering, allowing game features to trigger Toast 2.0 through a consistent API.",
+      "Structured the system around service, stack, and individual-toast responsibilities: event orchestration, stack/layout management, and isolated notification rendering.",
+      "Expanded the content model from a single message and action into title + body content with primary and secondary actions, custom icons, timers, and specialized notification behavior.",
+      "Built stack orchestration for multiple concurrent notifications using ordering, transforms, offsets, scaling, and z-index management, with a 3-layer collapsed preview and expandable stack.",
+      "Implemented 10 coordinated animations covering toast entry/exit, stack movement, expansion/collapse, gesture interactions, and layout transitions.",
+      "Used transform-based animations and requestAnimationFrame-driven layout updates to minimize layout-heavy work during interaction and stack changes.",
+      "Designed lifecycle handling for timers, pause/resume behavior, queued notifications, duplicate removal, cleanup, and interruption-safe dismissal.",
+      "Kept the architecture localization-ready and reusable across different game surfaces, screen sizes, orientations, and notification use cases.",
     ],
+
     challengesSolved: [
-      "Legacy blocking popups interrupted gameplay, so I replaced them with lightweight non-blocking toast feedback that preserved visibility without stopping the user flow.",
-      "Multiple concurrent messages could become noisy, so I implemented smart stacking with a 3-toast collapsed limit, visual offsets, scaling, expand/collapse behavior, and close-all/collapse-all interactions.",
-      "Duplicate notifications could spam the UI, so I added duplicate-content handling to remove existing matching toasts before showing a new one.",
-      "Timer behavior had to feel fair across devices, so I supported a 7-second default timer, optional no-timer action toasts, hover pause on desktop, and cleanup when toasts are destroyed.",
-      "Mobile users needed touch-friendly dismissal, so I supported left/right/up swipe dismiss behavior, down-swipe cancel behavior, and a 30px gesture threshold.",
-      "The component had to work across desktop, tablet, mobile, and orientation changes, so I added responsive sizing, dynamic max-height calculation, and automatic stack collapse on rotation.",
-      "The system needed to support multiple toast types, so I handled standard notifications, action toasts, bet/chip toasts, undo toasts, and customer-support chat integration through one predictable API.",
-      "Accessibility and performance were important, so I used alert semantics, polite live regions, focus considerations, CSS transforms, and safe timer/subscription cleanup.",
+      "Legacy notifications were fragmented across ~120 toast variants and 20+ blocking popup use cases, so I consolidated them behind a configurable shared architecture instead of maintaining feature-specific implementations.",
+
+      "The previous model could effectively surface one flat notification at a time. Toast 2.0 supports multiple concurrent notifications through coordinated stacking, visual hierarchy, and expand/collapse interactions.",
+
+      "Blocking dialogs interrupted time-sensitive gameplay, so eligible feedback was redesigned as non-blocking notifications while preserving visibility and actionable player communication.",
+
+      "Concurrent notifications introduced complex layout and animation dependencies, requiring coordinated transitions so entering, leaving, expanding, and collapsing toasts did not visually conflict.",
+
+      "Duplicate events could repeatedly surface identical messages, so duplicate detection and lifecycle handling were centralized at the service layer.",
+
+      "Different notifications required different interaction models, so the API supports title/body content, up to 2 actions, custom icons, timed and persistent notifications, undo flows, betting feedback, and support-related messaging.",
+
+      "Touch and desktop interactions required different behavior, so dismissal supports left, right, and upward swipe gestures alongside desktop interaction and timer pause behavior.",
+
+      "Responsive gameplay layouts required notifications to remain usable across desktop, tablet, mobile, and orientation changes, including dynamic stack sizing and automatic layout recalculation.",
+
+      "Long-running game sessions required predictable cleanup, so timers, subscriptions, animation state, and component destruction were handled explicitly to avoid stale UI behavior and resource leaks.",
+
+      "Accessibility requirements were incorporated through alert semantics, live-region behavior, keyboard/focus considerations, and interaction states that did not rely exclusively on gestures.",
     ],
+
     details: [
-      "Moved high-friction blocking popups into lightweight non-blocking toast flows.",
-      "Supported localized messaging, gesture interactions, and reusable frontend patterns across game UI surfaces.",
-      "Improved production UX by reducing interruption while preserving critical feedback visibility.",
-      "Added smart duplicate handling, configurable actions, custom icons, undo support, support-chat messaging, and timer-based auto-dismiss behavior.",
-      "Documented usage patterns, best practices, API methods, toast types, troubleshooting notes, testing recommendations, and migration guidance for team adoption.",
+      "Architected and implemented Toast 2.0 as a shared notification system intended for adoption across 50+ games.",
+      "Consolidated ~120 notification variants and 20+ popup use cases behind a configurable service-driven interface.",
+      "Expanded notifications from 1 text slot + 1 action to title + body + primary/secondary actions.",
+      "Implemented a 7-second default timer with pause/resume behavior and support for persistent action-driven notifications.",
+      "Built a 3-layer collapsed stack with expand/collapse behavior for handling multiple concurrent notifications without overwhelming gameplay.",
+      "Implemented 10 coordinated animations and multi-direction swipe dismissal while keeping transitions transform-oriented for smoother runtime performance.",
+      "Added duplicate handling, queue/pause behavior, configurable actions, custom icons, undo flows, and support-related notification use cases.",
+      "Handled responsive behavior across multiple layouts and orientation changes while maintaining localization and accessibility support.",
+      "Documented APIs, notification types, integration patterns, migration guidance, testing recommendations, and troubleshooting practices to support wider adoption.",
     ],
   },
   {
     id: "plinko-ui",
-    title: " Project: Plinko Game UI",
+    title: "Project: Real-Time Plinko Game",
     date: "2026",
-    readTime: "5 min read",
-    tags: ["React", "Game UI", "Responsive Layouts", "Animation"],
-    summary: "Built responsive, animation-heavy betting UI across 4 layouts gameplay animations.",
+    readTime: "7 min read",
+    tags: ["React", "TypeScript", "WebSocket", "Web Workers", "WAAPI", "Real-Time Systems"],
+
+    summary:
+      "Owned and engineered a real-time Plinko game spanning frontend architecture, backend-to-UI event integration, Web Worker-based synchronization, ~28 coordinated animation sequences, and responsive gameplay across 4 layouts.",
+
     description:
-      "A production casino game UI implementation with responsive layout work, animation-heavy state changes, betting interactions, browser-specific fixes, and MR review responsibility.",
-    role: "Primary UI contributor and MR reviewer for feature logic, edge cases, maintainability, and regressions",
+      "A production real-time game where backend-driven events, sequential ball drops, betting state, multipliers, video timing, and animation-heavy UI must remain synchronized. My work covered frontend architecture, Game Server/WebSocket integration, event-processing flows, responsive UI, animation systems, reconnection handling, performance optimization, and production stabilization.",
+
+    role: "Primary frontend contributor with ownership across gameplay architecture, real-time Game Server integration, animation systems, responsive UI, technical coordination, MR reviews, and production readiness while collaborating with 6+ cross-functional teams.",
+
     outcome:
-      "Stabilized a complex real-time betting interface across desktop, portrait, large portrait, and landscape layouts.",
+      "Delivered a production-ready real-time gameplay system connecting server-driven events to a responsive React UI, with resilient event synchronization, reusable animation infrastructure, refresh/reconnection recovery, and consistent behavior across 4 responsive layouts.",
+
     challengesSolved: [
-      "The Bet on All approach was not clear at the start, so I rebuilt the implementation through 3 approaches, clarified behavior with Product and Design, and stabilized the final flow across mobile, desktop, and responsive betting-grid layouts.",
-      "Plinko had many layout-specific edge cases across desktop, portrait, large portrait, and landscape, so I handled responsive grid scaling, BetSpot island pixel perfection, crowd meter alignment, size/color/opacity mismatches, and visual overlap issues.",
-      "Some production issues were browser and platform specific, including Safari Booster visibility/color bugs and Linux blur issues, so I refactored the Booster component and added targeted fixes for cross-browser visual consistency.",
-      "TooltipContextMessage was causing BetSpot remounting issues, so I replaced it with a normal tooltip approach to preserve component stability during interactions.",
-      "Stream and UI synchronization had initial desync concerns, so I coordinated with the video team, handled Relu UI sync, and kept the main game branch stable through core updates and breaking changes.",
+      "Integrated real-time backend-to-frontend WebSocket communication, consuming sequenced Game Server events carrying gameplay phase, multiplier, and time-to-hit data and translating them into deterministic UI state and gameplay transitions.",
+
+      "Designed an event-processing architecture around a dedicated Web Worker to process server-driven timing outside the main UI flow and coordinate sequential ball drops, BetSpot state changes, multiplier updates, and animation execution.",
+
+      "Handled complex asynchronous gameplay where multiple BetSpots and gameplay phases progress independently while remaining synchronized with backend timing, requiring careful sequencing and prevention of overlapping or stale UI transitions.",
+
+      "Built recovery flows for refresh, reconnection, tab switching, and partially completed rounds, including server-provided recovery states so the UI could reconstruct the correct BetSpot, island, multiplier, Booster, and Superball state instead of replaying stale animations.",
+
+      "Investigated Game Server-to-video-to-UI latency with the Video and integration teams, validated event contracts and timing behavior, and adjusted client-side synchronization to reduce visible desynchronization between server state, stream events, and gameplay animations.",
+
+      "Built ~28 coordinated gameplay animation sequences using interruption-safe WAAPI, requestAnimationFrame, sprite animation, and GPU-friendly transforms while keeping animation-heavy gameplay responsive.",
+
+      "Delivered responsive gameplay across desktop, portrait, large portrait, and landscape while resolving BetSpot scaling, island alignment, Crowd Meter behavior, tooltip interactions, and Safari/Linux/iOS-specific rendering issues.",
     ],
+
     details: [
-      "Delivered game UI across desktop, portrait, large portrait, and landscape experiences.",
-      "Owned multiple betting and gameplay surfaces including BetSpot, BetPool, tooltips, and animation flows.",
-      "Reviewed feature logic, edge cases, and regression risk as a primary MR reviewer for Plinko.",
+      "Integrated Game Server WebSocket events with React gameplay state, processing server-provided sequencing, timing, multiplier, and recovery information.",
+
+      "Designed Web Worker-based synchronization between backend gameplay events and ~28 frontend animation sequences.",
+
+      "Implemented resilience for refresh, reconnect, tab-switch, stream-latency, stale-event, and partially completed animation scenarios.",
+
+      "Owned major gameplay surfaces including BetSpot, BetSpot Island, BetPool, Bet on All, Crowd Meter, Booster interactions, multipliers, Free Chips, Superball states, and win experiences.",
+
+      "Developed responsive gameplay across 4 layout modes with extensive Figma verification, Storybook coverage, and Visual Regression Testing.",
+
+      "Worked across frontend, Game Server, Video, Core/Framework, Product, Design, QA, and integration boundaries to validate contracts, investigate synchronization issues, and drive features to production readiness.",
+    ],
+  },
+  {
+    id: "free-chips",
+    title: "Project: Free Chips Promotional Wallet",
+    date: "2025",
+    readTime: "7 min read",
+    tags: ["React", "TypeScript", "Java", "Kafka", "PostgreSQL", "Event-Driven Architecture"],
+
+    summary:
+      "Contributed to a cross-game promotional wallet spanning ~21 games, enabling players to participate using Free Chips instead of their cash balance while maintaining complex eligibility, betting, settlement, refund, and campaign rules.",
+
+    description:
+      "Free Chips is a production promotional betting system spanning frontend games, shared Core infrastructure, Game Server, Bonus Promotion services, Kafka workflows, databases, and reporting systems. I worked primarily on frontend and game integration while also contributing to backend flows around promotional campaign processing, event propagation, validation, and cross-system communication.",
+
+    role: "Contributed across frontend game integration, shared betting infrastructure, business-rule implementation, Blackjack-specific workflows, API contracts, testing, and backend promotional flows while collaborating with Game Server, Bonus Promotion, Core, QA, Product, and other platform teams.",
+
+    outcome:
+      "Helped deliver Free Chips across 4+ production games as part of a promotional wallet spanning ~21 games, contributing to 130+ campaigns across 37 brands and nearly 67K Free Chips issued to players in Q2.",
+
+    challengesSolved: [
+      "Free Chips introduced a parallel promotional balance alongside the normal casino balance, requiring betting flows to distinguish between cash and promotional funds while preventing invalid combinations and maintaining consistent behavior across shared and game-specific implementations.",
+
+      "Implemented 10+ business-critical betting rules covering campaign eligibility, promotional balance validation, chip selection, betting restrictions, low-balance handling, campaign limits, refunds, and gameplay-specific conditions.",
+
+      "The feature had a large integration footprint across ~110 Core files and ~273 game files, requiring changes to shared betting infrastructure while preserving compatibility with game-specific implementations across ~21 games.",
+
+      "Extended Free Chips into Blackjack's complex multi-seat betting model, handling main and side bets, seat-level limits, automated betting, refunds, Double/Split/Insurance-related conditions, and other game-specific edge cases across ~123 Blackjack-related files.",
+
+      "Contributed to Kafka-based asynchronous promotional workflows designed to process tens of thousands of bonus awards within minutes, with campaign requests validated before entering asynchronous processing and bonus records prepared and persisted in batches.",
+
+      "Worked with batch bonus creation where Kafka consumers could process 50–200 requests per poll, grouping messages by promotion ID and type so casinos, players, rules, campaigns, and bonuses belonging to the same promotion remained consistent.",
+
+      "Supported duplicate-safe bonus creation using a fast batch-insert path with per-record fallback, allowing valid player bonuses to succeed even when individual duplicate records were encountered.",
+
+      "Contributed to silent-round handling where Bonus Promotion validation determines whether platform balance updates should be bypassed, requiring coordinated behavior across Game Server, transaction persistence, reconciliation, reporting, and player history.",
+
+      "Supported multi-casino promotional campaigns through parent/child campaign modeling and shared game-table mappings, allowing casino-specific campaigns to reuse common configuration while avoiding duplicated game-detail records and unnecessary database joins.",
+    ],
+
+    details: [
+      "Delivered Free Chips integrations across 4+ production games and contributed to the wider promotional wallet architecture spanning ~21 games.",
+
+      "Implemented reusable frontend modules and 10+ promotional betting rules across eligibility, balances, restrictions, refunds, limits, and low-balance scenarios.",
+
+      "Worked across a ~383-file Core and game-code footprint, including ~123 Blackjack-related files for multi-seat and game-specific promotional behavior.",
+
+      "Contributed to Kafka-based asynchronous bonus-processing flows designed for tens of thousands of awards within minutes, including validation, grouping, batch persistence, duplicate handling, and lifecycle events.",
+
+      "Worked with cross-system flows spanning UI, shared Core, Game Server, Bonus Promotion services, Kafka, PostgreSQL/MSSQL persistence, reconciliation, and reporting.",
+
+      "Handled complex Blackjack promotional scenarios including multi-seat betting, side bets, seat-level limits, automated betting, refunds, and Free Chip-specific player actions.",
+
+      "Contributed to campaign and eligibility flows supporting promotions across multiple casinos while maintaining efficient game-table mappings and backward compatibility.",
+
+      "Collaborated across frontend, backend, Game Server, Core, QA, Product, and platform teams to validate business rules, API contracts, edge cases, and production behavior.",
     ],
   },
   {
@@ -214,7 +343,7 @@ const caseStudies = [
   {
     id: "friendly-error-messages",
     title: "friendly-error-messages",
-    date: "Jun 2026",
+    date: "2026",
     readTime: "6 min read",
     tags: ["npm", "TypeScript", "Error Handling", "Developer Experience"],
     summary:
