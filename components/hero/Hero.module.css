@@ -243,7 +243,7 @@
     font-size: 1.05rem;
   }
   .hero__cta_group {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     width: min(100%, 52rem);
   }
   .description {
