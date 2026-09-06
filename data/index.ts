@@ -81,14 +81,15 @@ export const projects = [
   {
     id: 1,
     title: "Sneaky",
-    subtitle: "Full-Stack Fashion Discovery Platform",
-    des: "A swipe-based fashion discovery platform with personalized recommendations, wishlist, cart, merchant checkout, product analytics, admin flows, and Dockerized development.",
+    subtitle: "Hybrid Fashion Discovery and Commerce Platform",
+    des: "A full-stack swipe-based fashion discovery platform with hybrid recommendations, JWT auth, wishlist/cart flows, merchant checkout, product analytics, in-app notifications, and Dockerized development.",
     img: "/assests/sneaky_thumbnail.png",
     techStack: [
       "React",
       "TypeScript",
       "Redux Toolkit",
       "Spring Boot",
+      "Java 21",
       "PostgreSQL",
       "Redis",
       "Kafka",
@@ -98,9 +99,9 @@ export const projects = [
     highlights: [
       "Built 2 applications: React frontend and Spring Boot backend",
       "Developed 20+ API flows",
-      "Implemented recommendation engine using 8+ ranking signals",
-      "Added Kafka/Redis analytics for 3+ user activity types",
-      "Added Docker Compose setup for frontend, backend, PostgreSQL, and Redis",
+      "Built hybrid recommendations with rule-based scoring, Redis cache-aside reads, and optional ML reranking",
+      "Added Kafka/Redis analytics for views, passes, cart actions, wishlist actions, and preference profiles",
+      "Implemented merchant checkout groups, wishlist move-to-cart, cart reminders, and in-app notifications",
     ],
     actions: [
       { label: "Live Demo", href: "https://sneaky-4zjb.onrender.com/", disabled: false },

@@ -9,146 +9,228 @@ import style from "./CaseStudies.module.css";
 const caseStudies = [
   {
     id: "toast-messages",
-    title: "Toast Messages 2.0 — Shared Notification Platform",
+    title: "Toast Messages 2.0 — Event-Driven Notification Platform",
     date: "2025",
     readTime: "6 min read",
+
     tags: [
       "React",
       "TypeScript",
-      "UI Architecture",
-      "Gestures",
-      "Animations",
+      "Pub/Sub",
+      "Event-Driven Architecture",
+      "WAAPI",
+      "Performance",
       "Accessibility",
-      "Production UX",
     ],
 
     summary:
-      "Architected and implemented a configurable notification system adopted across 50+ games, consolidating ~120 toast variants and 20+ blocking popups into a shared, service-driven architecture.",
+      "Architected and implemented an event-driven Pub/Sub notification platform adopted across 50+ game variants, consolidating 30 legacy toast variants and 10+ blocking popup flows while reducing duplicated notification code by ~68%.",
 
     description:
-      "Toast 2.0 redesigned game notifications from a single-message, blocking feedback model into a scalable notification platform supporting concurrent messages, richer content, actions, gesture interactions, coordinated animations, localization, and responsive behavior across real-time gaming experiences.",
+      "Toast 2.0 replaced fragmented, game-specific notifications with a centralized event-driven platform for real-time gameplay. The system decouples notification producers from rendering and lifecycle management, supporting concurrent stacked notifications, priority and queue handling, rich actions, gesture interactions, localization, responsive layouts, and coordinated animations without forcing individual games to manage notification UI state.",
 
-    role: "Architecture, implementation, interaction design, shared component engineering, migration strategy, performance optimization, and cross-game integration",
+    role: "Owned frontend architecture and implementation across the Pub/Sub event model, notification lifecycle, stack orchestration, animation system, interaction design, performance optimization, migration strategy, shared APIs, and cross-game adoption.",
 
     outcome:
-      "Established a reusable notification architecture for 50+ games, reducing fragmented toast and popup implementations while enabling richer, non-blocking player feedback through a consistent configurable API.",
+      "Established a shared notification platform adopted across 50+ game variants, reducing duplicated notification code by ~68% (2.5K → 800 LOC) and CPU usage by ~9% while replacing blocking feedback patterns with reusable, non-blocking notifications and 10 coordinated animations.",
 
     metrics: [
       {
         label: "Game Adoption",
         value: "50+",
-        detail: "Games supported by the shared notification architecture",
+        detail: "Game variants using the shared notification architecture",
       },
       {
-        label: "Toast Variants",
-        value: "~120",
-        detail: "Existing notification variants consolidated",
+        label: "Code Reduction",
+        value: "~68%",
+        detail: "Duplicated notification code reduced from ~2.5K to ~800 LOC",
       },
       {
-        label: "Legacy Popups",
-        value: "20+",
-        detail: "Blocking popup use cases migrated toward Toast 2.0",
+        label: "CPU Reduction",
+        value: "~9%",
+        detail: "Lower CPU usage after notification lifecycle and rendering optimizations",
       },
       {
         label: "Animations",
         value: "10",
-        detail: "Coordinated stack and interaction animations",
+        detail: "Coordinated stack, lifecycle, and interaction animations",
       },
     ],
 
     architecture: [
-      "Designed a service-driven architecture that separates notification creation and lifecycle management from rendering, allowing game features to trigger Toast 2.0 through a consistent API.",
-      "Structured the system around service, stack, and individual-toast responsibilities: event orchestration, stack/layout management, and isolated notification rendering.",
-      "Expanded the content model from a single message and action into title + body content with primary and secondary actions, custom icons, timers, and specialized notification behavior.",
-      "Built stack orchestration for multiple concurrent notifications using ordering, transforms, offsets, scaling, and z-index management, with a 3-layer collapsed preview and expandable stack.",
-      "Implemented 10 coordinated animations covering toast entry/exit, stack movement, expansion/collapse, gesture interactions, and layout transitions.",
-      "Used transform-based animations and requestAnimationFrame-driven layout updates to minimize layout-heavy work during interaction and stack changes.",
-      "Designed lifecycle handling for timers, pause/resume behavior, queued notifications, duplicate removal, cleanup, and interruption-safe dismissal.",
-      "Kept the architecture localization-ready and reusable across different game surfaces, screen sizes, orientations, and notification use cases.",
+      "Designed a centralized event-driven Pub/Sub architecture that decouples notification producers from UI rendering, allowing game features to publish notification intent without managing presentation or lifecycle state.",
+
+      "Separated responsibilities across the notification service, stack orchestrator, and individual toast components: the service manages events and lifecycle, the stack coordinates ordering and layout, and each toast owns its isolated rendering and interactions.",
+
+      "Built centralized lifecycle management for queued notifications, timers, pause/resume behavior, duplicate suppression, dismissal, cleanup, and persistent action-driven notifications.",
+
+      "Designed concurrent stack orchestration with a 3-layer collapsed preview and expandable view, dynamically coordinating ordering, offsets, transforms, scaling, and z-index as notifications enter and leave the stack.",
+
+      "Implemented 10 coordinated animation flows covering entry, exit, stack repositioning, expansion/collapse, swipe interaction, dismissal, and layout transitions.",
+
+      "Optimized animation and interaction paths using transform-oriented updates and requestAnimationFrame, reducing layout-heavy work and contributing to ~9% lower CPU usage during notification-heavy interactions.",
+
+      "Expanded the notification contract from a flat message/action model into configurable title + body content, primary and secondary actions, icons, timers, persistent states, and specialized interaction behavior.",
+
+      "Designed the shared API and migration strategy for adoption across 50+ game variants while preserving compatibility with existing gameplay flows, localization requirements, responsive layouts, and different integration surfaces.",
     ],
 
     challengesSolved: [
-      "Legacy notifications were fragmented across ~120 toast variants and 20+ blocking popup use cases, so I consolidated them behind a configurable shared architecture instead of maintaining feature-specific implementations.",
+      "Legacy notification behavior was fragmented across 30 toast variants and 10+ blocking popup flows. Consolidating them required identifying common behavior and designing a configurable abstraction without forcing every game into game-specific notification implementations.",
 
-      "The previous model could effectively surface one flat notification at a time. Toast 2.0 supports multiple concurrent notifications through coordinated stacking, visual hierarchy, and expand/collapse interactions.",
+      "Notification producers were previously coupled to presentation behavior. The Pub/Sub architecture separated event producers from notification rendering and lifecycle management, making the system easier to integrate and evolve across games.",
 
-      "Blocking dialogs interrupted time-sensitive gameplay, so eligible feedback was redesigned as non-blocking notifications while preserving visibility and actionable player communication.",
+      "Supporting multiple simultaneous notifications introduced ordering, lifecycle, layout, and animation dependencies. A centralized stack orchestrator keeps concurrent notifications visually synchronized as items enter, leave, expand, collapse, or are dismissed.",
 
-      "Concurrent notifications introduced complex layout and animation dependencies, requiring coordinated transitions so entering, leaving, expanding, and collapsing toasts did not visually conflict.",
+      "Blocking dialogs interrupted time-sensitive gameplay. Eligible flows were migrated to non-blocking notifications while preserving message visibility, actions, timers, and player feedback.",
 
-      "Duplicate events could repeatedly surface identical messages, so duplicate detection and lifecycle handling were centralized at the service layer.",
+      "Rapid or repeated gameplay events could generate duplicate or overlapping notifications. Duplicate suppression, queuing, timer management, and interruption-safe cleanup were centralized instead of being reimplemented by individual consumers.",
 
-      "Different notifications required different interaction models, so the API supports title/body content, up to 2 actions, custom icons, timed and persistent notifications, undo flows, betting feedback, and support-related messaging.",
+      "Gesture-driven dismissal had to coexist with timers and stack animations. Toasts support left, right, and upward swipe interactions while coordinating pause/resume and dismissal state with the rest of the notification stack.",
 
-      "Touch and desktop interactions required different behavior, so dismissal supports left, right, and upward swipe gestures alongside desktop interaction and timer pause behavior.",
+      "Animation-heavy stacked UI introduced runtime overhead. Transform-oriented animation, controlled lifecycle cleanup, and optimized rendering reduced CPU usage by ~9% while maintaining 10 coordinated animation flows.",
 
-      "Responsive gameplay layouts required notifications to remain usable across desktop, tablet, mobile, and orientation changes, including dynamic stack sizing and automatic layout recalculation.",
+      "The platform had to remain reusable across different screen sizes, orientations, languages, and game implementations, requiring responsive stack recalculation, localization-safe layouts, accessibility semantics, and integration compatibility.",
 
-      "Long-running game sessions required predictable cleanup, so timers, subscriptions, animation state, and component destruction were handled explicitly to avoid stale UI behavior and resource leaks.",
-
-      "Accessibility requirements were incorporated through alert semantics, live-region behavior, keyboard/focus considerations, and interaction states that did not rely exclusively on gestures.",
+      "Migrating a shared system across 50+ game variants required maintaining backward compatibility and providing consistent APIs, integration patterns, documentation, testing guidance, and troubleshooting support.",
     ],
 
     details: [
-      "Architected and implemented Toast 2.0 as a shared notification system intended for adoption across 50+ games.",
-      "Consolidated ~120 notification variants and 20+ popup use cases behind a configurable service-driven interface.",
-      "Expanded notifications from 1 text slot + 1 action to title + body + primary/secondary actions.",
-      "Implemented a 7-second default timer with pause/resume behavior and support for persistent action-driven notifications.",
-      "Built a 3-layer collapsed stack with expand/collapse behavior for handling multiple concurrent notifications without overwhelming gameplay.",
-      "Implemented 10 coordinated animations and multi-direction swipe dismissal while keeping transitions transform-oriented for smoother runtime performance.",
-      "Added duplicate handling, queue/pause behavior, configurable actions, custom icons, undo flows, and support-related notification use cases.",
-      "Handled responsive behavior across multiple layouts and orientation changes while maintaining localization and accessibility support.",
-      "Documented APIs, notification types, integration patterns, migration guidance, testing recommendations, and troubleshooting practices to support wider adoption.",
+      "Architected an event-driven Pub/Sub notification platform adopted across 50+ game variants.",
+
+      "Consolidated 30 legacy toast variants and 10+ blocking popup flows into shared notification infrastructure.",
+
+      "Reduced duplicated notification code by ~68%, from approximately 2.5K to 800 LOC.",
+
+      "Reduced CPU usage by ~9% through notification lifecycle, rendering, and animation optimizations.",
+
+      "Built a 3-layer collapsed notification stack with expandable concurrent-notification handling.",
+
+      "Implemented 10 coordinated animations covering notification lifecycle, stack transitions, gestures, and expand/collapse interactions.",
+
+      "Expanded notifications from a flat message/action model to title + body, primary/secondary actions, icons, timed and persistent states, and specialized interaction flows.",
+
+      "Implemented multi-direction swipe dismissal, timer pause/resume, duplicate suppression, queuing, cleanup, and persistent action-driven notifications.",
+
+      "Supported responsive layouts, orientation changes, localization, keyboard/focus behavior, alert semantics, and live-region accessibility.",
+
+      "Documented the shared API, notification contracts, migration patterns, testing strategy, and troubleshooting guidance to support adoption across game teams.",
     ],
   },
   {
     id: "plinko-ui",
-    title: "Project: Real-Time Plinko Game",
+    title: "Real-Time Plinko — Event Synchronization & Animation Architecture",
     date: "2026",
     readTime: "7 min read",
-    tags: ["React", "TypeScript", "WebSocket", "Web Workers", "WAAPI", "Real-Time Systems"],
+
+    tags: [
+      "React",
+      "TypeScript",
+      "WebSocket",
+      "Web Workers",
+      "WAAPI",
+      "Performance",
+      "Real-Time Systems",
+    ],
 
     summary:
-      "Owned and engineered a real-time Plinko game spanning frontend architecture, backend-to-UI event integration, Web Worker-based synchronization, ~28 coordinated animation sequences, and responsive gameplay across 4 layouts.",
+      "Owned and engineered a production real-time Plinko experience, combining WebSocket-driven gameplay, Web Worker-based synchronization, ~28 coordinated animation sequences, resilient state recovery, and responsive gameplay across 4 layouts.",
 
     description:
-      "A production real-time game where backend-driven events, sequential ball drops, betting state, multipliers, video timing, and animation-heavy UI must remain synchronized. My work covered frontend architecture, Game Server/WebSocket integration, event-processing flows, responsive UI, animation systems, reconnection handling, performance optimization, and production stabilization.",
+      "Plinko is an event-driven real-time game where Game Server events, sequential ball drops, betting state, multipliers, video timing, and animation-heavy UI must remain synchronized. I designed the frontend architecture that translates backend timing into deterministic React state and coordinated animation flows, while keeping the main thread responsive and recovering correctly from refreshes, reconnects, tab switches, and partially completed rounds.",
 
-    role: "Primary frontend contributor with ownership across gameplay architecture, real-time Game Server integration, animation systems, responsive UI, technical coordination, MR reviews, and production readiness while collaborating with 6+ cross-functional teams.",
+    role: "Owned core frontend gameplay architecture, Game Server-to-UI integration, Web Worker synchronization, animation infrastructure, responsive gameplay, performance optimization, recovery flows, technical coordination, MR reviews, and production stabilization while collaborating with 6+ cross-functional teams.",
 
     outcome:
-      "Delivered a production-ready real-time gameplay system connecting server-driven events to a responsive React UI, with resilient event synchronization, reusable animation infrastructure, refresh/reconnection recovery, and consistent behavior across 4 responsive layouts.",
+      "Delivered a production-ready real-time gameplay system with resilient server-to-UI synchronization across 4 responsive layouts; moved timing-intensive synchronization into a dedicated Web Worker to reduce main-thread blocking time by ~20%, introduced list virtualization to improve data-heavy rendering by ~60%, and built reusable infrastructure supporting ~28 coordinated gameplay animations.",
+
+    metrics: [
+      {
+        label: "Main-Thread Blocking Reduction",
+        value: "~20%",
+        detail: "Reduction after moving synchronization work into a dedicated Web Worker",
+      },
+      {
+        label: "Rendering Improvement",
+        value: "~60%",
+        detail: "Improvement from virtualization of data-heavy statistics views",
+      },
+      {
+        label: "Animation Flows",
+        value: "~28",
+        detail: "Coordinated gameplay animation sequences",
+      },
+      {
+        label: "Recovery Scenarios",
+        value: "6+",
+        detail:
+          "Failure and interruption scenarios handled across reconnects, refreshes, stale events, and in-progress rounds",
+      },
+    ],
+
+    architecture: [
+      "Integrated sequenced Game Server WebSocket events with React gameplay state, consuming phase, multiplier, timing, and recovery information and translating those events into deterministic UI transitions.",
+
+      "Designed a dedicated Web Worker-based synchronization layer to move timing-intensive event processing away from the main UI thread, reducing main-thread blocking time by ~20% while preserving server-driven gameplay timing.",
+
+      "Built an event-processing flow that coordinates sequential ball drops, BetSpot transitions, multiplier progression, Booster and Superball states, and animation execution from backend-provided timing information.",
+
+      "Separated server state, synchronization logic, React gameplay state, and presentation/animation responsibilities to prevent timing logic from becoming tightly coupled to individual UI components.",
+
+      "Built recovery-aware state handling so refreshes, reconnects, tab switches, and partially completed rounds reconstruct the latest server-authoritative state rather than replaying stale animation sequences.",
+
+      "Developed a reusable interruption-safe animation layer around WAAPI, allowing in-flight animations to be safely interrupted, committed, cancelled, and restarted without visual snapping or rubber-banding.",
+
+      "Coordinated ~28 gameplay animation sequences using WAAPI, requestAnimationFrame, sprite animation, and GPU-friendly transforms while keeping animation-heavy interactions responsive.",
+
+      "Introduced list virtualization for data-heavy statistics views, limiting unnecessary DOM growth and improving rendering performance by ~60%.",
+
+      "Designed the gameplay UI to operate consistently across desktop, portrait, large portrait, and landscape layouts while sharing the same underlying event and gameplay architecture.",
+    ],
 
     challengesSolved: [
-      "Integrated real-time backend-to-frontend WebSocket communication, consuming sequenced Game Server events carrying gameplay phase, multiplier, and time-to-hit data and translating them into deterministic UI state and gameplay transitions.",
+      "Server events represented authoritative gameplay state, but the UI also contained long-running animations. I designed synchronization boundaries so visual transitions remained aligned with backend timing without allowing animation state to become the source of truth.",
 
-      "Designed an event-processing architecture around a dedicated Web Worker to process server-driven timing outside the main UI flow and coordinate sequential ball drops, BetSpot state changes, multiplier updates, and animation execution.",
+      "Sequential ball drops and independent BetSpot phases created overlapping asynchronous flows. Worker-driven sequencing and explicit state transitions prevented stale events and previous animations from corrupting the current gameplay state.",
 
-      "Handled complex asynchronous gameplay where multiple BetSpots and gameplay phases progress independently while remaining synchronized with backend timing, requiring careful sequencing and prevention of overlapping or stale UI transitions.",
+      "Timing-intensive synchronization competed with React rendering and animation work on the browser's main thread. Moving synchronization processing into a dedicated Web Worker reduced main-thread blocking time by ~20%.",
 
-      "Built recovery flows for refresh, reconnection, tab switching, and partially completed rounds, including server-provided recovery states so the UI could reconstruct the correct BetSpot, island, multiplier, Booster, and Superball state instead of replaying stale animations.",
+      "Players could refresh, reconnect, switch tabs, or return while a round was already in progress. Recovery flows consume server-provided state and reconstruct the correct BetSpot, island, multiplier, Booster, Superball, and animation state without replaying completed transitions.",
 
-      "Investigated Game Server-to-video-to-UI latency with the Video and integration teams, validated event contracts and timing behavior, and adjusted client-side synchronization to reduce visible desynchronization between server state, stream events, and gameplay animations.",
+      "Game Server state, video events, and frontend animations could become visibly misaligned because they travel through different runtime paths. I investigated Game Server-to-video-to-UI latency with Video and integration teams, validated event contracts, and adjusted client-side synchronization behavior.",
 
-      "Built ~28 coordinated gameplay animation sequences using interruption-safe WAAPI, requestAnimationFrame, sprite animation, and GPU-friendly transforms while keeping animation-heavy gameplay responsive.",
+      "Rapid animation interruption caused visual snapping and inconsistent end states. I built reusable WAAPI infrastructure that preserves the element's live visual state before safely cancelling and transitioning into the next animation.",
 
-      "Delivered responsive gameplay across desktop, portrait, large portrait, and landscape while resolving BetSpot scaling, island alignment, Crowd Meter behavior, tooltip interactions, and Safari/Linux/iOS-specific rendering issues.",
+      "Animation-heavy gameplay required ~28 coordinated sequences to coexist without degrading interaction responsiveness, so animation paths were built around WAAPI, requestAnimationFrame, sprites, and transform-oriented updates.",
+
+      "Data-heavy statistics views created unnecessary DOM/rendering work. List virtualization restricted rendering to the visible range and improved rendering performance by ~60%.",
+
+      "Four responsive layouts had to preserve gameplay semantics despite substantially different dimensions and positioning. Shared state and behavior were separated from layout-specific presentation while resolving BetSpot scaling, island alignment, Crowd Meter, tooltip, and browser-specific rendering issues.",
     ],
 
     details: [
-      "Integrated Game Server WebSocket events with React gameplay state, processing server-provided sequencing, timing, multiplier, and recovery information.",
-
-      "Designed Web Worker-based synchronization between backend gameplay events and ~28 frontend animation sequences.",
-
-      "Implemented resilience for refresh, reconnect, tab-switch, stream-latency, stale-event, and partially completed animation scenarios.",
-
       "Owned major gameplay surfaces including BetSpot, BetSpot Island, BetPool, Bet on All, Crowd Meter, Booster interactions, multipliers, Free Chips, Superball states, and win experiences.",
 
-      "Developed responsive gameplay across 4 layout modes with extensive Figma verification, Storybook coverage, and Visual Regression Testing.",
+      "Integrated Game Server WebSocket events carrying gameplay sequencing, timing, multiplier, phase, and recovery information.",
 
-      "Worked across frontend, Game Server, Video, Core/Framework, Product, Design, QA, and integration boundaries to validate contracts, investigate synchronization issues, and drive features to production readiness.",
+      "Designed Web Worker-based synchronization between server-driven gameplay events and ~28 frontend animation sequences.",
+
+      "Reduced main-thread blocking time by ~20% by moving synchronization processing away from the primary UI thread.",
+
+      "Introduced list virtualization for data-heavy statistics views, improving rendering performance by ~60% and limiting unnecessary DOM growth.",
+
+      "Built reusable interruption-safe WAAPI infrastructure for animation-heavy gameplay and coordinated it with requestAnimationFrame, sprite animation, and transform-based transitions.",
+
+      "Implemented recovery for refresh, reconnect, tab switching, stale events, stream latency, and partially completed gameplay/animation sequences.",
+
+      "Delivered consistent gameplay across desktop, portrait, large portrait, and landscape with Figma verification, Storybook coverage, and Visual Regression Testing.",
+
+      "Resolved production-specific Safari, Linux, and iOS rendering and interaction issues across animation-heavy responsive layouts.",
+
+      "Worked across Frontend, Game Server, Video, Core/Framework, Product, Design, QA, and Integration teams to validate contracts, investigate synchronization issues, review implementation changes, and drive the game to production readiness.",
     ],
   },
+
   {
     id: "free-chips",
     title: "Project: Free Chips Promotional Wallet",
@@ -207,51 +289,131 @@ const caseStudies = [
   },
   {
     id: "sneaky-platform",
-    title: "Sneaky Full-Stack Platform",
+    title: "Sneaky Hybrid Fashion Discovery Platform",
     date: "2026",
-    readTime: "5 min read",
-    tags: ["React", "Spring Boot", "PostgreSQL", "Redis", "Kafka"],
+    readTime: "6 min read",
+    tags: ["React", "Spring Boot", "PostgreSQL", "Redis", "Kafka", "ML Reranking"],
     summary:
-      "Designed and built a full-stack fashion discovery platform with Spring Boot APIs, Redis/Kafka analytics, recommendations, Docker setup, and React frontend.",
+      "Designed and built a full-stack fashion discovery platform with swipe-based browsing, Spring Boot APIs, hybrid recommendations, Redis/Kafka analytics, notifications, and merchant checkout flows.",
     description:
-      "Sneaky is a full-stack fashion discovery platform built around a swipe-based shopping experience. The product goal was to make fashion discovery feel fast and personal while still supporting practical commerce flows like wishlist, cart, merchant checkout, admin management, recommendations, and product analytics.",
+      "Sneaky is a full-stack fashion discovery and commerce platform built around a swipe-based shopping experience. The product goal was to make discovery feel fast and personal while still supporting practical commerce flows like wishlist, cart, merchant checkout, admin management, recommendations, product analytics, and reminder notifications.",
     role: "End-to-end product engineering across React frontend, Redux state, Spring Boot APIs, JWT authentication, PostgreSQL modeling, Redis/Kafka analytics foundations, recommendation logic, and Dockerized local development",
     outcome:
-      "Created a production-style full-stack platform foundation with 20+ API flows, personalization-oriented ranking signals, analytics-friendly service boundaries, and a Docker Compose setup for frontend, backend, PostgreSQL, and Redis.",
+      "Created a production-style platform foundation with 20+ API flows, personalization-oriented ranking, cache-first recommendation reads, event-driven analytics, notification workflows, and a repeatable Docker Compose setup.",
     metrics: [
-      { label: "Apps Built", value: "2", detail: "React frontend and Spring Boot backend" },
       {
-        label: "API Flows",
+        label: "Cache TTL",
+        value: "15m",
+        detail: "Redis-ranked product feed cache for faster repeat loads",
+      },
+      {
+        label: "API Surface",
         value: "20+",
-        detail: "Auth, products, wishlist, cart, merchant, admin",
+        detail: "Secured endpoints across discovery, commerce, analytics, notifications, and admin",
       },
       {
-        label: "Ranking Signals",
-        value: "8+",
-        detail: "Recommendation inputs for discovery scoring",
+        label: "Recommendation Inputs",
+        value: "10+",
+        detail: "Behavior, affinity, popularity, price-fit, and diversity signals",
       },
       {
-        label: "Analytics Types",
-        value: "3+",
-        detail: "User activity events using Kafka/Redis foundations",
+        label: "Personalization Threshold",
+        value: "20",
+        detail:
+          "User activity signals required before switching from guest to personalized ranking",
       },
     ],
     architecture: [
-      "React + TypeScript frontend with Redux Toolkit for product discovery state, cart/wishlist state, and UI flow coordination.",
-      "Spring Boot backend with JWT-secured APIs, PostgreSQL persistence, merchant/product/admin flows, and service boundaries shaped around real product use cases.",
-      "Recommendation engine designed around 8+ ranking signals so product discovery can move beyond static listing into personalized matching.",
-      "Redis/Kafka analytics foundation for tracking user activity such as swipes, product interactions, and commerce-oriented behavior.",
-      "Docker Compose setup to run frontend, backend, PostgreSQL, and Redis locally with a repeatable development environment.",
+      "React + TypeScript frontend uses Redux Toolkit slices and async thunks to coordinate swipe state, product hydration, cached home-feed pages, cart state, wishlist state, auth-aware UI, and recently viewed shortcuts.",
+      "Java 21 + Spring Boot backend exposes JWT-secured REST APIs through controller, service, repository, DTO, validation, exception, and security layers so commerce and discovery flows stay separated by responsibility.",
+      "PostgreSQL stores users, brands, products, cart, wishlist, and notification records, while admin APIs handle product and brand creation instead of relying on runtime seed data.",
+      "Recommendation API runs as a cache-first pipeline: read ranked product IDs from Redis, preserve cached order when loading product records, fall back to live scoring on misses, then write refreshed rankings back with a 15-minute TTL.",
+      "Hybrid ranking combines popularity, preference profiles, wishlist/cart history, recently viewed products, passed products, brand/category/merchant affinity, price fit, diversity reranking, and optional ML reranking.",
+      "Kafka activity events publish product views, passes, cart actions, and wishlist actions outside the request path, allowing consumers to update Redis counters, preference profiles, and recommendation cache state asynchronously.",
+      "Commerce APIs support clear-all wishlist, one-call wishlist move-to-cart, merchant-grouped outbound checkout links, cart reminders, unread notification counts, read-all notifications, and notification deletion flows.",
+      "Docker Compose runs the frontend, backend, PostgreSQL, Redis, and supporting services locally so the platform can be developed and tested as an integrated system.",
+    ],
+    challengesSolved: [
+      "The swipe feed needed to stay fast while still becoming personal, so I used Redis-ranked product IDs for repeat loads and moved expensive recommendation refresh work away from the normal request path.",
+      "Cold-start users do not have enough behavior data for reliable personalization, so the system keeps them on guest ranking until enough signals exist and then switches to user-specific recommendations.",
+      "Recommendation quality can become repetitive when a user likes one brand or category, so the ranking layer applies diversity penalties across category, brand, and merchant values before returning the feed.",
+      "Product interactions arrive from several surfaces, so views, passes, cart actions, and wishlist actions are normalized into analytics events that can feed counters, preference profiles, and future recommendation improvements.",
+      "External ML should improve ranking without becoming a hard dependency, so the optional reranking service is fail-open: disabled ML, timeouts, bad scores, or partial responses preserve the rule-based order.",
+      "Cart and wishlist flows needed to feel commerce-ready rather than demo-like, so the API supports transactional wishlist move-to-cart, grouped merchant checkout links, stale-cart reminders, and in-app notification management.",
     ],
     details: [
       "Built a swipe-based fashion discovery experience where users can browse products quickly and move promising items into wishlist/cart flows.",
-      "Implemented core commerce surfaces including wishlist, cart, merchant checkout, product analytics, and admin-oriented product management flows.",
-      "Developed 20+ backend API flows across authentication, product discovery, user actions, recommendations, cart/wishlist operations, and merchant/admin behavior.",
+      "Implemented core commerce surfaces including wishlist, cart, merchant checkout groups, product analytics, notifications, and admin-oriented product management flows.",
+      "Developed 20+ backend API flows across authentication, product discovery, recommendations, cart/wishlist operations, notifications, analytics, merchant, and admin behavior.",
       "Designed PostgreSQL-backed models and service boundaries to keep product, user, merchant, and activity data organized for future scaling.",
-      "Implemented recommendation logic using 8+ ranking signals to score products based on user behavior and product metadata.",
-      "Added Kafka/Redis analytics foundations for 3+ user activity types so discovery interactions can later power recommendations and business insights.",
+      "Implemented recommendation logic using 10+ ranking inputs with fallback popularity ranking for guests and users without enough behavior history.",
+      "Implemented Redis cache-aside recommendation reads using guest and user cache keys so ranked product IDs can be reused without rescoring every feed request.",
+      "Added Kafka/Redis analytics foundations so views, passes, cart actions, and wishlist actions can power recommendations, counters, preference profiles, and business insights.",
+      "Added one-call wishlist move-to-cart behavior, clear-all wishlist support, recently viewed shortcuts, and cart reminder notifications.",
+      "Integrated optional ML reranking through a standalone recommendation service while keeping the backend's rule-based ranking as the reliable fallback.",
       "Dockerized the development setup with frontend, backend, PostgreSQL, and Redis so the app can be run consistently across environments.",
       "Kept the project structured as a production-grade full-stack build rather than a simple UI demo, with authentication, persistence, analytics, and infrastructure concerns represented.",
+    ],
+  },
+  {
+    id: "cache-first-recommendation-api",
+    title: "Building a Cache-First Recommendation API",
+    date: "2026",
+    readTime: "7 min read",
+    detailHref: "/case-studies/cache-first-recommendation-api",
+    tags: ["Redis", "Spring Boot", "Kafka", "Recommendations", "System Design"],
+    summary:
+      "Built Sneaky's recommendation endpoint around Redis-ranked product IDs, live scoring fallbacks, diversity reranking, Kafka-driven refresh, and fail-open ML integration.",
+    description:
+      "Sneaky's swipe feed needed recommendations that stayed fast under repeat loads while still adapting to wishlist, cart, view, pass, brand, category, merchant, and price signals. I designed the API so cached ranking is the first path and full scoring is only used when needed.",
+    role: "Backend system design and implementation across recommendation API behavior, Redis cache-aside ranking, Kafka activity events, fallback scoring, optional ML reranking, and frontend feed coordination",
+    outcome:
+      "Created a cache-first recommendation API that keeps the home feed responsive, avoids unnecessary rescoring, supports guest and personalized ranking, and remains reliable when Redis or ML dependencies are unavailable.",
+    metrics: [
+      {
+        label: "Cache TTL",
+        value: "15m",
+        detail: "Short-lived Redis ranking cache for repeat feed loads",
+      },
+      {
+        label: "Candidate Pool",
+        value: "250",
+        detail: "Products scored before final reranking and result limiting",
+      },
+      {
+        label: "Result Window",
+        value: "30",
+        detail: "Recommended products returned to the frontend per feed request",
+      },
+      {
+        label: "Signal Threshold",
+        value: "20",
+        detail: "Activity signals required before personalized ranking starts",
+      },
+    ],
+    architecture: [
+      "The recommendation endpoint checks Redis first for ranked product IDs using guest and user-specific cache keys, then fetches product records from PostgreSQL while preserving the cached order.",
+      "When Redis has no usable ranking, the backend scores active products with rule-based signals, applies diversity reranking, stores the ranked IDs back into Redis, and returns the result to the frontend.",
+      "The cache stores product IDs instead of full product payloads so product details continue to come from PostgreSQL while Redis controls temporary ranking order.",
+      "Guest users receive popularity, recency, and diversity-based ranking, while logged-in users switch to personalized scoring only after enough wishlist, cart, pass, and viewed-product signals exist.",
+      "Kafka activity events move product views, passes, cart actions, and wishlist actions outside the request path so Redis counters, preference profiles, and recommendation cache state can update asynchronously.",
+      "Optional ML reranking sits after rule-based candidate generation and stays fail-open, so disabled ML, timeouts, unhealthy responses, or invalid scores preserve the existing ranked order.",
+    ],
+    challengesSolved: [
+      "Running full scoring on every home feed request would repeat expensive work, so the API was shaped around cached ranked IDs and fallback scoring only on cache misses.",
+      "Database reads by ID do not automatically preserve recommendation order, so the API keeps Redis ranking order when mapping fetched product records back to the response.",
+      "Caching full product payloads could serve stale product data, so the cache stores only IDs and lets PostgreSQL remain the source of truth.",
+      "Early user behavior can be misleading, so personalization starts only after the user crosses a minimum activity threshold.",
+      "Highly scored feeds can become repetitive, so diversity reranking reduces repeated category, brand, and merchant values in the final feed.",
+      "ML should improve ranking without breaking discovery, so the integration was designed as an optional reranker rather than a required dependency.",
+    ],
+    details: [
+      "Implemented cache-first reads for `GET /api/products/recommended` using `recommendations:guest` and `recommendations:user:{userId}` cache keys.",
+      "Stored ranked product IDs in Redis with a 15-minute TTL to speed up repeat feed loads while keeping rankings fresh enough for new activity.",
+      "Used a rule-based scoring fallback that combines positive affinity signals, negative pass/repetition signals, popularity, price fit, and diversity.",
+      "Connected product views, passes, cart actions, and wishlist actions to the analytics flow so recommendation inputs can improve over time.",
+      "Kept ML reranking behind a service boundary so the rule-based system remains the reliable baseline and ML can enhance ordering when available.",
+      "Learned that recommendation work is as much about system boundaries, cache shape, and failure behavior as it is about scoring formulas.",
     ],
   },
   {
@@ -342,7 +504,7 @@ const caseStudies = [
   },
   {
     id: "friendly-error-messages",
-    title: "friendly-error-messages",
+    title: "NPM package: friendly-error-messages",
     date: "2026",
     readTime: "6 min read",
     tags: ["npm", "TypeScript", "Error Handling", "Developer Experience"],
