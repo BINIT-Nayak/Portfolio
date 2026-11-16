@@ -375,7 +375,7 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
               <p role="status" className={styles.resultStatus}>
                 {resultCount
                   ? `${resultCount} commands · ↑ ↓ to navigate · Enter to select · Esc to close`
-                  : "No commands found. Try Work, About, or Theme."}
+                  : "No commands found. Try Projects, About, or Theme."}
               </p>
             </>
           )}

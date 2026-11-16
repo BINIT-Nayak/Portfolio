@@ -1,66 +1,44 @@
+import { FiArrowDownRight, FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { EngineeringSystem } from "./EngineeringSystem";
 import style from "./Hero.module.css";
 
-const HERO_LINKS = [
-  {
-    label: "View Projects",
-    href: "#projects",
-  },
-  {
-    label: "Case Studies",
-    href: "#case-studies",
-  },
-  {
-    label: "View GitHub",
-    href: "https://github.com/BINIT-Nayak",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/binitnayak2002/",
-  },
-];
-
-export const Hero = () => {
-  return (
-    <div className={style.hero}>
-      <div className={style.hero__content_wrapper}>
-        <div className={style.hero__content_box}>
-          <p className={style.hero__tagline}>Full-Stack Engineer</p>
-
-          <h1 className={style.hero__text_generate}>Hi, I’m Binit Nayak</h1>
-
-          <div className={style.hero__copy}>
-            <p className={style.hero__lead}>
-              Frontend / Full-Stack Engineer building scalable React applications, production-grade
-              UI systems, and modern web platforms.
-            </p>
-
-            <p className={style.hero__description}>
-              Currently building real-time gaming experiences at a Tech giant, where I develop
-              responsive interfaces, reusable frontend architecture, and animation-heavy UI.
-              Passionate about product engineering, I also build full-stack applications using
-              Spring Boot, PostgreSQL, Redis, Kafka, and Docker while continuously exploring cloud
-              technologies and AI-assisted engineering workflows.
-            </p>
-          </div>
-
-          <div className={style.hero__cta_group} aria-label="Primary links">
-            {HERO_LINKS.map((link) => {
-              const isExternal = link.href.startsWith("http");
-              return (
-                <a
-                  key={link.href}
-                  className={style.hero__cta}
-                  href={link.href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-        </div>
+export const Hero = () => (
+  <section className={style.hero} aria-labelledby="hero-heading">
+    <div className={style.copy}>
+      <div className={style.identity}>
+        <p className={style.name}>Binit Nayak</p>
+        <p className={style.role}>Frontend / Full-Stack Engineer</p>
       </div>
+      <h1 id="hero-heading" className={style.statement}>
+        I build interfaces that <span>behave like systems.</span>
+      </h1>
+      <p className={style.description}>
+        Scalable React applications. Real-time UI. Frontend architecture built for performance. I
+        bring these together through full-stack product development, from the first interaction to
+        the backend that powers it.
+      </p>
+      <div className={style.actions} aria-label="Explore my work">
+        <a className={style.primaryAction} href="#projects">
+          View My Work <FiArrowDownRight aria-hidden="true" />
+        </a>
+        <a className={style.action} href="#case-studies">
+          Explore Engineering <FiArrowUpRight aria-hidden="true" />
+        </a>
+        <a
+          className={style.github}
+          href="https://github.com/BINIT-Nayak"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiGithub aria-hidden="true" />
+          GitHub<span className={style.srOnly}> (opens in a new tab)</span>
+        </a>
+      </div>
+      <p className={style.status}>
+        <span className={style.statusDot} aria-hidden="true" />
+        Building production frontend systems · Hyderabad, India
+      </p>
     </div>
-  );
-};
+    <EngineeringSystem />
+  </section>
+);
