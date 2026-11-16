@@ -79,3 +79,13 @@ The controller runs only at widths of at least 1024px with a fine hovering point
 Pointer events store the latest coordinates and schedule at most one animation frame. The ambient spot moves with a transform; only the active highlighted card receives local CSS coordinates. Its bounds are cached, invalidated by resize, and measured before style writes. Lift-only surfaces require no geometry measurement. Pointer exit, scrolling, tab hiding, window blur, and keyboard navigation clear the effect. Observers, pending frames, inline coordinates, and event listeners are removed on disable/unmount.
 
 Validation: production build (including TypeScript and ESLint), Stylelint, formatting, and diff checks. Browser/device validation and performance traces remain pending; no frame-rate measurement is claimed.
+
+## Career timeline
+
+The experience section uses a sticky desktop role rail and sequential semantic articles. Rail links are real fragment destinations; active nodes and the connecting line follow scroll position. All content stays in document order, including without JavaScript, rather than replacing or hiding panels as a reader scrolls. On smaller or short-height viewports the rail returns to normal document flow.
+
+Each role has three primary impact bullets, technology tags, selected systems, and a native `details` disclosure for additional contributions. Facts come from the existing work history and case studies, including approximate quantities. No new performance claims were introduced.
+
+A single passive scroll listener batches geometry work through requestAnimationFrame; only crossing a role boundary changes React state. The progress line is updated directly with scaleY. ResizeObserver accounts for responsive reflow and expanded contributions. Reduced motion removes panel transitions and uses discrete node-to-node line updates. Scroll tracking does not move keyboard focus or generate live announcements.
+
+Run `node --test tests/career-timeline.test.mjs` for unequal panel heights, deep links, reverse scrolling, clamping, and empty/single-role boundaries. Browser checks remain necessary for sticky positioning, native disclosure interaction, focus and zoom/reflow.
