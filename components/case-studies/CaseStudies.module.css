@@ -18,7 +18,66 @@
   display: grid;
   gap: var(--space-4);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: var(--space-8);
+  list-style: none;
+  margin-top: var(--space-4);
+  padding: 0;
+  position: relative;
+}
+.caseStudies__item {
+  display: flex;
+  min-width: 0;
+}
+.caseStudies__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+.caseStudies__filter {
+  composes: action from "../../styles/primitives.module.css";
+}
+.caseStudies__filter span {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.caseStudies__filter[aria-pressed="true"] {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.caseStudies__result_count {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  margin-top: var(--space-5);
+}
+.caseStudies__card_topline {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.caseStudies__card_trigger {
+  text-align: left;
+}
+.caseStudies__card_trigger::after {
+  border-radius: var(--radius-lg);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+.caseStudies__card:focus-within {
+  border-color: var(--color-accent);
+}
+.caseStudies__open_source {
+  align-items: center;
+  composes: section from "../../styles/primitives.module.css";
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  justify-content: space-between;
 }
 .caseStudies__card {
   composes: interactiveSurface from "../../styles/primitives.module.css";
@@ -26,7 +85,9 @@
   flex-direction: column;
   justify-content: space-between;
   padding: var(--card-padding);
+  position: relative;
   text-align: left;
+  width: 100%;
 }
 
 .caseStudies__card:active {
@@ -72,6 +133,10 @@
   flex-wrap: wrap;
   gap: var(--space-2);
   margin-top: var(--space-5);
+}
+.caseStudies__tags {
+  list-style: none;
+  padding: 0;
 }
 .caseStudies__tag {
   composes: tag from "../../styles/primitives.module.css";
@@ -240,5 +305,11 @@
   }
   .caseStudies__modal {
     max-height: calc(100dvh - var(--space-4));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caseStudies__modal {
+    animation: none;
   }
 }
