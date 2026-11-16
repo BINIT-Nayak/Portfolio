@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { FaArrowRight, FaCalendarDays, FaClock, FaXmark } from "react-icons/fa6";
 
 import style from "./CaseStudies.module.css";
+import { PlinkoPipeline } from "./PlinkoPipeline";
+import { ToastPlayground } from "./ToastPlayground";
 
 const caseStudies = [
   {
@@ -803,6 +805,9 @@ export const CaseStudies = () => {
                 </div>
               )}
             </div>
+
+            {activeCaseStudy.id === "plinko-ui" && <PlinkoPipeline />}
+            {activeCaseStudy.id === "toast-messages" && <ToastPlayground />}
 
             <div className={style.caseStudies__modal_body}>
               <div className={style.caseStudies__modal_panel}>
