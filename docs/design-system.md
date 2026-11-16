@@ -27,7 +27,7 @@ Dark mode is the default. The navigation theme switcher uses a full light semant
 
 Links navigate; buttons act. Experience cards are static articles. Navigation uses a floating desktop bar and a native modal drawer below 1120px, with 64px mobile links. All controls have a minimum 44px design height and inherit a visible 2px focus ring with 4px offset.
 
-Hover changes surface/border colors. Pressed controls use a deeper surface. Disabled actions have explicit muted styling and preserve their labels. Static cards do not lift or imply clickability. Motion durations are 120ms for controls, 180ms for standard state changes, and 260ms for longer transitions. Modal entry is a small displacement and fade. Reduced-motion preferences remove travel/looping and smooth scrolling globally.
+Hover changes surface/border colors. Pressed controls use a deeper surface. Disabled actions have explicit muted styling and preserve their labels. Cards opt into the shared desktop interaction layer: 2px elevation and border emphasis, with optional pointer-relative illumination. Informational cards retain their default cursor and semantics. Motion durations are 120ms for controls, 180ms for standard state changes, and 260ms for longer transitions. Modal entry is a small displacement and fade. Reduced-motion preferences remove travel/looping and smooth scrolling globally.
 
 ## Skeletons
 
@@ -50,3 +50,32 @@ The native modal drawer and command palette provide background inertness and foc
 ⌘K or Ctrl+K toggles the palette. Search matches sections and a theme command; Up/Down wrap results and Enter selects. Reduced motion disables entrance motion, crossfades, and smooth section scrolling. Native dialog support is required for overlays.
 
 Run `node --test tests/navigation.test.mjs` for active-section, scroll-boundary, and command-selection checks. Manual browser checks still needed: Tab/Shift+Tab containment, Escape and backdrop dismissal, iOS scroll restoration, reduced motion, persisted themes, and viewport changes while a drawer is open.
+
+## Shared pointer interactions
+
+`PointerEffects` is mounted once in the root layout. It adds a neutral, low-opacity ambient spotlight and delegates pointer movement to opted-in cards. Existing server-rendered cards remain server components; they do not each need a listener or client wrapper.
+
+To reuse the surface primitive:
+
+```css
+.card {
+  composes: interactiveSurface from "../../styles/primitives.module.css";
+  padding: var(--card-padding);
+}
+```
+
+```tsx
+<article className={styles.card} data-interactive-surface="highlight">
+  {/* Existing card content */}
+</article>
+```
+
+Use `data-interactive-surface="lift"` for elevation/border only, such as image-heavy cards. The highlight uses the surface's `::after` pseudo-element, so reserve that pseudo-element when opting in. Do not turn informational cards into buttons just to apply this visual treatment.
+
+All values live in `styles/tokens.css`: `--interaction-ambient`, `--interaction-highlight`, `--interaction-spotlight-size`, `--interaction-highlight-size`, `--interaction-lift`, and `--shadow-card-hover`. Both themes have restrained opacity values. No blur filter, tilt, cursor replacement, or continuous animation loop is used.
+
+The controller runs only at widths of at least 1024px with a fine hovering pointer, no touch capability, and no reduced-motion preference. These capabilities are monitored for changes. CSS independently guards motion; without JavaScript the static surfaces remain usable. Keyboard focus retains its existing visible outline and border treatment.
+
+Pointer events store the latest coordinates and schedule at most one animation frame. The ambient spot moves with a transform; only the active highlighted card receives local CSS coordinates. Its bounds are cached, invalidated by resize, and measured before style writes. Lift-only surfaces require no geometry measurement. Pointer exit, scrolling, tab hiding, window blur, and keyboard navigation clear the effect. Observers, pending frames, inline coordinates, and event listeners are removed on disable/unmount.
+
+Validation: production build (including TypeScript and ESLint), Stylelint, formatting, and diff checks. Browser/device validation and performance traces remain pending; no frame-rate measurement is claimed.

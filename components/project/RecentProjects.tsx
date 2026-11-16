@@ -26,7 +26,7 @@ export const RecentProjects = () => {
             }`}
             key={item.id}
           >
-            <div className={style.recent_projects__cardInner}>
+            <div className={style.recent_projects__cardInner} data-interactive-surface="highlight">
               <div className={style.recent_projects__image_container}>
                 <Image
                   src={item.img}

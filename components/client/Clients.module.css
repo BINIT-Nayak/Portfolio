@@ -21,7 +21,7 @@
   margin-top: var(--space-8);
 }
 .clients__card {
-  composes: surface from "../../styles/primitives.module.css";
+  composes: interactiveSurface from "../../styles/primitives.module.css";
   padding: var(--card-padding);
 }
 .clients__number {

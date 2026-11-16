@@ -12,7 +12,7 @@ export const Experience = () => {
 
       <div className={style.experience__grid}>
         {workExperience.map((card) => (
-          <article key={card.id} className={style.experience__card}>
+          <article key={card.id} className={style.experience__card} data-interactive-surface="lift">
             <div className={style.experience__card_content}>
               <div className={style.experience__image_container}>
                 <div className={style.experience__image_frame}>

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import "./globals.css";
 import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
+import { PointerEffects } from "@/components/ui/PointerEffects/PointerEffects";
 import { navItems } from "@/data";
 import { ThemeProvider } from "./provider";
 
@@ -65,6 +66,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <PointerEffects />
           <FloatingNav navItems={navItems} />
           {children}
         </ThemeProvider>

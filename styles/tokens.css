@@ -1,5 +1,11 @@
 :root {
   color-scheme: dark;
+  --interaction-ambient: rgb(210 220 240 / 2.5%);
+  --interaction-highlight: rgb(210 220 240 / 3.5%);
+  --interaction-spotlight-size: 32rem;
+  --interaction-highlight-size: 18rem;
+  --interaction-lift: -2px;
+  --shadow-card-hover: 0 4px 8px rgb(0 0 0 / 16%), 0 16px 32px rgb(0 0 0 / 12%);
   --social-icon-filter: none;
   --color-on-image: #eceef2;
   --header-space: 6rem;
@@ -94,6 +100,9 @@
 }
 
 .light {
+  --interaction-ambient: rgb(35 55 85 / 1.8%);
+  --interaction-highlight: rgb(35 55 85 / 2.5%);
+  --shadow-card-hover: 0 4px 8px rgb(24 36 55 / 5%), 0 16px 32px rgb(24 36 55 / 7%);
   --social-icon-filter: invert(1);
   color-scheme: light;
   --color-bg: #f7f8fa;

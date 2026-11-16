@@ -646,6 +646,7 @@ export const CaseStudies = () => {
   const renderCard = (caseStudy: (typeof caseStudies)[number]) => (
     <button
       className={style.caseStudies__card}
+      data-interactive-surface="highlight"
       type="button"
       key={caseStudy.id}
       onClick={() => setActiveCaseStudyId(caseStudy.id)}

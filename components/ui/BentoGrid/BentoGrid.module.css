@@ -4,7 +4,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .bentoGridItem {
-  composes: surface from "../../../styles/primitives.module.css";
+  composes: interactiveSurface from "../../../styles/primitives.module.css";
   grid-column: auto;
   grid-row: auto;
   min-height: 0;

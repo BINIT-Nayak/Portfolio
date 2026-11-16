@@ -13,7 +13,7 @@
   margin-top: var(--space-8);
 }
 .experience__card {
-  composes: surface from "../../styles/primitives.module.css";
+  composes: interactiveSurface from "../../styles/primitives.module.css";
 }
 .experience__card_content {
   display: grid;

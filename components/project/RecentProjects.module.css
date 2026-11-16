@@ -16,7 +16,7 @@
   min-width: 0;
 }
 .recent_projects__cardInner {
-  composes: surface from "../../styles/primitives.module.css";
+  composes: interactiveSurface from "../../styles/primitives.module.css";
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   overflow: hidden;

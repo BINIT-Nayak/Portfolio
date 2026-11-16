@@ -43,7 +43,7 @@ export const BentoGrid = ({
 
 export const BentoGridItem = ({ id, title, description, img }: BentoGridItemProps) => {
   return (
-    <div className={styles.bentoGridItem}>
+    <div className={styles.bentoGridItem} data-interactive-surface="lift">
       <div
         className={
           id === 6 ? styles.bentoGridItem__container_flex : styles.bentoGridItem__container
