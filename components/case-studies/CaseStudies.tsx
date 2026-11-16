@@ -595,6 +595,37 @@ const caseStudies = [
       "Focused on responsive UI behavior so the app works naturally across mobile and desktop layouts.",
     ],
   },
+  {
+    id: "vibejournal",
+    title: "VibeJournal — Mood Journaling and Visual Analytics",
+    date: "In development",
+    readTime: "1 min read",
+    tags: ["Next.js", "TypeScript", "Canvas", "Prisma"],
+    summary:
+      "An in-development mood journal with a check-in MVP, visual analytics foundations, and a roadmap for AI reflection and Spotify recommendations.",
+    description:
+      "VibeJournal explores quick emotional check-ins and longer-form reflection. The current work includes a mood-entry flow, a dashboard prototype, native Canvas chart foundations, and Prisma model design. It is not yet a fully persisted, authenticated journal.",
+    role: "Product and frontend implementation across the Next.js experience, mood check-in flow, chart foundations, and data-model design.",
+    outcome:
+      "Built a check-in MVP covering energy, stress, valence, notes, and tags; designed models for users, mood entries, journal entries, and playlist recommendation runs.",
+    architecture: [
+      "Next.js and TypeScript provide the application foundation, with CSS Modules for styling.",
+      "Native Canvas chart foundations support visual exploration of mood and emotional patterns.",
+      "Prisma models are designed for PostgreSQL; persisted entries, authentication, and journal history remain upcoming work.",
+    ],
+    challengesSolved: [
+      "The current check-in flow captures structured mood signals alongside free-text notes and tags, creating a foundation for both quick entries and later reflection.",
+      "The project separates the current journal and chart foundations from planned AI and music integrations, so those future workflows are not prerequisites for exploring the core interface.",
+    ],
+    details: [
+      "Current: check-in MVP, dashboard prototype, Canvas chart foundations, and data-model design.",
+      "Next: authentication, database persistence, and journal history.",
+      "Planned: OpenAI-powered reflection insights and Spotify-based playlist suggestions; these recommendation workflows are not shipped features.",
+    ],
+    externalLinks: [
+      { label: "View on GitHub", href: "https://github.com/BINIT-Nayak/VibeJournal" },
+    ],
+  },
 ];
 
 const getCaseStudyById = (id: string) => caseStudies.find((caseStudy) => caseStudy.id === id);
@@ -649,6 +680,7 @@ export const CaseStudies = () => {
       data-interactive-surface="highlight"
       type="button"
       key={caseStudy.id}
+      id={`case-study-${caseStudy.id}`}
       onClick={() => setActiveCaseStudyId(caseStudy.id)}
       aria-label={`Open ${caseStudy.title} case study`}
     >
