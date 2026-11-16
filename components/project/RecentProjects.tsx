@@ -1,5 +1,6 @@
 import { projects } from "@/data/projects";
 import { ProjectActions } from "./ProjectActions";
+import { SneakyArchitecture } from "./architecture/SneakyArchitecture";
 import { ProjectPreview } from "./ProjectPreview";
 import styles from "./RecentProjects.module.css";
 
@@ -37,6 +38,7 @@ export function RecentProjects() {
                 <h4 className={styles.noteLabel}>Architecture</h4>
                 <p>{project.architecture}</p>
               </div>
+              {project.id === "sneaky" && <SneakyArchitecture />}
               {project.roadmap && (
                 <aside className={styles.roadmap}>
                   <h4 className={styles.noteLabel}>On the roadmap</h4>
