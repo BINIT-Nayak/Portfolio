@@ -1,5 +1,3 @@
-import { navItems } from "@/data";
-
 import { CaseStudies } from "@/components/case-studies/CaseStudies";
 import { Clients } from "@/components/client/Clients";
 import { Experience } from "@/components/experience/Experience";
@@ -8,15 +6,13 @@ import { Grid } from "@/components/grid/Grid";
 import { Hero } from "@/components/hero/Hero";
 import { RecentProjects } from "@/components/project/RecentProjects";
 // import { Stats } from "@/components/stats/Stats";
-import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
 
 import style from "./page.module.css";
 
 const Home = () => {
   return (
-    <main className={style.page__main}>
+    <main id="main-content" tabIndex={-1} className={style.page__main}>
       <div className={style.page__container}>
-        <FloatingNav navItems={navItems} />
         <Hero />
         {/* <Stats /> */}
         <Grid />

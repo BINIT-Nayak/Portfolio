@@ -643,56 +643,69 @@ export const CaseStudies = () => {
     };
   }, []);
 
-  return (
-    <section className={style.caseStudies} id="case-studies">
-      <div className={style.caseStudies__header}>
-        <h2 className={style.caseStudies__heading}>
-          Engineering <span className={style.caseStudies__heading_highlight}>Case Studies</span>
-        </h2>
-        <p className={style.caseStudies__intro}>
-          A deeper look into real production and full-stack problems I worked on.
-        </p>
-      </div>
-
-      <div className={style.caseStudies__grid}>
-        {caseStudies.map((caseStudy) => (
-          <button
-            className={style.caseStudies__card}
-            type="button"
-            key={caseStudy.id}
-            onClick={() => setActiveCaseStudyId(caseStudy.id)}
-            aria-label={`Open ${caseStudy.title} case study`}
-          >
-            <div className={style.caseStudies__card_body}>
-              <p className={style.caseStudies__eyebrow}>Case Study</p>
-              <div className={style.caseStudies__meta}>
-                <span className={style.caseStudies__meta_item}>
-                  <FaCalendarDays />
-                  {caseStudy.date}
-                </span>
-                <span className={style.caseStudies__meta_item}>
-                  <FaClock />
-                  {caseStudy.readTime}
-                </span>
-              </div>
-              <h2 className={style.caseStudies__title}>{caseStudy.title}</h2>
-              <p className={style.caseStudies__summary}>{caseStudy.summary}</p>
-              <div className={style.caseStudies__tags}>
-                {caseStudy.tags.slice(0, 3).map((tag) => (
-                  <span className={style.caseStudies__tag} key={tag}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <span className={style.caseStudies__link}>
-              View Case Study
-              <FaArrowRight className={style.caseStudies__link_icon} />
+  const renderCard = (caseStudy: (typeof caseStudies)[number]) => (
+    <button
+      className={style.caseStudies__card}
+      type="button"
+      key={caseStudy.id}
+      onClick={() => setActiveCaseStudyId(caseStudy.id)}
+      aria-label={`Open ${caseStudy.title} case study`}
+    >
+      <div className={style.caseStudies__card_body}>
+        <p className={style.caseStudies__eyebrow}>Case Study</p>
+        <div className={style.caseStudies__meta}>
+          <span className={style.caseStudies__meta_item}>
+            <FaCalendarDays />
+            {caseStudy.date}
+          </span>
+          <span className={style.caseStudies__meta_item}>
+            <FaClock />
+            {caseStudy.readTime}
+          </span>
+        </div>
+        <h3 className={style.caseStudies__title}>{caseStudy.title}</h3>
+        <p className={style.caseStudies__summary}>{caseStudy.summary}</p>
+        <div className={style.caseStudies__tags}>
+          {caseStudy.tags.slice(0, 3).map((tag) => (
+            <span className={style.caseStudies__tag} key={tag}>
+              {tag}
             </span>
-          </button>
-        ))}
+          ))}
+        </div>
       </div>
+      <span className={style.caseStudies__link}>
+        View Case Study
+        <FaArrowRight className={style.caseStudies__link_icon} />
+      </span>
+    </button>
+  );
+
+  return (
+    <>
+      <section className={style.caseStudies} id="case-studies">
+        <div className={style.caseStudies__header}>
+          <h2 className={style.caseStudies__heading}>
+            Engineering <span className={style.caseStudies__heading_highlight}>Case Studies</span>
+          </h2>
+          <p className={style.caseStudies__intro}>
+            A deeper look into real production and full-stack problems I worked on.
+          </p>
+        </div>
+
+        <div className={style.caseStudies__grid}>
+          {caseStudies.filter((study) => !study.tags.includes("npm")).map(renderCard)}
+        </div>
+      </section>
+      <section className={style.caseStudies} id="open-source" aria-labelledby="open-source-title">
+        <div className={style.caseStudies__header}>
+          <h2 className={style.caseStudies__heading} id="open-source-title">
+            Open Source
+          </h2>
+        </div>
+        <div className={style.caseStudies__grid}>
+          {caseStudies.filter((study) => study.tags.includes("npm")).map(renderCard)}
+        </div>
+      </section>
 
       {activeCaseStudy && (
         <div
@@ -835,6 +848,6 @@ export const CaseStudies = () => {
           </article>
         </div>
       )}
-    </section>
+    </>
   );
 };

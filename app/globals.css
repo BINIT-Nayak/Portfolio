@@ -9,6 +9,7 @@
     background: var(--color-bg);
     scroll-behavior: smooth;
     scroll-padding-top: var(--anchor-offset);
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -18,6 +19,7 @@
     font-size: var(--text-base);
     -webkit-font-smoothing: antialiased;
     line-height: var(--leading-body);
+    padding-top: var(--header-space);
   }
 
   * {

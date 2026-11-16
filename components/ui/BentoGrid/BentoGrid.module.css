@@ -55,7 +55,7 @@
   line-height: var(--leading-body);
 }
 .bentoGridItem:first-child .bentoGridItem__title {
-  color: var(--color-text);
+  color: var(--color-on-image);
 }
 .bentoGridItem__techStack {
   display: flex;

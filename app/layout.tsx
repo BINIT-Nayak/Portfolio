@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
+import { navItems } from "@/data";
 import { ThemeProvider } from "./provider";
 
 export const metadata: Metadata = {
@@ -60,9 +62,10 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          forcedTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
+          <FloatingNav navItems={navItems} />
           {children}
         </ThemeProvider>
       </body>

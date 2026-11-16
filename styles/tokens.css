@@ -1,5 +1,8 @@
 :root {
   color-scheme: dark;
+  --social-icon-filter: none;
+  --color-on-image: #eceef2;
+  --header-space: 6rem;
   --color-bg: #101114;
   --color-surface: #17191e;
   --color-surface-raised: #1d2026;
@@ -72,7 +75,7 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --layer-header: 50;
   --layer-overlay: 100;
-  --anchor-offset: 9rem;
+  --anchor-offset: 5rem;
   --grid-size: 48px;
 
   /* Compatibility aliases for existing components and Tailwind primitives. */
@@ -88,4 +91,33 @@
   --border: 222 12% 21%;
   --ring: 221 90% 81%;
   --radius: var(--radius-md);
+}
+
+.light {
+  --social-icon-filter: invert(1);
+  color-scheme: light;
+  --color-bg: #f7f8fa;
+  --color-surface: #fff;
+  --color-surface-raised: #f0f2f6;
+  --color-surface-hover: #e7eaf0;
+  --color-text: #19202c;
+  --color-text-secondary: #414d60;
+  --color-text-muted: #59667b;
+  --color-border: #d9dee7;
+  --color-border-strong: #a6b1c2;
+  --color-accent: #315ca8;
+  --color-accent-hover: #244a8c;
+  --color-accent-subtle: #e8effc;
+  --color-on-accent: #fff;
+  --color-focus: #315ca8;
+  --color-grid: rgb(45 65 95 / 5%);
+  --color-overlay: rgb(20 28 42 / 48%);
+  --color-skeleton: #dde2eb;
+  --shadow-sm: 0 1px 2px rgb(24 36 55 / 6%);
+  --shadow-card: 0 2px 6px rgb(24 36 55 / 4%), 0 12px 28px rgb(24 36 55 / 5%);
+  --shadow-overlay: 0 24px 80px rgb(24 36 55 / 18%);
+  --background: 220 23% 97%;
+  --foreground: 218 28% 14%;
+  --border: 219 23% 88%;
+  --ring: 218 55% 43%;
 }

@@ -46,3 +46,7 @@
   padding: var(--space-3);
   width: var(--control-height);
 }
+
+.footer__social_icon img {
+  filter: var(--social-icon-filter);
+}

@@ -166,7 +166,7 @@ const parseMarkdown = (content: string) => {
 
 const CacheFirstRecommendationApiPage = () => {
   return (
-    <main className={style.article}>
+    <main id="main-content" tabIndex={-1} className={style.article}>
       <div className={style.article__container}>
         <Link className={style.article__back_link} href="/#case-studies">
           Back to Case Studies
