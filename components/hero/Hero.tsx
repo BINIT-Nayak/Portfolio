@@ -1,8 +1,3 @@
-import { Button } from "../button/Button";
-import { Spotlight } from "../ui/Spotlight";
-import { TextGenerateEffect } from "../ui/TextGenerateEffect";
-import { ScrollExploreIcon } from "./ScrollExploreIcon";
-
 import style from "./Hero.module.css";
 
 const HERO_LINKS = [
@@ -27,23 +22,11 @@ const HERO_LINKS = [
 export const Hero = () => {
   return (
     <div className={style.hero}>
-      <div>
-        <Spotlight className={style.hero__spotlight_white} fill="white" />
-        <Spotlight className={style.hero__spotlight_purple} fill="purple" />
-        <Spotlight className={style.hero__spotlight_blue} fill="blue" />
-        <Spotlight className={style.hero__spotlight_purple_right} fill="purple" />
-        <Spotlight className={style.hero__spotlight_blue_right} fill="blue" />
-      </div>
-
-      <div className={style.hero__background_grid}>
-        <div className={style.hero__gradient_mask} />
-      </div>
-
       <div className={style.hero__content_wrapper}>
         <div className={style.hero__content_box}>
           <p className={style.hero__tagline}>Full-Stack Engineer</p>
 
-          <TextGenerateEffect words="Hi, I’m Binit Nayak" className={style.hero__text_generate} />
+          <h1 className={style.hero__text_generate}>Hi, I’m Binit Nayak</h1>
 
           <div className={style.hero__copy}>
             <p className={style.hero__lead}>

@@ -57,7 +57,12 @@ export default function RootLayout({
         <link rel="icon" href="/assests/favIcon.svg" sizes="any" />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          forcedTheme="dark"
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

@@ -1,158 +1,48 @@
 .footer {
-  overflow: hidden;
-  padding-bottom: 2.5rem;
-  padding-top: 6rem;
-  position: relative;
-  scroll-margin-top: 7rem;
-  width: 100%;
+  composes: section from "../../styles/primitives.module.css";
 }
-
 .footer__grid_container {
-  bottom: 0;
-  left: 0;
-  min-height: 100%;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  z-index: 0;
+  display: none;
 }
-
-.footer__grid_image {
-  object-fit: cover;
-  opacity: 0.5;
-}
-
 .footer__main_container {
-  align-items: center;
-  background:
-    linear-gradient(120deg, rgba(34, 211, 238, 0.1), transparent 42%),
-    linear-gradient(300deg, rgba(100, 116, 139, 0.14), transparent 40%), var(--portfolio-panel);
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 0.5rem;
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.26);
-  display: flex;
-  flex-direction: column;
-  padding: 3rem 1.25rem;
-  position: relative;
-  z-index: 1;
+  max-width: var(--reading-width);
 }
-
 .footer__heading {
-  color: var(--portfolio-text);
-  font-size: 2.25rem;
-  font-weight: 900;
-  line-height: 1.2;
-  text-align: center;
+  composes: heading from "../../styles/primitives.module.css";
 }
-
 .footer__heading__highlight {
-  color: var(--portfolio-accent);
+  color: var(--color-text-muted);
 }
-
 .footer__description {
-  color: #cbd5e1;
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
-  margin-top: 1.25rem;
-  max-width: 46rem;
-  text-align: center;
+  color: var(--color-text-muted);
+  margin-block: var(--space-5) var(--space-6);
 }
-
 .footer__actions {
-  display: grid;
-  gap: 0.7rem;
-  grid-template-columns: 1fr;
-  margin-top: 0.5rem;
-  width: min(100%, 20rem);
+  display: flex;
 }
-
 .footer__action {
-  align-items: center;
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid rgba(34, 211, 238, 0.32);
-  border-radius: 0.5rem;
-  color: var(--portfolio-text);
-  display: inline-flex;
-  font-size: 0.88rem;
-  font-weight: 900;
-  justify-content: center;
-  min-height: 2.75rem;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+  composes: action from "../../styles/primitives.module.css";
 }
-
 .footer__action:hover {
-  background: rgba(34, 211, 238, 0.14);
-  border-color: rgba(34, 211, 238, 0.58);
-  color: var(--portfolio-accent);
-  transform: translateY(-2px);
+  background: var(--color-accent-hover);
 }
-
 .footer__bottom_container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 4rem;
-  position: relative;
-  z-index: 1;
+  border-top: var(--border-width) solid var(--color-border);
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
 }
-
 .footer__social_container {
-  align-items: center;
   display: flex;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
-
+.footer__social_container a {
+  border-radius: var(--radius-sm);
+}
 .footer__social_icon {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  display: flex;
-  height: 2.5rem;
-  justify-content: center;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-  width: 2.5rem;
-}
-
-.footer__social_icon:hover {
-  background-color: rgba(34, 211, 238, 0.12);
-  border-color: rgba(34, 211, 238, 0.45);
-  transform: translateY(-2px);
-}
-
-@media (min-width: 640px) {
-  .footer__actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 768px) {
-  .footer__description {
-    margin-top: 1.5rem;
-  }
-  .footer__bottom_container {
-    flex-direction: row;
-  }
-  .footer__social_container {
-    gap: 0.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .footer__heading {
-    max-width: 45vw;
-  }
+  composes: action from "../../styles/primitives.module.css";
+  padding: var(--space-3);
+  width: var(--control-height);
 }

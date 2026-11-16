@@ -1,298 +1,120 @@
 .recent_projects {
-  padding-bottom: 6rem;
-  padding-top: 6rem;
-  scroll-margin-top: 7rem;
+  composes: section from "../../styles/primitives.module.css";
 }
-
 .recent_projects__heading {
-  color: var(--portfolio-text);
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  text-align: center;
+  composes: heading from "../../styles/primitives.module.css";
 }
-
 .recent_projects__heading__highlight {
-  color: var(--portfolio-accent);
+  color: var(--color-text-muted);
 }
-
 .recent_projects__wrapper {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
-  margin-top: 2.5rem;
-  padding: 1rem;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
 }
-
 .recent_projects__card {
-  min-height: 100%;
+  min-width: 0;
 }
-
 .recent_projects__cardInner {
-  background:
-    linear-gradient(180deg, rgba(100, 116, 139, 0.18), transparent 42%), var(--portfolio-panel);
-  border: 1px solid var(--portfolio-border);
-  border-radius: 0.5rem;
-  box-shadow: 0 22px 70px rgba(2, 6, 23, 0.28);
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  composes: surface from "../../styles/primitives.module.css";
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   overflow: hidden;
-  text-decoration: none;
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    box-shadow 0.22s ease;
 }
-
-.recent_projects__cardInner:hover {
-  border-color: rgba(34, 211, 238, 0.55);
-  box-shadow:
-    0 30px 90px rgba(2, 6, 23, 0.38),
-    0 0 0 1px rgba(34, 211, 238, 0.12);
-  transform: translateY(-6px);
+.recent_projects__card_featured .recent_projects__cardInner {
+  border-color: var(--color-border-strong);
 }
-
 .recent_projects__image_container {
-  align-items: center;
-  aspect-ratio: 16 / 9;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.08), transparent 52%),
-    rgba(15, 23, 42, 0.72);
-  border-bottom: 1px solid var(--portfolio-border);
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
+  background: var(--color-bg);
+  border-right: var(--border-width) solid var(--color-border);
+  min-height: 20rem;
   position: relative;
-  width: 100%;
 }
-
 .recent_projects__image_wrapper {
-  background-color: var(--portfolio-bg);
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+  display: none;
 }
-
 .recent_projects__image {
-  bottom: 0;
-  filter: saturate(0.9) contrast(1.02);
-  height: 100%;
   object-fit: contain;
-  padding: 1rem;
-  position: absolute;
-  transition:
-    transform 0.28s ease,
-    filter 0.28s ease;
-  width: 100%;
-  z-index: 10;
+  padding: var(--space-6);
 }
-
-.recent_projects__cardInner:hover .recent_projects__image {
-  filter: saturate(1.05) contrast(1.05);
-  transform: scale(1.035);
-}
-
-.recent_projects__background_image {
-  object-fit: cover;
-}
-
 .recent_projects__body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: 1.15rem;
+  min-width: 0;
+  padding: var(--card-padding);
 }
-
 .recent_projects__eyebrow {
-  color: var(--portfolio-accent);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  composes: label from "../../styles/primitives.module.css";
 }
-
 .recent_projects__title {
-  color: var(--portfolio-text);
-  font-size: 1.35rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-top: 0.45rem;
+  font-size: var(--text-section);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
+  margin-top: var(--space-3);
 }
-
 .recent_projects__subtitle {
-  color: #cbd5e1;
-  font-size: 0.95rem;
-  font-weight: 800;
-  margin-top: 0.35rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  margin-top: var(--space-2);
 }
-
 .recent_projects__description {
-  color: #cbd5e1;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.65;
-  margin: 0.75rem 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  margin-top: var(--space-4);
 }
-
 .recent_projects__tech_stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 1rem;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
 }
-
 .recent_projects__tech {
-  background: rgba(100, 116, 139, 0.12);
-  border: 1px solid rgba(100, 116, 139, 0.34);
-  border-radius: 0.5rem;
-  color: var(--portfolio-text);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 0.38rem 0.55rem;
+  composes: tag from "../../styles/primitives.module.css";
 }
-
 .recent_projects__highlights {
+  color: var(--color-text-secondary);
   display: grid;
-  gap: 0.48rem;
-  list-style: none;
-  margin-top: 1rem;
-  padding-left: 0;
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  list-style: disc;
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
 }
-
 .recent_projects__highlight {
-  color: #cbd5e1;
-  font-size: 0.86rem;
-  line-height: 1.48;
-  padding-left: 1rem;
-  position: relative;
+  padding-left: var(--space-1);
 }
-
-.recent_projects__highlight::before {
-  background: var(--portfolio-accent);
-  border-radius: 9999px;
-  content: "";
-  height: 0.35rem;
-  left: 0;
-  position: absolute;
-  top: 0.62em;
-  width: 0.35rem;
+.recent_projects__highlight::marker {
+  color: var(--color-text-muted);
 }
-
 .recent_projects__actions {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: auto;
-  padding-top: 1.25rem;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
 }
-
 .recent_projects__action {
-  align-items: center;
-  appearance: none;
-  background: rgba(34, 211, 238, 0.08);
-  border: 1px solid rgba(34, 211, 238, 0.32);
-  border-radius: 0.5rem;
-  color: var(--portfolio-accent);
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: 0.875rem;
-  font-weight: 800;
-  gap: 0.45rem;
-  justify-content: center;
-  min-height: 2.35rem;
-  padding: 0.45rem 0.7rem;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  composes: action from "../../styles/primitives.module.css";
 }
-
-.recent_projects__action:hover {
-  background: rgba(34, 211, 238, 0.14);
-  border-color: rgba(34, 211, 238, 0.58);
-  transform: translateY(-2px);
-}
-
-.recent_projects__action_disabled {
-  background: rgba(100, 116, 139, 0.08);
-  border-color: rgba(100, 116, 139, 0.28);
-  color: #94a3b8;
+.recent_projects__action_disabled,
+.recent_projects__action_disabled:hover {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
   cursor: not-allowed;
 }
-
-.recent_projects__action_disabled:hover {
-  background: rgba(100, 116, 139, 0.08);
-  border-color: rgba(100, 116, 139, 0.28);
-  transform: none;
-}
-
 .recent_projects__link_icon {
-  color: var(--portfolio-accent);
-  height: 0.78rem;
-  width: 0.78rem;
+  height: var(--space-3);
+  width: var(--space-3);
 }
 
-@media (min-width: 640px) {
-  .recent_projects__wrapper {
+@media (max-width: 1023px) {
+  .recent_projects__cardInner {
     grid-template-columns: 1fr;
   }
-}
-
-@media (min-width: 768px) {
-  .recent_projects__heading {
-    font-size: 2.25rem;
-  }
-  .recent_projects__title {
-    font-size: 1.55rem;
-  }
-  .recent_projects__description {
-    font-size: 0.98rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .recent_projects__heading {
-    font-size: 3rem;
-  }
-  .recent_projects__wrapper {
-    gap: 1.5rem;
-  }
-
-  .recent_projects__card {
-    grid-column: 1 / -1;
-  }
-
-  .recent_projects__cardInner {
-    display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  }
   .recent_projects__image_container {
-    aspect-ratio: auto;
-    border-bottom: 0;
-    border-right: 1px solid var(--portfolio-border);
-    min-height: 100%;
-  }
-  .recent_projects__image_wrapper {
-    border-radius: 0.5rem;
-  }
-  .recent_projects__image {
-    padding: 1.5rem;
-  }
-  .recent_projects__body {
-    padding: 1.5rem;
-  }
-  .recent_projects__title {
-    font-size: 1.85rem;
-  }
-  .recent_projects__description {
-    font-size: 1rem;
-    font-weight: 400;
+    aspect-ratio: 16 / 9;
+    border-bottom: var(--border-width) solid var(--color-border);
+    border-right: 0;
+    min-height: 0;
   }
 }

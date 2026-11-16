@@ -37,9 +37,9 @@ export const Clients = () => {
   return (
     <section id="what-i-bring" className={style.clients}>
       <div className={style.clients__header}>
-        <h1 className={style.clients__heading}>
+        <h2 className={style.clients__heading}>
           What I <span className={style.clients__heading__highlight}>Bring</span>
-        </h1>
+        </h2>
         <p className={style.clients__intro}>
           Practical engineering strengths shaped by production UI ownership, full-stack product
           building, reusable architecture, and disciplined delivery.

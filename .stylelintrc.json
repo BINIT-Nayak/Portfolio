@@ -32,5 +32,18 @@
     "rule-empty-line-before": null,
     "value-keyword-case": null,
     "value-no-vendor-prefix": null
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.module.css"],
+      "rules": {
+        "property-no-unknown": [
+          true,
+          {
+            "ignoreProperties": ["composes"]
+          }
+        ]
+      }
+    }
+  ]
 }

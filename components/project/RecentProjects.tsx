@@ -15,9 +15,9 @@ const openCaseStudy = (href: string) => {
 export const RecentProjects = () => {
   return (
     <div className={style.recent_projects} id="projects">
-      <h1 className={style.recent_projects__heading}>
+      <h2 className={style.recent_projects__heading}>
         Featured <span className={style.recent_projects__heading__highlight}>projects</span>
-      </h1>
+      </h2>
       <div className={style.recent_projects__wrapper}>
         {projects.map((item) => (
           <article
@@ -28,27 +28,18 @@ export const RecentProjects = () => {
           >
             <div className={style.recent_projects__cardInner}>
               <div className={style.recent_projects__image_container}>
-                <div className={style.recent_projects__image_wrapper}>
-                  <Image
-                    src="/assests/bg.png"
-                    alt=""
-                    fill
-                    sizes="(min-width: 640px) 24rem, 80vw"
-                    className={style.recent_projects__background_image}
-                  />
-                </div>
                 <Image
                   src={item.img}
                   alt={`${item.title} project preview`}
                   fill
-                  sizes="(min-width: 640px) 24rem, 80vw"
+                  sizes="(min-width: 1280px) 30rem, (min-width: 1024px) 40vw, 92vw"
                   className={style.recent_projects__image}
                 />
               </div>
 
               <div className={style.recent_projects__body}>
                 <p className={style.recent_projects__eyebrow}>Featured Project</p>
-                <h1 className={style.recent_projects__title}>{item.title}</h1>
+                <h3 className={style.recent_projects__title}>{item.title}</h3>
                 <p className={style.recent_projects__subtitle}>{item.subtitle}</p>
 
                 <p className={style.recent_projects__description}>{item.des}</p>

@@ -646,9 +646,9 @@ export const CaseStudies = () => {
   return (
     <section className={style.caseStudies} id="case-studies">
       <div className={style.caseStudies__header}>
-        <h1 className={style.caseStudies__heading}>
+        <h2 className={style.caseStudies__heading}>
           Engineering <span className={style.caseStudies__heading_highlight}>Case Studies</span>
-        </h1>
+        </h2>
         <p className={style.caseStudies__intro}>
           A deeper look into real production and full-stack problems I worked on.
         </p>

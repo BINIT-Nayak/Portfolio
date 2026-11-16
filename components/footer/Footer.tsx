@@ -14,21 +14,11 @@ const contactActions = [{ label: "Email Me", href: EMAIL }];
 export const Footer = () => {
   return (
     <footer className={style.footer} id="contact">
-      <div className={style.footer__grid_container}>
-        <Image
-          src="/assests/footer-grid.svg"
-          alt="grid"
-          fill
-          sizes="100vw"
-          className={style.footer__grid_image}
-        />
-      </div>
-
       <div className={style.footer__main_container}>
-        <h1 className={style.footer__heading}>
+        <h2 className={style.footer__heading}>
           Let&apos;s build{" "}
           <span className={style.footer__heading__highlight}>scalable products</span> together.
-        </h1>
+        </h2>
         <p className={style.footer__description}>
           I&apos;m open to Frontend Engineer, React Developer, and Full-Stack Engineer opportunities
           where I can work on production UI systems, product engineering, and modern web

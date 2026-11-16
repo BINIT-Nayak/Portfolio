@@ -1,74 +1,53 @@
 .floatingNav {
   align-items: center;
-  backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(15, 23, 42, 0.88);
-  border: 1px solid var(--portfolio-border);
-  border-radius: 0.5rem;
-  box-shadow:
-    0 20px 70px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background: var(--color-bg);
+  border-bottom: var(--border-width) solid var(--color-border);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  justify-content: center;
-  left: 50%;
-  padding: 0.55rem;
-  position: fixed;
-  top: 0.75rem;
-  transform: translateX(-50%) scale(var(--nav-scale, 1));
-  width: max-content;
-  z-index: 5000;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  position: sticky;
+  top: 0;
+  z-index: var(--layer-header);
 }
-
 .floatingNav__item {
   align-items: center;
-  border-radius: 0.375rem;
-  color: #cbd5e1;
-  display: flex;
-  gap: 0.4rem;
-  padding: 0.45rem 0.7rem;
-  position: relative;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  gap: var(--space-2);
+  min-height: var(--control-height);
+  padding: var(--space-2) var(--space-3);
   text-decoration: none;
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
+    color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
 }
-
 .floatingNav__item:hover {
-  background-color: rgba(34, 211, 238, 0.12);
-  color: var(--portfolio-text);
-  transform: translateY(-1px);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
 }
-
-.floatingNav__itemIcon {
-  display: block;
+.floatingNav__item:active {
+  background: var(--color-accent-subtle);
 }
-
 .floatingNav__itemText {
-  cursor: pointer;
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+.floatingNav__itemIcon {
+  display: inline-flex;
 }
 
-@media (min-width: 480px) {
-  .floatingNav__itemText {
-    font-size: 0.875rem;
-  }
-}
-
-@media (min-width: 640px) {
-  .floatingNav__itemIcon {
-    display: none;
-  }
-}
-
-@media (min-width: 768px) {
+@media (max-width: 479px) {
   .floatingNav {
-    flex-wrap: nowrap;
-    max-width: calc(100% - 2rem);
-    padding: 0.7rem 0.8rem;
-    top: 1rem;
-    width: max-content;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .floatingNav__item {
+    justify-content: center;
+    padding-inline: var(--space-1);
+  }
+  .floatingNav__itemText {
+    font-size: var(--text-xs);
   }
 }

@@ -1,12 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import styles from "./BentoGrid.module.css";
-
-import GridGlobe from "../GridGlobe";
 
 type BentoGridItemProps = {
   className?: string;
@@ -45,63 +41,28 @@ export const BentoGrid = ({
   return <div className={cn(styles.bentoGrid, className)}>{children}</div>;
 };
 
-export const BentoGridItem = ({
-  className,
-  id,
-  title,
-  description,
-  img,
-  imgClassName,
-  titleClassName,
-  spareImg,
-}: BentoGridItemProps) => {
+export const BentoGridItem = ({ id, title, description, img }: BentoGridItemProps) => {
   return (
-    <div className={cn(styles.bentoGridItem, className)}>
+    <div className={styles.bentoGridItem}>
       <div
         className={
           id === 6 ? styles.bentoGridItem__container_flex : styles.bentoGridItem__container
         }
       >
         <div className={styles.bentoGridItem__imageWrapper}>
-          {img && (
+          {img && id === 1 && (
             <Image
               src={img}
-              alt={typeof title === "string" ? title : "Portfolio feature image"}
+              alt="Binit Nayak"
               fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className={cn(styles.bentoGridItem__image, imgClassName)}
+              sizes="(min-width: 1280px) 37rem, (min-width: 768px) 46vw, 92vw"
+              className={styles.bentoGridItem__image}
             />
           )}
         </div>
-        <div
-          className={
-            id === 5
-              ? styles.bentoGridItem__spareImageWrapper_full
-              : styles.bentoGridItem__spareImageWrapper
-          }
-        >
-          {spareImg && (
-            <Image
-              src={spareImg}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className={styles.bentoGridItem__spareImage}
-            />
-          )}
-        </div>
-        <div className={cn(styles.bentoGridItem__titleSection, titleClassName)}>
+        <div className={styles.bentoGridItem__titleSection}>
           <div className={styles.bentoGridItem__description}>{description}</div>
-          <div
-            className={cn(
-              styles.bentoGridItem__title,
-              titleClassName?.includes("title-black") && styles.bentoGridItem__title_black
-            )}
-          >
-            {title}
-          </div>
-
-          {id === 2 && <GridGlobe />}
+          <div className={styles.bentoGridItem__title}>{title}</div>
 
           {id === 5 && (
             <div className={styles.bentoGridItem__techStack}>

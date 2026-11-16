@@ -1,6 +1,3 @@
 .section {
-  padding-bottom: 5rem;
-  padding-top: 4rem;
-  scroll-margin-top: 7rem;
-  width: 100%;
+  composes: section from "../../styles/primitives.module.css";
 }

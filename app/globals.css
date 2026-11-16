@@ -1,129 +1,73 @@
+@import "../styles/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --portfolio-bg: #0f172a;
-    --portfolio-text: #f4f4f4;
-    --portfolio-muted: #64748b;
-    --portfolio-accent: #22d3ee;
-    --portfolio-panel: rgba(15, 23, 42, 0.78);
-    --portfolio-panel-strong: rgba(15, 23, 42, 0.94);
-    --portfolio-border: rgba(100, 116, 139, 0.34);
-
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
-}
-
-@layer base {
   html {
-    background: var(--portfolio-bg);
-    scroll-padding-top: 7rem;
+    background: var(--color-bg);
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--anchor-offset);
   }
 
-  html,
   body {
-    min-height: 100%;
-    overflow-x: hidden;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    -webkit-font-smoothing: antialiased;
+    line-height: var(--leading-body);
   }
 
   * {
-    @apply !scroll-smooth border-border;
+    border-color: var(--color-border);
   }
-  body {
-    @apply bg-background text-foreground;
-    background: var(--portfolio-bg);
-    color: var(--portfolio-text);
-    font-family:
-      Inter,
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
-    text-rendering: optimizeLegibility;
+
+  ::selection {
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-hover);
   }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--color-focus);
+    outline-offset: var(--focus-offset);
+  }
+
+  button,
+  a,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   button {
-    @apply active:outline-none;
+    font: inherit;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
   }
 }
 
-@layer utilities {
-  .heading {
-    @apply text-center text-4xl font-bold md:text-5xl;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-.linear-gradient {
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), transparent 55%);
-}
-
-@media (min-width: 600px) and (max-width: 1020px) {
-  .myphoto-width {
-    float: right;
-    width: 25rem;
-  }
-  .title-width {
-    max-width: 21rem;
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid Highlight;
   }
 }
