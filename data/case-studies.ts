@@ -34,6 +34,92 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    id: "vibejournal-offline-sync",
+    cardTitle: "VibeJournal: Offline edits without data loss",
+    title: "VibeJournal — Offline Edits Without Silent Data Loss",
+    categories: ["Frontend Architecture", "Distributed Systems", "Full Stack"],
+    problem:
+      "An offline edit can outlive its tab, race with another device, or succeed on the server before its acknowledgement arrives.",
+    technologies: ["IndexedDB / Dexie", "TypeScript", "PostgreSQL", "Prisma"],
+    date: "2026",
+    readTime: "5 min read",
+    tags: ["Next.js", "IndexedDB", "Idempotency", "Conflict Resolution", "PostgreSQL"],
+    summary:
+      "A local mutation queue and transactional server receipts separate user intent from network delivery, while explicit conflict resolution protects edits from silent overwrites.",
+    description:
+      "The app is already loaded when connectivity disappears. A journal entry must remain editable, and a pending save must remain visible as pending rather than masquerading as a server-confirmed write. The difficult cases are ambiguous acknowledgements, overlapping tabs, and remote edits—not just a disconnected fetch.",
+    role: "Designed and implemented the account-scoped Dexie queue, replay runner, idempotent sync endpoint, version checks, and conflict-review UI in VibeJournal.",
+    outcome:
+      "Implemented ordered create/update/delete replay, recoverable tab leases, immutable retry payloads, and explicit keep-server/keep-local resolution. This protects against duplicate application and silent stale writes; browser storage eviction can still remove unsynced content.",
+    detailHref: "/case-studies/vibejournal-offline-sync",
+    architecture: [
+      "Local commit: a Dexie transaction stores the entry snapshot and mutation together. Each operation carries its account, entry ID, sequence, immutable idempotency key, payload, and retry status. A local commit is not a server acknowledgement.",
+      "Tab coordination: a transactional 60-second lease claims an operation. Only its current attempt can settle the result. A closed tab leaves a lease that another runner can reclaim without inventing a new operation key.",
+      "Ordered replay: create, update, and delete run in sequence per entry. A failed or conflicted predecessor blocks that entry while unrelated entries can proceed. Acknowledged versions feed dependent operations; the resolved payload is frozen before its first send.",
+      "Server commit: authentication and ownership checks precede the write. PostgreSQL advisory transaction locks serialize both the account/key and the target entry. The mutation, tag changes, and compact receipt commit in one transaction.",
+      "Receipt replay: retrying the same key and payload returns the stored result. Reusing a key with a changed payload is rejected. Delete receipts remain after entry deletion, so replaying an old create does not resurrect it.",
+      "Conflict handling: updates and deletes carry the version the editor observed. A mismatch enters a persistent conflict state and preserves the local draft. The user reviews fresh local/server versions before choosing a resolution.",
+    ],
+    challengesSolved: [
+      "Lost response after commit: the client keeps the operation pending, retries the same immutable key, and receives the original receipt rather than applying the write twice.",
+      "Two tabs processing one queue: leases coordinate claims, and server-side idempotency still protects correctness if requests overlap after a lease expires.",
+      "Remote edit during review: the client rereads the server version immediately before resolving. A changed comparison must be refreshed, and a subsequent upload still uses a conditional version check.",
+      "Missing remote entry: the UI offers accepting the deletion or saving local content under a new ID. It does not recreate the deleted record under its original ID.",
+    ],
+    details: [
+      "Keep server: discard the blocked local operation chain and adopt the reviewed server version; a queued deletion can also be cancelled.",
+      "Keep local: create a new operation with a fresh key and the reviewed server version. This is a conditional update, not a force-write or automatic merge.",
+      "Transient network, 408, 429, and 5xx failures use bounded exponential backoff and Retry-After. Authentication, permission, and validation failures require review rather than blind retry.",
+      "Analytics invalidation and consent-gated AI analysis occur after commit. A crash can skip those best-effort side effects; the journal mutation and receipt remain atomic. Redis is not involved in queue correctness.",
+      "Source tests cover response loss, concurrent replay, payload mismatch, lease recovery, version chaining, rollback, account isolation, and explicit conflict resolution. They are implementation evidence, not a production reliability benchmark.",
+      "Limits: no offline app shell, closed-browser background sync, cross-device download, or automatic merge. Browser clearing/eviction can lose unsynced work; local storage is not a backup. Pending journal data remains sensitive browser data.",
+    ],
+    externalLinks: [
+      {
+        label: "VibeJournal source",
+        href: "https://github.com/BINIT-Nayak/VibeJournal",
+      },
+    ],
+  },
+  {
+    id: "comet-lab",
+    cardTitle: "Comet: Interactive animation engineering lab",
+    title: "Comet — Canvas Animation Engineering Lab",
+    categories: ["Frontend Architecture", "Performance"],
+    problem:
+      "Concurrent visual effects need consistent coordinates, shared scheduling, and complete cleanup without a React render on every frame.",
+    technologies: ["Canvas 2D", "TypeScript", "React", "requestAnimationFrame"],
+    date: "2026",
+    readTime: "3 min read",
+    tags: ["Canvas 2D", "TypeScript", "Animation Lifecycle", "ResizeObserver"],
+    summary:
+      "A user-controlled Canvas lab demonstrates curved trajectories, shared frame scheduling, responsive coordinates, and interruption-safe lifecycle management.",
+    description:
+      "The lab adapts the existing personal Comet renderer into an isolated portfolio experience. Launch toward a destination, compare one effect with several concurrent effects, change flight duration and particle density, and pause or clear the surface. Motion starts only after interaction.",
+    role: "Built the Comet engine and React integration, then adapted the renderer for a bounded, accessible portfolio lab with pause/resume, static reduced-motion previews, and lifecycle cleanup.",
+    outcome:
+      "One requestAnimationFrame scheduler advances active surfaces; rendering stays outside React state. Idle surfaces stop scheduling. Resize and pixel-density changes update the canvas backing store, and unmount removes listeners and scheduled work.",
+    detailHref: "/labs/comet",
+    architecture: [
+      "Intent: React handles buttons and settings. Launch coordinates are measured once in CSS pixels and converted from the viewport to the canvas coordinate system.",
+      "Simulation: a logical animation clock advances trajectory and particle state. Pause removes the surface from scheduling; resume continues the same logical time instead of jumping through the pause.",
+      "Rendering: Canvas 2D draws curved trails and particles. A shared scheduler requests another frame only while work remains. No React state setter runs inside the drawing loop.",
+      "Lifecycle: ResizeObserver and pixel-density listeners size the backing canvas. Resize clears in-flight paths to avoid landing on old responsive-layout coordinates. Offscreen/hidden playback pauses; reduced motion uses a static route preview.",
+    ],
+    challengesSolved: [
+      "Concurrent launches share scheduling instead of creating a new permanent loop for every effect.",
+      "Viewport and canvas coordinates must agree across scrolling and responsive layouts; destination centers are measured at launch.",
+      "Pausing needs a simulation clock, not simply skipping drawing while wall-clock time advances.",
+      "An unmounted canvas must detach resize/DPR listeners and cancel its participation in the scheduler.",
+    ],
+    details: [
+      "Controls expose launch, four concurrent launches, pause/resume, clear, destination, flight duration, and particles.",
+      "The lab bounds concurrent effects and simplifies particles on narrow screens. No external animation runtime, assets, network service, or WebGL is required.",
+      "Canvas has a text alternative and equivalent keyboard controls. The explanation remains available without running the effect.",
+      "The scheduler indicator shows actual lifecycle state; it does not invent FPS, CPU use, or performance improvement figures.",
+    ],
+  },
+  {
     id: "toast-messages",
     cardTitle: "Toast Messages 2.0",
     categories: ["Frontend Architecture", "Performance", "Real-Time"],

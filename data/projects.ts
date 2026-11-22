@@ -210,6 +210,10 @@ export const projects: ShowcaseProject[] = [
         label: "Case Study",
         href: "#case-study-vibejournal",
       },
+      {
+        label: "Offline Sync Deep Dive",
+        href: "/case-studies/vibejournal-offline-sync",
+      },
     ],
   },
 ];

@@ -159,14 +159,20 @@ export const CaseStudies = () => {
             </span>
           </div>
           <h3 className={style.caseStudies__title}>
-            <button
-              type="button"
-              className={style.caseStudies__card_trigger}
-              onClick={() => setActiveCaseStudyId(caseStudy.id)}
-              aria-haspopup="dialog"
-            >
-              {caseStudy.cardTitle}
-            </button>
+            {caseStudy.detailHref ? (
+              <Link href={caseStudy.detailHref} className={style.caseStudies__card_trigger}>
+                {caseStudy.cardTitle}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className={style.caseStudies__card_trigger}
+                onClick={() => setActiveCaseStudyId(caseStudy.id)}
+                aria-haspopup="dialog"
+              >
+                {caseStudy.cardTitle}
+              </button>
+            )}
           </h3>
           <p className={style.caseStudies__summary}>{caseStudy.problem}</p>
           <ul className={style.caseStudies__tags} aria-label="Main technologies">
@@ -178,7 +184,8 @@ export const CaseStudies = () => {
           </ul>
         </div>
         <span className={style.caseStudies__link} aria-hidden="true">
-          Explore case study <FaArrowRight className={style.caseStudies__link_icon} />
+          {caseStudy.id === "comet-lab" ? "Open interactive lab" : "Explore case study"}{" "}
+          <FaArrowRight className={style.caseStudies__link_icon} />
         </span>
       </article>
     </li>

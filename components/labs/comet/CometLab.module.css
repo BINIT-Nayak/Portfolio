@@ -1,0 +1,163 @@
+.lab {
+  margin-block: var(--space-8);
+}
+.lab h2 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+.intro,
+.note {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  margin-top: var(--space-3);
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-5);
+}
+.action {
+  composes: action from "../../../styles/primitives.module.css";
+}
+.primary {
+  composes: action primary from "../../../styles/primitives.module.css";
+}
+.controls button:disabled {
+  opacity: 0.5;
+}
+.settings {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.settings label {
+  min-height: var(--control-height);
+}
+.settings output {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  margin-left: var(--space-2);
+}
+.settings input[type="range"] {
+  accent-color: var(--color-accent);
+  display: block;
+  min-height: var(--control-height);
+  width: 100%;
+}
+.check {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2);
+}
+.check input {
+  accent-color: var(--color-accent);
+  height: var(--space-5);
+  width: var(--space-5);
+}
+.scheduler {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.scheduler strong {
+  color: var(--color-accent);
+  margin-left: var(--space-2);
+}
+.surface {
+  background: var(--color-bg);
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: var(--space-6) var(--space-6);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  height: clamp(20rem, 48vw, 28rem);
+  overflow: hidden;
+  position: relative;
+}
+.canvas {
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+.origin {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-round);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  left: 50%;
+  padding: var(--space-3);
+  position: absolute;
+  top: var(--space-6);
+  transform: translateX(-50%);
+}
+.targets {
+  bottom: var(--space-5);
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  left: var(--space-4);
+  position: absolute;
+  right: var(--space-4);
+}
+.target {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  min-height: var(--space-16);
+  padding: var(--space-2);
+}
+.target[aria-pressed="true"] {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+}
+.status {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  margin-top: var(--space-4);
+  min-height: 3em;
+}
+.pipeline {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin-top: var(--space-6);
+  padding: 0;
+}
+.pipeline li {
+  border-left: var(--border-width) solid var(--color-border-strong);
+  padding-left: var(--space-4);
+}
+.pipeline strong,
+.pipeline span {
+  display: block;
+  font-size: var(--text-sm);
+}
+.pipeline span {
+  color: var(--color-text-muted);
+  line-height: var(--leading-body);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 479px) {
+  .targets {
+    gap: var(--space-1);
+    left: var(--space-2);
+    right: var(--space-2);
+  }
+  .target {
+    font-size: var(--text-xs);
+  }
+  .pipeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

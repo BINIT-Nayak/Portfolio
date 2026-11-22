@@ -8,6 +8,7 @@ export function ProjectActions({ actions, title }: { actions: ProjectAction[]; t
   return (
     <div className={styles.actions} aria-label={`${title} project links`}>
       {actions.map((action) => {
+        const isExternal = action.href.startsWith("https://");
         const isStudy = action.href.startsWith("#case-study-");
         const Icon = isStudy
           ? FiBookOpen
@@ -28,9 +29,9 @@ export function ProjectActions({ actions, title }: { actions: ProjectAction[]; t
             className={styles.action}
             key={action.label}
             href={action.href}
-            target={isStudy ? undefined : "_blank"}
-            rel={isStudy ? undefined : "noopener noreferrer"}
-            aria-label={`${action.label} — ${title}${isStudy ? "" : " (opens in a new tab)"}`}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            aria-label={`${action.label} — ${title}${isExternal ? " (opens in a new tab)" : ""}`}
             onClick={
               isStudy
                 ? (event) => {
