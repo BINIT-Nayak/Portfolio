@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { FiArrowUpRight, FiCommand, FiMenu, FiMoon, FiSearch, FiSun, FiX } from "react-icons/fi";
 
+import { searchCommands, validRecents, rememberCommand } from "@/lib/command-palette.mjs";
 import { cn } from "@/lib/utils";
 import { getNavigationState, moveCommandSelection } from "@/lib/navigation.mjs";
 import styles from "./FloatingNavbar.module.css";
@@ -22,6 +23,7 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
   const [overlay, setOverlay] = useState<Overlay>(null);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
+  const [recent, setRecent] = useState<string[]>([]);
   const headerRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -34,14 +36,20 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
   const themeLabel = `Switch to ${isLight ? "dark" : "light"} mode`;
   const destination = (link: string) => (isHome ? link : `/${link}`);
   const commands = useMemo(() => [...navItems, { name: "Contact", link: "#contact" }], [navItems]);
-  const results = commands.filter((item) =>
-    item.name.toLowerCase().includes(query.trim().toLowerCase())
-  );
-  const themeMatches = `theme ${themeLabel}`.toLowerCase().includes(query.trim().toLowerCase());
-  const resultCount = results.length + (themeMatches ? 1 : 0);
+  const results = searchCommands(query, recent);
+  const resultCount = results.length;
   const selectedIndex = Math.min(selected, Math.max(0, resultCount - 1));
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    try {
+      setRecent(
+        validRecents(JSON.parse(sessionStorage.getItem("portfolio-command-recents") ?? "[]"))
+      );
+    } catch {
+      /* Storage may be unavailable. Keep in-memory recents. */
+    }
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -175,9 +183,39 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
   };
   const toggleTheme = () => setTheme(isLight ? "dark" : "light");
   const choose = (index: number) => {
-    if (index < results.length) navigate(results[index].link);
-    else if (themeMatches) {
+    const command = results[index];
+    if (!command || command.disabledReason) return;
+    const next = rememberCommand(recent, command.id);
+    setRecent(next);
+    try {
+      sessionStorage.setItem("portfolio-command-recents", JSON.stringify(next));
+    } catch {
+      /* In-memory history still works. */
+    }
+    if (command.kind === "section") navigate(command.target);
+    else if (command.kind === "study") {
+      setOverlay(null);
+      requestAnimationFrame(() => {
+        if (!isHome) {
+          window.location.assign(`/?case-study=${encodeURIComponent(command.target)}#case-studies`);
+        } else {
+          window.dispatchEvent(new CustomEvent("open-case-study", { detail: command.target }));
+        }
+      });
+    } else if (command.kind === "theme") {
       toggleTheme();
+      setOverlay(null);
+    } else {
+      const link = document.createElement("a");
+      link.href = command.target;
+      if (command.kind === "download") link.download = "Binit-Nayak-Resume.pdf";
+      else {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      document.body.append(link);
+      link.click();
+      link.remove();
       setOverlay(null);
     }
   };
@@ -234,7 +272,7 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
               onClick={() => open("palette")}
             >
               <FiCommand aria-hidden="true" />
-              <kbd>⌘K</kbd>
+              <kbd>⌘ K</kbd>
             </button>
             <button
               className={styles.menuButton}
@@ -255,10 +293,28 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
       </header>
 
       <dialog
+        data-motion-enter={overlay === "menu" ? "fade-up" : "scale-in"}
         ref={dialogRef}
         id={`${id}-dialog`}
         className={cn(styles.dialog, overlay === "menu" ? styles.drawer : styles.palette)}
         aria-labelledby={`${id}-title`}
+        onKeyDown={(event) => {
+          if (event.key !== "Tab") return;
+          const focusable = Array.from(
+            event.currentTarget.querySelectorAll<HTMLElement>(
+              "button:not([disabled]), a[href], input"
+            )
+          );
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
         onCancel={(event) => {
           event.preventDefault();
           setOverlay(null);
@@ -311,7 +367,7 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
                     setQuery(event.target.value);
                     setSelected(0);
                   }}
-                  placeholder="Search sections or change theme…"
+                  placeholder="Search commands, projects, or people…"
                   aria-label="Search commands"
                   role="combobox"
                   aria-expanded="true"
@@ -346,36 +402,38 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
               >
                 {results.map((item, index) => (
                   <div
-                    key={item.link}
+                    key={item.id}
                     id={`${id}-option-${index}`}
                     role="option"
+                    aria-disabled={Boolean(item.disabledReason)}
                     aria-selected={selectedIndex === index}
                     className={styles.result}
                     onPointerMove={() => setSelected(index)}
                     onClick={() => choose(index)}
                   >
                     <span>{item.name}</span>
-                    <FiArrowUpRight aria-hidden="true" />
+                    <span className={styles.commandHint}>
+                      {!query.trim() && recent.includes(item.id) ? "Recent · " : ""}
+                      {item.disabledReason
+                        ? "Unavailable"
+                        : item.kind === "external"
+                          ? "New tab"
+                          : item.kind === "download"
+                            ? "PDF"
+                            : item.kind === "theme"
+                              ? isLight
+                                ? "Dark"
+                                : "Light"
+                              : "↵"}
+                    </span>
                   </div>
                 ))}
-                {themeMatches && (
-                  <div
-                    id={`${id}-option-${results.length}`}
-                    role="option"
-                    aria-selected={selectedIndex === results.length}
-                    className={styles.result}
-                    onPointerMove={() => setSelected(results.length)}
-                    onClick={() => choose(results.length)}
-                  >
-                    <span>{themeLabel}</span>
-                    {isLight ? <FiMoon aria-hidden="true" /> : <FiSun aria-hidden="true" />}
-                  </div>
-                )}
               </div>
               <p role="status" className={styles.resultStatus}>
-                {resultCount
-                  ? `${resultCount} commands · ↑ ↓ to navigate · Enter to select · Esc to close`
-                  : "No commands found. Try Projects, About, or Theme."}
+                {results[selectedIndex]?.disabledReason ??
+                  (resultCount
+                    ? `${resultCount} commands · ↑ ↓ to navigate · Enter to select · Esc to close`
+                    : "No commands found. Try Projects, Plinko, or Theme.")}
               </p>
             </>
           )}

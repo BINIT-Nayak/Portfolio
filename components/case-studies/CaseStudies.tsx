@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { layoutKeyframes, motionSettings } from "@/lib/motion.mjs";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   caseStudies,
@@ -42,24 +43,11 @@ export const CaseStudies = () => {
     const positions = Array.from(grid.querySelectorAll<HTMLElement>("[data-study]")).map(
       (card) => ({ card, rect: card.getBoundingClientRect() })
     );
-    const tokens = getComputedStyle(grid);
-    const duration = parseFloat(tokens.getPropertyValue("--duration-normal")) || 180;
-    const easing = tokens.getPropertyValue("--ease-standard").trim() || "ease-out";
-    animations.current = positions.map(({ card, rect }) => {
-      const old = previous.get(card.dataset.study!);
-      return card.animate(
-        [
-          {
-            opacity: old ? 1 : 0,
-            transform: old
-              ? `translate(${old.left - rect.left}px, ${old.top - rect.top}px)`
-              : "translateY(8px)",
-          },
-          { opacity: 1, transform: "translate(0, 0)" },
-        ],
-        { duration, easing }
-      );
-    });
+    const timing = motionSettings(grid);
+    const compact = window.matchMedia("(max-width: 767px)").matches;
+    animations.current = positions.map(({ card, rect }) =>
+      card.animate(layoutKeyframes(previous.get(card.dataset.study!), rect, compact), timing)
+    );
     const stop = () => {
       if (preference.matches) animations.current.forEach((animation) => animation.cancel());
     };
@@ -145,6 +133,9 @@ export const CaseStudies = () => {
       }
     };
 
+    const linkedStudy = new URLSearchParams(window.location.search).get("case-study");
+    if (linkedStudy && getCaseStudyById(linkedStudy)) setActiveCaseStudyId(linkedStudy);
+
     window.addEventListener("open-case-study", handleOpenCaseStudy);
 
     return () => {
@@ -196,7 +187,7 @@ export const CaseStudies = () => {
   return (
     <>
       <section className={style.caseStudies} id="case-studies">
-        <div className={style.caseStudies__header}>
+        <div className={style.caseStudies__header} data-motion="section-reveal">
           <h2 className={style.caseStudies__heading}>
             Engineering <span className={style.caseStudies__heading_highlight}>Case Studies</span>
           </h2>
@@ -276,6 +267,7 @@ export const CaseStudies = () => {
           onClick={() => setActiveCaseStudyId(null)}
         >
           <article
+            data-motion-enter="scale-in"
             ref={dialogRef}
             tabIndex={-1}
             className={style.caseStudies__modal}

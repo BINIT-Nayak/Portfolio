@@ -94,7 +94,6 @@
   padding: 0;
 }
 .toast {
-  animation: arrive var(--duration-normal) var(--ease-standard) both;
   background: var(--color-surface-raised);
   border: var(--border-width) solid var(--color-border-strong);
   border-left: 3px solid var(--color-accent);
@@ -160,17 +159,6 @@
   color: var(--color-accent);
   font-size: var(--text-sm);
   line-height: var(--leading-body);
-}
-
-@keyframes arrive {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @media (max-width: 767px) {

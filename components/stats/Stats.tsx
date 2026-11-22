@@ -74,54 +74,8 @@ function MetricCard({ metric }: { metric: Metric }) {
 }
 
 export function Stats() {
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const animations = new Set<Animation>();
-    const tokens = getComputedStyle(document.documentElement);
-    const duration = Number.parseFloat(tokens.getPropertyValue("--duration-slow")) || 260;
-    const easing = tokens.getPropertyValue("--ease-standard").trim() || "ease-out";
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          observer.unobserve(entry.target);
-          if (preference.matches) continue;
-          // Final numbers are always rendered. Only their containing card enters once.
-          const animation = entry.target.animate(
-            [
-              { opacity: 0.6, transform: "translateY(6px)" },
-              { opacity: 1, transform: "translateY(0)" },
-            ],
-            { duration, easing }
-          );
-          animations.add(animation);
-          animation.onfinish = () => animations.delete(animation);
-        }
-      },
-      { threshold: 0.2 }
-    );
-    rootRef.current
-      ?.querySelectorAll("[data-snapshot-metric]")
-      .forEach((card) => observer.observe(card));
-    const stopMotion = () => {
-      if (preference.matches) {
-        animations.forEach((animation) => animation.cancel());
-        animations.clear();
-      }
-    };
-    preference.addEventListener("change", stopMotion);
-    return () => {
-      observer.disconnect();
-      preference.removeEventListener("change", stopMotion);
-      animations.forEach((animation) => animation.cancel());
-    };
-  }, []);
-
   return (
     <section
-      ref={rootRef}
       id="engineering-snapshot"
       className={style.snapshot}
       aria-labelledby="snapshot-heading"
@@ -134,9 +88,13 @@ export function Stats() {
           Production scope <span aria-hidden="true">/</span> Inspect for context
         </p>
       </div>
-      <ul className={style.grid}>
+      <ul
+        className={style.grid}
+        data-motion="stagger-list"
+        data-motion-child-pattern="number-reveal"
+      >
         {engineeringSnapshot.map((metric) => (
-          <li key={metric.id} className={style.item} data-snapshot-metric>
+          <li key={metric.id} className={style.item}>
             <MetricCard metric={metric} />
           </li>
         ))}

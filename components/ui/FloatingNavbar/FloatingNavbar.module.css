@@ -171,7 +171,6 @@
   padding: 0;
 }
 .dialog::backdrop {
-  animation: backdrop-in var(--duration-normal) var(--ease-standard);
   background: var(--color-overlay);
 }
 .dialogInner {
@@ -196,9 +195,6 @@
   max-height: 100dvh;
   max-width: 100%;
   width: min(26rem, 100%);
-}
-.drawer[open] {
-  animation: drawer-in var(--duration-slow) var(--ease-standard);
 }
 .drawer .dialogInner {
   padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
@@ -242,9 +238,6 @@
   margin: min(18vh, 9rem) auto auto;
   max-height: 80dvh;
   width: min(36rem, calc(100% - var(--space-8)));
-}
-.palette[open] {
-  animation: palette-in var(--duration-normal) var(--ease-standard);
 }
 .searchField {
   align-items: center;
@@ -303,37 +296,6 @@
   margin-top: var(--space-4);
 }
 
-@keyframes drawer-in {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes palette-in {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes backdrop-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @media (max-width: 1119px) {
   .desktopNav,
   .contact {
@@ -367,4 +329,16 @@
   .navLink::after {
     transition: none;
   }
+}
+
+.commandHint {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  margin-left: var(--space-3);
+}
+.result[aria-disabled="true"] {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
 }

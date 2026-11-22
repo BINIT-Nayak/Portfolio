@@ -165,7 +165,6 @@
   z-index: var(--layer-overlay);
 }
 .caseStudies__modal {
-  animation: enter var(--duration-normal) var(--ease-standard);
   box-shadow: var(--shadow-overlay);
   composes: surface from "../../styles/primitives.module.css";
   max-height: calc(100dvh - var(--space-8));
@@ -271,17 +270,6 @@
 }
 .caseStudies__detail_link {
   composes: action from "../../styles/primitives.module.css";
-}
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(var(--space-2));
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @media (max-width: 1199px) {

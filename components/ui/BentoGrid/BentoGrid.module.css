@@ -57,14 +57,6 @@
 .bentoGridItem:first-child .bentoGridItem__title {
   color: var(--color-on-image);
 }
-.bentoGridItem__techStack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-.bentoGridItem__techStackItem {
-  composes: tag from "../../../styles/primitives.module.css";
-}
 
 @media (max-width: 767px) {
   .bentoGrid {

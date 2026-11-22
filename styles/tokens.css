@@ -74,9 +74,15 @@
   --border-width: 1px;
   --focus-width: 2px;
   --focus-offset: 4px;
-  --duration-fast: 120ms;
+  --duration-fast: 150ms;
   --duration-normal: 180ms;
   --duration-slow: 260ms;
+  --motion-duration-enter: 260ms;
+  --motion-duration-section: 360ms;
+  --motion-stagger: 35ms;
+  --motion-distance: 8px;
+  --motion-distance-small: 4px;
+  --motion-scale: 0.98;
   --duration-skeleton: 1600ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --layer-header: 50;

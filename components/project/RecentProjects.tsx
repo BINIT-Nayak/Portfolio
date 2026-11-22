@@ -7,7 +7,7 @@ import styles from "./RecentProjects.module.css";
 export function RecentProjects() {
   return (
     <section className={styles.section} id="projects" aria-labelledby="projects-heading">
-      <div className={styles.sectionHeader}>
+      <div className={styles.sectionHeader} data-motion="section-reveal">
         <h2 className={styles.heading} id="projects-heading">
           Featured Projects
         </h2>

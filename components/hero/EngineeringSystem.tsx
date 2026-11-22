@@ -41,7 +41,7 @@ const nodes = [
 /** CSS owns the animation clock; React updates only on explicit node/control interaction. */
 export function EngineeringSystem() {
   const [selected, setSelected] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const rootRef = useRef<HTMLElement>(null);
   const id = useId();
 
@@ -86,7 +86,7 @@ export function EngineeringSystem() {
         <button
           type="button"
           className={styles.pause}
-          aria-label={paused ? "Resume event animation" : "Pause event animation"}
+          aria-label={paused ? "Play event animation" : "Pause event animation"}
           aria-pressed={paused}
           onClick={() => setPaused((value) => !value)}
         >

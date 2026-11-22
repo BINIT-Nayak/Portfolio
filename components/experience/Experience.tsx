@@ -155,7 +155,7 @@ export function Experience() {
                   </p>
                 </div>
               </div>
-              <div className={style.body}>
+              <div className={style.body} data-motion="section-reveal">
                 <ul className={style.highlights}>
                   {role.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>

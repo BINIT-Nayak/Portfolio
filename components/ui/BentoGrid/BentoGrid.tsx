@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { EngineeringToolbox } from "@/components/toolbox/EngineeringToolbox";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
@@ -15,22 +16,6 @@ type BentoGridItemProps = {
   spareImg?: string;
 };
 
-const techStackItems = [
-  "React",
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "Redux",
-  "Next.js",
-  "Java",
-  "Spring Boot",
-  "PostgreSQL",
-  "Redis",
-  "Kafka",
-  "Docker",
-  "Jest",
-];
-
 export const BentoGrid = ({
   className,
   children,
@@ -42,6 +27,7 @@ export const BentoGrid = ({
 };
 
 export const BentoGridItem = ({ id, title, description, img }: BentoGridItemProps) => {
+  if (id === 5) return <EngineeringToolbox />;
   return (
     <div className={styles.bentoGridItem} data-interactive-surface="lift">
       <div
@@ -63,16 +49,6 @@ export const BentoGridItem = ({ id, title, description, img }: BentoGridItemProp
         <div className={styles.bentoGridItem__titleSection}>
           <div className={styles.bentoGridItem__description}>{description}</div>
           <div className={styles.bentoGridItem__title}>{title}</div>
-
-          {id === 5 && (
-            <div className={styles.bentoGridItem__techStack}>
-              {techStackItems.map((item) => (
-                <span key={item} className={styles.bentoGridItem__techStackItem}>
-                  {item}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

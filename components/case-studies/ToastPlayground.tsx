@@ -134,7 +134,12 @@ export function ToastPlayground() {
           </p>
           <ul className={styles.stack} aria-label="Visible demo notifications">
             {[...state.critical, ...state.visible].map((toast) => (
-              <li className={styles.toast} data-type={toast.type} key={toast.id}>
+              <li
+                className={styles.toast}
+                data-motion-enter="fade-up"
+                data-type={toast.type}
+                key={toast.id}
+              >
                 <div>
                   <span className={styles.kind}>{toast.type}</span>
                   <p>{toast.message}</p>

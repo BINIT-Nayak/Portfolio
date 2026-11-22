@@ -1,0 +1,129 @@
+/* Content is visible by default; viewport motion is progressive enhancement. */
+[data-motion-state="revealed"],
+[data-motion-enter] {
+  animation-duration: var(--motion-duration-enter);
+  animation-fill-mode: backwards;
+  animation-timing-function: var(--ease-standard);
+}
+[data-motion="fade-up"][data-motion-state="revealed"],
+[data-motion-enter="fade-up"] {
+  animation-name: portfolio-fade-up;
+}
+[data-motion="fade-in"][data-motion-state="revealed"],
+[data-motion-enter="fade-in"] {
+  animation-name: portfolio-fade-in;
+}
+[data-motion="scale-in"][data-motion-state="revealed"],
+[data-motion-enter="scale-in"] {
+  animation-name: portfolio-scale-in;
+}
+[data-motion="section-reveal"][data-motion-state="revealed"] {
+  animation-duration: var(--motion-duration-section);
+  animation-name: portfolio-fade-up;
+}
+[data-motion="number-reveal"][data-motion-state="revealed"],
+[data-motion-enter="number-reveal"] {
+  animation-name: portfolio-number-reveal;
+}
+[data-motion="line-draw"][data-motion-state="revealed"],
+[data-motion-enter="line-draw"] {
+  animation-name: portfolio-line-draw;
+  transform-origin: left center;
+}
+[data-motion="stagger-list"][data-motion-state="revealed"] > * {
+  animation: portfolio-fade-up var(--motion-duration-enter) var(--ease-standard) backwards;
+  animation-delay: calc(var(--motion-index, 0) * var(--motion-stagger));
+}
+[data-motion-child-pattern="number-reveal"][data-motion-state="revealed"] > * {
+  animation-name: portfolio-number-reveal;
+}
+[data-motion="stagger-list"] > :nth-child(2) {
+  --motion-index: 1;
+}
+[data-motion="stagger-list"] > :nth-child(3) {
+  --motion-index: 2;
+}
+[data-motion="stagger-list"] > :nth-child(4) {
+  --motion-index: 3;
+}
+[data-motion="stagger-list"] > :nth-child(5) {
+  --motion-index: 4;
+}
+[data-motion="stagger-list"] > :nth-child(n + 6) {
+  --motion-index: 5;
+}
+dialog[data-motion-enter]::backdrop {
+  animation: portfolio-fade-in var(--duration-normal) var(--ease-standard);
+}
+
+@keyframes portfolio-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolio-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes portfolio-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(var(--motion-scale));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes portfolio-number-reveal {
+  from {
+    opacity: 0.5;
+    transform: translateY(var(--motion-distance-small));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolio-line-draw {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 767px) {
+  [data-motion-state="revealed"]:not([data-motion="stagger-list"]),
+  [data-motion-enter],
+  [data-motion="stagger-list"][data-motion-state="revealed"] > * {
+    animation-delay: 0ms;
+    animation-duration: var(--duration-normal);
+    animation-name: portfolio-fade-in;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion-state],
+  [data-motion-enter],
+  [data-motion="stagger-list"] > *,
+  dialog[data-motion-enter]::backdrop {
+    animation: none !important;
+  }
+}
