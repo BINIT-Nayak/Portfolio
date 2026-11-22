@@ -7,7 +7,7 @@ import style from "./page.module.css";
 export const metadata = {
   title: "Sneaky Recommendation System Case Study",
   description:
-    "A detailed case study on building Sneaky's points-based recommendation system before machine learning.",
+    "Sneaky's rule-first recommendation architecture, now with optional fail-open ML reranking.",
 };
 
 const articlePath = path.join(process.cwd(), "data/case-studies/sneaky-recommendation-system.md");

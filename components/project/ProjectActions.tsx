@@ -18,7 +18,9 @@ export function ProjectActions({ actions, title }: { actions: ProjectAction[]; t
           return (
             <span className={styles.unavailable} key={action.label} aria-disabled="true">
               <span>{action.label}</span>
-              <span className={styles.unavailableNote}>In development</span>
+              <span className={styles.unavailableNote}>
+                {action.disabledReason ?? "Unavailable"}
+              </span>
             </span>
           );
         return (

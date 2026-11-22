@@ -35,7 +35,7 @@ const snapgram = (detail: string): ToolboxEvidence => ({
   studyId: "snapgram",
 });
 const journal = (detail: string): ToolboxEvidence => ({
-  title: "VibeJournal · in development",
+  title: "VibeJournal",
   detail,
   href: "#case-study-vibejournal",
   studyId: "vibejournal",
@@ -66,7 +66,9 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
       quality("TypeScript-first development across shared frontend systems."),
       sneaky("Typed React UI and Redux Toolkit state."),
       snapgram("Typed forms and schema-driven validation."),
-      journal("Typed mood-entry flows and visual analytics foundations."),
+      journal(
+        "Typed journal APIs, offline mutation contracts, and validated analytics/provider boundaries."
+      ),
     ],
   },
   {
@@ -86,7 +88,9 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
     category: "Frontend",
     summary: "React application structure and server-rendered portfolio pages.",
     evidence: [
-      journal("Application foundation for the mood journal and dashboard prototype."),
+      journal(
+        "App Router pages, authenticated API routes, persisted journals, and dynamically loaded client screens."
+      ),
       {
         title: "This portfolio",
         detail:
@@ -148,13 +152,13 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
   {
     name: "PostgreSQL",
     category: "Data / Infrastructure",
-    summary: "Persistent product records behind cached recommendation IDs.",
+    summary: "Persistent product and journal data with transactional consistency.",
     evidence: [
       sneaky(
         "Product data stays authoritative in PostgreSQL; API enrichment preserves Redis ranking order."
       ),
       journal(
-        "Prisma models are designed for PostgreSQL; persisted entries remain planned, not shipped."
+        "Prisma persists journals, sessions, and mutation receipts; advisory transaction locks and version checks protect offline replay."
       ),
     ],
   },
@@ -165,6 +169,9 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
     evidence: [
       sneaky(
         "Guest and user-specific ranked product IDs are cached for recommendation reads, with scoring fallback on cache misses."
+      ),
+      journal(
+        "Optional encrypted analytics caching uses generation-based invalidation to prevent stale computations from repopulating the active cache."
       ),
     ],
   },
@@ -186,6 +193,7 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
       sneaky(
         "Docker Compose brings up frontend, backend, PostgreSQL, Redis, and supporting services together."
       ),
+      journal("Docker Compose provisions local PostgreSQL/Redis and separate test infrastructure."),
     ],
   },
   {
@@ -196,13 +204,24 @@ export const toolboxTechnologies: ToolboxTechnology[] = [
       quality(
         "Jest/Bun testing is documented alongside production frontend quality and stability work."
       ),
+      sneaky("Jest runs RTL component and page tests plus utility tests."),
     ],
   },
   {
     name: "RTL",
     category: "Quality",
     summary: "React Testing Library · behavior-focused component testing.",
-    evidence: [],
+    evidence: [
+      sneaky(
+        "Jest and RTL cover auth, navigation, feed, cart, wishlist, and reusable UI behavior."
+      ),
+      snapgram(
+        "RTL component and MSW-backed interaction tests cover auth guards, uploads, follows, and post mutations."
+      ),
+      journal(
+        "Vitest and RTL cover authentication forms and mood-selection behavior alongside integration and browser suites."
+      ),
+    ],
   },
   {
     name: "Storybook",

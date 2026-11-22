@@ -1,5 +1,10 @@
 # Building Sneaky’s Recommendation System: Why I Chose Points-Based Recommendation Before Machine Learning
 
+## Implementation update — November 2026
+
+This article records the original decision to start with rules rather than requiring ML. The local codebase now also includes an optional FastAPI/scikit-learn Logistic Regression reranker in `Sneaky_Recommender`. Spring still generates candidates and owns diversity handling and final result limits. Its HTTP client validates rankings and preserves the rule-based path when ML is disabled, unavailable, or invalid. A trained artifact and explicit runtime configuration are required; no recommendation-quality improvement or production activation is claimed here. References to a future ML path below describe the original design stage, not missing integration code.
+
+
 ## Introduction
 
 Recommendation systems are one of the most important parts of modern product discovery platforms. Whether it is an e-commerce app, social media feed, music app, movie platform, or job portal, recommendations directly affect how users discover relevant content.

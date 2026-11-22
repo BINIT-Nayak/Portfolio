@@ -42,7 +42,7 @@ export const architectureNodes = [
     x: 83.33,
     y: 13,
     description:
-      "Product views, passes, wishlist actions, and cart events are processed asynchronously to update analytics and preference signals, supporting recommendation refresh outside the normal read path.",
+      "When Kafka analytics is enabled, product views, passes, wishlist actions, and cart events are processed asynchronously to update analytics and preference signals, supporting recommendation refresh outside the normal read path.",
   },
   {
     id: "engine",
@@ -60,7 +60,7 @@ export const architectureNodes = [
     x: 83.33,
     y: 77,
     description:
-      "An optional stage reranks candidates when enabled and healthy. Disabled ML, timeouts, invalid scores, or partial results preserve the rule-based order instead of blocking the feed.",
+      "A separate FastAPI/scikit-learn service reranks rule-generated candidates when enabled and a trained model is loaded. Disabled ML, timeouts, invalid scores, or partial results preserve the rule-based order instead of blocking the feed.",
   },
 ] as const;
 
