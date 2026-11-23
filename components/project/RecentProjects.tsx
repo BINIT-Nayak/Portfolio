@@ -4,13 +4,14 @@ import { SneakyArchitecture } from "./architecture/SneakyArchitecture";
 import { ProjectPreview } from "./ProjectPreview";
 import styles from "./RecentProjects.module.css";
 
-export function RecentProjects() {
+export function RecentProjects({ standalone = false }: { standalone?: boolean }) {
+  const Heading = standalone ? "h1" : "h2";
   return (
     <section className={styles.section} id="projects" aria-labelledby="projects-heading">
       <div className={styles.sectionHeader} data-motion="section-reveal">
-        <h2 className={styles.heading} id="projects-heading">
+        <Heading className={styles.heading} id="projects-heading">
           Featured Projects
-        </h2>
+        </Heading>
         <p>Product experiences. Engineering decisions. Working systems.</p>
       </div>
       <div className={styles.showcases}>

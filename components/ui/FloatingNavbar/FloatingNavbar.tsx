@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { FiArrowUpRight, FiCommand, FiMenu, FiMoon, FiSearch, FiSun, FiX } from "react-icons/fi";
 
 import { searchCommands, validRecents, rememberCommand } from "@/lib/command-palette.mjs";
+import { announceRouteNavigation } from "@/lib/route-transitions.mjs";
 import { cn } from "@/lib/utils";
 import { getNavigationState, moveCommandSelection } from "@/lib/navigation.mjs";
 import styles from "./FloatingNavbar.module.css";
@@ -16,6 +17,7 @@ type Overlay = "menu" | "palette" | null;
 
 export function FloatingNav({ navItems, className }: { navItems: NavItem[]; className?: string }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [active, setActive] = useState("");
@@ -34,7 +36,14 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
   const isHome = pathname === "/";
   const isLight = mounted && resolvedTheme === "light";
   const themeLabel = `Switch to ${isLight ? "dark" : "light"} mode`;
-  const destination = (link: string) => (isHome ? link : `/${link}`);
+  const destination = (link: string) =>
+    link === "#projects"
+      ? "/projects"
+      : link === "#case-studies"
+        ? "/case-studies"
+        : isHome
+          ? link
+          : `/${link}`;
   const commands = useMemo(() => [...navItems, { name: "Contact", link: "#contact" }], [navItems]);
   const results = searchCommands(query, recent);
   const resultCount = results.length;
@@ -72,7 +81,13 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
       if (progressRef.current) progressRef.current.style.transform = `scaleX(${state.progress})`;
       setScrolled(state.scrolled);
       setActive(
-        isHome ? state.active : pathname.startsWith("/case-studies") ? "#case-studies" : ""
+        isHome
+          ? state.active
+          : pathname.startsWith("/case-studies")
+            ? "#case-studies"
+            : pathname === "/projects"
+              ? "#projects"
+              : ""
       );
     };
     const schedule = () => {
@@ -158,8 +173,10 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
     setOverlay(null);
     // Wait until the dialog cleanup restores the document scroll position.
     requestAnimationFrame(() => {
-      if (!isHome) {
-        window.location.assign(`/${link}`);
+      if (!isHome || link === "#projects" || link === "#case-studies") {
+        const href = destination(link);
+        announceRouteNavigation(href);
+        router.push(href);
         return;
       }
       const target = document.getElementById(link.slice(1));
@@ -196,8 +213,10 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
     else if (command.kind === "study") {
       setOverlay(null);
       requestAnimationFrame(() => {
-        if (!isHome) {
-          window.location.assign(`/?case-study=${encodeURIComponent(command.target)}#case-studies`);
+        if (!isHome && pathname !== "/case-studies") {
+          const href = `/case-studies?case-study=${encodeURIComponent(command.target)}`;
+          announceRouteNavigation(href);
+          router.push(href);
         } else {
           window.dispatchEvent(new CustomEvent("open-case-study", { detail: command.target }));
         }

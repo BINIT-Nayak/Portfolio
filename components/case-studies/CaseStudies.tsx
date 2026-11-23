@@ -17,7 +17,8 @@ import { ToastPlayground } from "./ToastPlayground";
 
 const getCaseStudyById = (id: string) => caseStudies.find((caseStudy) => caseStudy.id === id);
 
-export const CaseStudies = () => {
+export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) => {
+  const Heading = standalone ? "h1" : "h2";
   const [filter, setFilter] = useState<CaseStudyFilter>("All");
   const gridRef = useRef<HTMLUListElement>(null);
   const previousPositions = useRef<Map<string, DOMRect> | null>(null);
@@ -195,9 +196,9 @@ export const CaseStudies = () => {
     <>
       <section className={style.caseStudies} id="case-studies">
         <div className={style.caseStudies__header} data-motion="section-reveal">
-          <h2 className={style.caseStudies__heading}>
+          <Heading className={style.caseStudies__heading}>
             Engineering <span className={style.caseStudies__heading_highlight}>Case Studies</span>
-          </h2>
+          </Heading>
           <p className={style.caseStudies__intro}>
             A deeper look into real production and full-stack problems I worked on.
           </p>

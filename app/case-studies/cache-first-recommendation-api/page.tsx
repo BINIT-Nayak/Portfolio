@@ -168,7 +168,7 @@ const CacheFirstRecommendationApiPage = () => {
   return (
     <main id="main-content" tabIndex={-1} className={style.article}>
       <div className={style.article__container}>
-        <Link className={style.article__back_link} href="/#case-studies">
+        <Link className={style.article__back_link} href="/case-studies">
           Back to Case Studies
         </Link>
 

@@ -6,3 +6,7 @@
   max-width: var(--container-width);
   width: 100%;
 }
+
+.page__listing {
+  padding-top: var(--header-space);
+}

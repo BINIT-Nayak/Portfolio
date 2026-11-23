@@ -1,10 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FiArrowUpRight, FiBookOpen, FiGithub } from "react-icons/fi";
 import type { ProjectAction } from "@/data/projects";
 import styles from "./RecentProjects.module.css";
 
 export function ProjectActions({ actions, title }: { actions: ProjectAction[]; title: string }) {
+  const pathname = usePathname();
   return (
     <div className={styles.actions} aria-label={`${title} project links`}>
       {actions.map((action) => {
@@ -25,16 +28,21 @@ export function ProjectActions({ actions, title }: { actions: ProjectAction[]; t
             </span>
           );
         return (
-          <a
+          <Link
             className={styles.action}
             key={action.label}
-            href={action.href}
+            href={
+              isStudy
+                ? `/case-studies?case-study=${encodeURIComponent(action.href.replace("#case-study-", ""))}`
+                : action.href
+            }
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
             aria-label={`${action.label} — ${title}${isExternal ? " (opens in a new tab)" : ""}`}
             onClick={
               isStudy
                 ? (event) => {
+                    if (pathname !== "/" && pathname !== "/case-studies") return;
                     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                     event.preventDefault();
                     window.dispatchEvent(
@@ -48,7 +56,7 @@ export function ProjectActions({ actions, title }: { actions: ProjectAction[]; t
           >
             {action.label}
             <Icon aria-hidden="true" />
-          </a>
+          </Link>
         );
       })}
     </div>

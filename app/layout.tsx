@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+import { RouteTransitions } from "@/components/ui/RouteTransitions/RouteTransitions";
 import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
 import { ViewportMotion } from "@/components/ui/Motion/ViewportMotion";
 import { PointerEffects } from "@/components/ui/PointerEffects/PointerEffects";
@@ -70,7 +71,7 @@ export default function RootLayout({
           <PointerEffects />
           <ViewportMotion />
           <FloatingNav navItems={navItems} />
-          {children}
+          <RouteTransitions>{children}</RouteTransitions>
         </ThemeProvider>
       </body>
     </html>

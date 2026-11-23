@@ -1,0 +1,23 @@
+.content {
+  min-width: 0;
+}
+.snapshot {
+  contain: paint;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: var(--layer-route);
+}
+.snapshot,
+.snapshot * {
+  animation: none !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snapshot {
+    display: none;
+  }
+}

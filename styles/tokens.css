@@ -85,6 +85,7 @@
   --motion-scale: 0.98;
   --duration-skeleton: 1600ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --layer-route: 40;
   --layer-header: 50;
   --layer-overlay: 100;
   --anchor-offset: 5rem;

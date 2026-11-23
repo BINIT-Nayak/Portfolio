@@ -12,7 +12,7 @@ export function EngineeringArticle({
 }) {
   return (
     <main id="main-content" tabIndex={-1} className={styles.main}>
-      <Link className={styles.back} href="/#case-studies">
+      <Link className={styles.back} href="/case-studies">
         ← Engineering case studies
       </Link>
       <article>
