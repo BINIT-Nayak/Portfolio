@@ -1,52 +1,111 @@
 .footer {
   composes: section from "../../styles/primitives.module.css";
 }
-.footer__grid_container {
-  display: none;
+.panel {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: clamp(var(--space-6), 5vw, var(--space-16));
 }
-.footer__main_container {
-  max-width: var(--reading-width);
+.eyebrow {
+  color: var(--color-accent);
+  composes: label from "../../styles/primitives.module.css";
+  margin-bottom: var(--space-6);
 }
-.footer__heading {
-  composes: heading from "../../styles/primitives.module.css";
+.heading {
+  font-size: var(--text-display);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  max-width: 20ch;
+  text-wrap: balance;
 }
-.footer__heading__highlight {
+.heading span {
   color: var(--color-text-muted);
 }
-.footer__description {
-  color: var(--color-text-muted);
-  margin-block: var(--space-5) var(--space-6);
+.details {
+  align-items: start;
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-10);
 }
-.footer__actions {
+.description {
+  color: var(--color-text-secondary);
+  max-width: 46ch;
+}
+.connections {
+  min-width: 0;
+}
+.actions {
   display: flex;
-}
-.footer__action {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-on-accent);
-  composes: action from "../../styles/primitives.module.css";
-}
-.footer__action:hover {
-  background: var(--color-accent-hover);
-}
-.footer__bottom_container {
-  border-top: var(--border-width) solid var(--color-border);
-  margin-top: var(--space-12);
-  padding-top: var(--space-6);
-}
-.footer__social_container {
-  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
 }
-.footer__social_container a {
-  border-radius: var(--radius-sm);
-}
-.footer__social_icon {
+.action {
   composes: action from "../../styles/primitives.module.css";
-  padding: var(--space-3);
-  width: var(--control-height);
+}
+.primary {
+  composes: action primary from "../../styles/primitives.module.css";
+}
+.copyGroup {
+  margin-top: var(--space-5);
+}
+.copy {
+  align-items: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  gap: var(--space-3);
+  max-width: 100%;
+  min-height: var(--control-height);
+  text-align: left;
+  transition: color var(--duration-fast) var(--ease-standard);
+  user-select: text;
+}
+.copy span {
+  overflow-wrap: anywhere;
+}
+.copy svg {
+  flex-shrink: 0;
+}
+.copy:hover {
+  color: var(--color-accent);
+}
+.feedback {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  min-height: 2lh;
+}
+.signature {
+  color: var(--color-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+  gap: var(--space-3) var(--space-6);
+  justify-content: space-between;
+  padding-top: var(--space-6);
 }
 
-.footer__social_icon img {
-  filter: var(--social-icon-filter);
+@media (max-width: 767px) {
+  .details {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 400px) {
+  .primary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy {
+    transition: none;
+  }
 }
