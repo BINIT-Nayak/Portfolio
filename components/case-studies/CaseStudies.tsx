@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { studyPath } from "@/lib/seo";
 import { layoutKeyframes, motionSettings } from "@/lib/motion.mjs";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
@@ -194,10 +195,14 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
             ))}
           </ul>
         </div>
-        <span className={style.caseStudies__link} aria-hidden="true">
-          {caseStudy.id === "comet-lab" ? "Open interactive lab" : "Explore case study"}{" "}
-          <FaArrowRight className={style.caseStudies__link_icon} />
-        </span>
+        <Link
+          className={style.caseStudies__link}
+          href={studyPath(caseStudy)}
+          aria-label={`Read ${caseStudy.cardTitle}`}
+        >
+          {caseStudy.id === "comet-lab" ? "Open interactive lab" : "Read full case study"}{" "}
+          <FaArrowRight className={style.caseStudies__link_icon} aria-hidden="true" />
+        </Link>
       </article>
     </li>
   );
@@ -431,9 +436,9 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
               </ul>
             </div>
 
-            {activeCaseStudy.detailHref && (
+            {activeCaseStudy && (
               <div className={style.caseStudies__modal_actions}>
-                <Link className={style.caseStudies__detail_link} href={activeCaseStudy.detailHref}>
+                <Link className={style.caseStudies__detail_link} href={studyPath(activeCaseStudy)}>
                   Read in Detail
                   <FaArrowRight className={style.caseStudies__link_icon} />
                 </Link>

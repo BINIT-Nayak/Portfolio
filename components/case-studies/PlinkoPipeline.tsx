@@ -34,7 +34,9 @@ const events = [
 ];
 const count = stages.length * events.length;
 
-export function PlinkoPipeline() {
+export function PlinkoPipeline({ headingLevel = 3 }: { headingLevel?: 2 | 3 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
+  const Subheading = headingLevel === 2 ? "h3" : "h4";
   const id = useId();
   const [flow, dispatch] = useReducer(requestFlowReducer, initialRequestFlow);
   const stageIndex = flow.step % stages.length;
@@ -59,7 +61,7 @@ export function PlinkoPipeline() {
   return (
     <section className={styles.root} aria-labelledby={`${id}-title`}>
       <p className={styles.eyebrow}>Interactive architecture · one round</p>
-      <h3 id={`${id}-title`}>From server event to coordinated animation</h3>
+      <Heading id={`${id}-title`}>From server event to coordinated animation</Heading>
       <p className={styles.intro}>
         Server events drive game state. A worker synchronizes timing; the scheduler turns that
         timing into ordered UI transitions, leaving the main thread available between updates.
@@ -108,7 +110,7 @@ export function PlinkoPipeline() {
                 0{index + 1}
               </span>
               <div>
-                <h4>{stage.name}</h4>
+                <Subheading>{stage.name}</Subheading>
                 <p>{stage.detail}</p>
               </div>
               {index < stages.length - 1 && (
@@ -128,7 +130,7 @@ export function PlinkoPipeline() {
           ))}
         </ol>
         <div className={styles.thread} role="group" aria-labelledby={`${id}-thread`}>
-          <h4 id={`${id}-thread`}>Main thread / work scheduling</h4>
+          <Subheading id={`${id}-thread`}>Main thread / work scheduling</Subheading>
           <p className={styles.caption}>Conceptual activity, not a performance measurement.</p>
           <div className={styles.lane}>
             <span>Main thread</span>

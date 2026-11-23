@@ -6,8 +6,8 @@ import { architectureEdges, architectureNodes, requestSteps } from "@/data/sneak
 import { initialRequestFlow, requestFlowReducer } from "@/lib/request-flow.mjs";
 import styles from "./SneakyArchitecture.module.css";
 
-export function SneakyArchitecture({ headingLevel = 4 }: { headingLevel?: 3 | 4 }) {
-  const Heading = headingLevel === 3 ? "h3" : "h4";
+export function SneakyArchitecture({ headingLevel = 4 }: { headingLevel?: 2 | 3 | 4 }) {
+  const Heading = headingLevel === 2 ? "h2" : headingLevel === 3 ? "h3" : "h4";
   const [selected, setSelected] = useState<(typeof architectureNodes)[number]["id"]>("client");
   const [reduced, setReduced] = useState(true);
   const [flow, dispatch] = useReducer(requestFlowReducer, initialRequestFlow);

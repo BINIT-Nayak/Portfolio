@@ -1,14 +1,16 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import { studySchema } from "@/lib/structured-data";
+import { caseStudies } from "@/data/case-studies";
+import { studyMetadata } from "@/lib/seo";
 import fs from "fs";
 import Link from "next/link";
 import path from "path";
 
 import style from "./page.module.css";
 
-export const metadata = {
-  title: "Sneaky Recommendation System Case Study",
-  description:
-    "Sneaky's rule-first recommendation architecture, now with optional fail-open ML reranking.",
-};
+export const metadata = studyMetadata(
+  caseStudies.find((study) => study.id === "sneaky-recommendations")!
+);
 
 const articlePath = path.join(process.cwd(), "data/case-studies/sneaky-recommendation-system.md");
 
@@ -174,6 +176,9 @@ const SneakyRecommendationCaseStudyPage = () => {
   return (
     <main id="main-content" tabIndex={-1} className={style.article}>
       <div className={style.article__container}>
+        <JsonLd
+          data={studySchema(caseStudies.find((study) => study.id === "sneaky-recommendations")!)}
+        />
         <Link className={style.article__back_link} href="/case-studies">
           Back to Case Studies
         </Link>

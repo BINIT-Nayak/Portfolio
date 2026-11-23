@@ -5,7 +5,8 @@
   margin-block: var(--space-6);
   padding: var(--card-padding);
 }
-.root h3 {
+.root > h2,
+.root > h3 {
   font-size: var(--text-xl);
   margin-top: var(--space-2);
 }
@@ -82,7 +83,9 @@
   background: var(--color-accent-subtle);
   border-color: var(--color-accent);
 }
+.stage h3,
 .stage h4,
+.thread h3,
 .thread h4 {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);

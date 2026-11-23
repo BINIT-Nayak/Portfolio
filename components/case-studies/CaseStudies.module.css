@@ -149,6 +149,9 @@
   font-weight: var(--weight-medium);
   gap: var(--space-3);
   margin-top: var(--space-8);
+  min-height: var(--control-height);
+  position: relative;
+  z-index: 2;
 }
 .caseStudies__link_icon {
   height: var(--space-3);

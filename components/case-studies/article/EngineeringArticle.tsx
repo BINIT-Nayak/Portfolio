@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import { studySchema } from "@/lib/structured-data";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { CaseStudy } from "@/data/case-studies";
@@ -12,6 +14,7 @@ export function EngineeringArticle({
 }) {
   return (
     <main id="main-content" tabIndex={-1} className={styles.main}>
+      <JsonLd data={studySchema(study)} />
       <Link className={styles.back} href="/case-studies">
         ← Engineering case studies
       </Link>
@@ -38,26 +41,45 @@ export function EngineeringArticle({
             <h2>My contribution</h2>
             <p>{study.role}</p>
           </section>
-          <section>
-            <h2>How the system works</h2>
-            <ol>
-              {study.architecture?.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
-          </section>
-          <section>
-            <h2>Failure modes and decisions</h2>
-            <ul>
-              {study.challengesSolved?.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
+          {study.architecture?.length ? (
+            <section>
+              <h2>How the system works</h2>
+              <ol>
+                {study.architecture?.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </section>
+          ) : null}
+          {study.challengesSolved?.length ? (
+            <section>
+              <h2>Failure modes and decisions</h2>
+              <ul>
+                {study.challengesSolved?.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
           <section>
             <h2>Outcome</h2>
             <p>{study.outcome}</p>
           </section>
+          {study.metrics?.length ? (
+            <section>
+              <h2>Concrete impact</h2>
+              <ul>
+                {study.metrics.map((metric) => (
+                  <li key={metric.label}>
+                    <strong>
+                      {metric.value} — {metric.label}.
+                    </strong>{" "}
+                    {metric.detail}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
           <section>
             <h2>Implementation details and limits</h2>
             <ul>

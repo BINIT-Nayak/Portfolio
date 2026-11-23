@@ -1,14 +1,16 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import { studySchema } from "@/lib/structured-data";
+import { caseStudies } from "@/data/case-studies";
+import { studyMetadata } from "@/lib/seo";
 import fs from "fs";
 import Link from "next/link";
 import path from "path";
 
 import style from "../sneaky-recommendation-system/page.module.css";
 
-export const metadata = {
-  title: "Cache-First Recommendation API Case Study",
-  description:
-    "A detailed case study on building Sneaky's cache-first recommendation API with Redis, Kafka, rule-based ranking, and optional ML reranking.",
-};
+export const metadata = studyMetadata(
+  caseStudies.find((study) => study.id === "cache-first-recommendation-api")!
+);
 
 const articlePath = path.join(process.cwd(), "data/case-studies/cache-first-recommendation-api.md");
 
@@ -174,6 +176,11 @@ const CacheFirstRecommendationApiPage = () => {
   return (
     <main id="main-content" tabIndex={-1} className={style.article}>
       <div className={style.article__container}>
+        <JsonLd
+          data={studySchema(
+            caseStudies.find((study) => study.id === "cache-first-recommendation-api")!
+          )}
+        />
         <Link className={style.article__back_link} href="/case-studies">
           Back to Case Studies
         </Link>

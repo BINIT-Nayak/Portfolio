@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+import { SITE_URL } from "@/lib/seo";
+import { identitySchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { RouteTransitions } from "@/components/ui/RouteTransitions/RouteTransitions";
 import { FloatingNav } from "@/components/ui/FloatingNavbar/FloatingNavbar";
 import { ViewportMotion } from "@/components/ui/Motion/ViewportMotion";
@@ -10,45 +13,13 @@ import { navItems } from "@/data";
 import { ThemeProvider } from "./provider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://binit-nayak.netlify.app"),
-  title: {
-    default: "Binit Nayak | Software Developer",
-    template: "%s | Binit Nayak",
-  },
+  metadataBase: new URL(SITE_URL),
+  title: { default: "Binit Nayak | Frontend & Full Stack Engineer", template: "%s | Binit Nayak" },
   description:
-    "Portfolio of Binit Nayak, a software developer in India building polished full-stack web applications with React, Next.js, TypeScript, and modern frontend tooling.",
-  authors: [{ name: "Binit Nayak" }],
+    "Binit Nayak is a Frontend and Full Stack Engineer in Hyderabad, building React and TypeScript interfaces with Java and Spring Boot services.",
+  authors: [{ name: "Binit Nayak", url: SITE_URL }],
   creator: "Binit Nayak",
-  keywords: [
-    "Binit Nayak",
-    "Software Developer",
-    "React Developer",
-    "Next.js Developer",
-    "TypeScript",
-    "Portfolio",
-  ],
-  openGraph: {
-    title: "Binit Nayak | Software Developer",
-    description:
-      "Explore Binit Nayak's software projects, experience, tech stack, and contact links.",
-    url: "https://binit-nayak.netlify.app",
-    siteName: "Binit Nayak Portfolio",
-    images: [
-      {
-        url: "/assests/myPhoto.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Binit Nayak",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Binit Nayak | Software Developer",
-    description: "Software developer portfolio featuring projects, experience, and contact links.",
-    images: ["/assests/myPhoto.jpg"],
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -58,10 +29,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/assests/favIcon.svg" sizes="any" />
-      </head>
       <body>
+        <JsonLd data={identitySchema} />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

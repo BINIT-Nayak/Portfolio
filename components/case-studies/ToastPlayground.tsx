@@ -16,7 +16,9 @@ const examples: { type: ToastType; label: string; message: string }[] = [
   },
 ];
 
-export function ToastPlayground() {
+export function ToastPlayground({ headingLevel = 3 }: { headingLevel?: 2 | 3 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
+  const Subheading = headingLevel === 2 ? "h3" : "h4";
   const id = useId();
   const bus = useMemo(createToastBus, []);
   const sequence = useRef(0);
@@ -65,7 +67,7 @@ export function ToastPlayground() {
   return (
     <section className={styles.root} aria-labelledby={`${id}-title`}>
       <p className={styles.eyebrow}>Isolated notification playground</p>
-      <h3 id={`${id}-title`}>Publish once. Coordinate feedback centrally.</h3>
+      <Heading id={`${id}-title`}>Publish once. Coordinate feedback centrally.</Heading>
       <p className={styles.intro}>
         Features publish intent; one subscriber owns presentation, priority, queueing, and cleanup.
         Unlike disconnected popups, every producer follows the same lifecycle rules.
@@ -125,7 +127,7 @@ export function ToastPlayground() {
             Conceptual example only. This demo uses its own in-memory event bus; it does not connect
             to production services or portfolio notifications.
           </p>
-          <h4>Demo lifecycle rules</h4>
+          <Subheading>Demo lifecycle rules</Subheading>
           <ul className={styles.rules}>
             <li>Three visible standard messages. Overflow waits in arrival order.</li>
             <li>Standard messages expire after six active seconds; queued time does not count.</li>
@@ -148,7 +150,7 @@ export function ToastPlayground() {
           }}
         >
           <div className={styles.previewHeader}>
-            <h4>Notification surface</h4>
+            <Subheading>Notification surface</Subheading>
             <span>
               {state.visible.length}/3 visible · {state.queue.length} queued
             </span>
