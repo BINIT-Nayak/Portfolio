@@ -54,7 +54,13 @@ const parseMarkdown = (content: string) => {
       }
 
       blocks.push(
-        <pre className={style.article__code_block} key={`code-${index}`}>
+        <pre
+          tabIndex={0}
+          role="group"
+          aria-label="Code example; scroll horizontally to read"
+          className={style.article__code_block}
+          key={`code-${index}`}
+        >
           <code>{codeLines.join("\n")}</code>
         </pre>
       );

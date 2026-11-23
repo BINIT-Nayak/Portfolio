@@ -113,7 +113,12 @@ export function ToastPlayground() {
       <div className={styles.layout}>
         <div>
           <p className={styles.route}>Producer → local Pub/Sub → queue → toast stack</p>
-          <pre className={styles.code} role="group" aria-label="Conceptual publish API">
+          <pre
+            tabIndex={0}
+            className={styles.code}
+            role="group"
+            aria-label="Conceptual publish API"
+          >
             <code>{`publish("toast", {\n  type: "${example.type}",\n  message: "${example.message}"\n})`}</code>
           </pre>
           <p className={styles.caption}>

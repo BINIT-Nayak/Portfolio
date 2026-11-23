@@ -328,3 +328,53 @@
     padding-inline: var(--space-2);
   }
 }
+
+@media (max-width: 767px) {
+  .sectionHeader {
+    margin-bottom: var(--space-6);
+  }
+  .flagship,
+  .journal {
+    padding: var(--space-4);
+  }
+  .showcase {
+    gap: var(--space-5);
+  }
+  .stage {
+    border: 0;
+    padding: 0;
+    perspective: none;
+  }
+  .capabilities > div {
+    align-items: baseline;
+    column-gap: var(--space-4);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding-top: var(--space-3);
+  }
+  .capabilities dd {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .capabilities dt {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .actions {
+    align-items: stretch;
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .action {
+    padding-inline: var(--space-2);
+    text-align: center;
+  }
+  .action:last-child:nth-child(odd),
+  .unavailable {
+    grid-column: 1 / -1;
+  }
+  .action svg {
+    flex-shrink: 0;
+  }
+}

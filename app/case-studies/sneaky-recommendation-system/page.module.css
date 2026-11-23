@@ -90,3 +90,12 @@ ol.article__list {
   border-top: var(--border-width) solid var(--color-border);
   margin-top: var(--space-10);
 }
+
+@media (max-width: 767px) {
+  .article__code_block {
+    max-width: 100%;
+    overscroll-behavior-x: contain;
+    padding: var(--space-4);
+    scrollbar-gutter: stable;
+  }
+}

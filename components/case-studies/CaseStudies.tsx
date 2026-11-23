@@ -71,6 +71,12 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
         : "smooth",
       block: "center",
     });
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      document
+        .querySelector<HTMLSelectElement>(`select[aria-controls="case-study-results"]`)
+        ?.focus();
+      return;
+    }
     filterRef.current
       ?.querySelector<HTMLButtonElement>('[data-filter="Open Source"]')
       ?.focus({ preventScroll: true });
@@ -208,6 +214,20 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
           </p>
         </div>
 
+        <label className={style.mobileFilter}>
+          <span>Explore by discipline</span>
+          <select
+            value={filter}
+            onChange={(event) => selectFilter(event.target.value as CaseStudyFilter)}
+            aria-controls="case-study-results"
+          >
+            {caseStudyFilters.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </label>
         <div
           className={style.caseStudies__filters}
           ref={filterRef}

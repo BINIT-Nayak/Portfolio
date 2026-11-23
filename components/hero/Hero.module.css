@@ -116,3 +116,27 @@
     font-size: clamp(2.25rem, 9vw, 2.75rem);
   }
 }
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: var(--space-5);
+    row-gap: var(--space-8);
+  }
+  .identity {
+    margin-bottom: var(--space-6);
+  }
+  .actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .primaryAction {
+    grid-column: 1 / -1;
+  }
+  .github {
+    align-self: stretch;
+    padding-inline: var(--space-2);
+  }
+  .status {
+    margin-top: var(--space-5);
+  }
+}

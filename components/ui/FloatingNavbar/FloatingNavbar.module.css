@@ -342,3 +342,76 @@
   color: var(--color-text-muted);
   cursor: not-allowed;
 }
+
+.mobileSearchIcon {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .commandButton .desktopCommandIcon,
+  .commandButton kbd {
+    display: none;
+  }
+  .commandButton .mobileSearchIcon {
+    display: block;
+  }
+  .commandButton {
+    padding: var(--space-3);
+    width: var(--control-height);
+  }
+  .drawer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    bottom: 0;
+    height: fit-content;
+    margin: auto 0 0;
+    max-height: 90dvh;
+    top: auto;
+    width: 100%;
+  }
+  .mobileNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mobileNav a {
+    background: var(--color-surface-raised);
+    border-color: var(--color-border);
+    font-size: var(--text-base);
+    gap: var(--space-2);
+    min-height: var(--space-20);
+    padding: var(--space-3);
+  }
+  .linkNumber {
+    display: none;
+  }
+  .mobileNav a svg {
+    flex-shrink: 0;
+  }
+  .palette {
+    margin: max(var(--space-2), env(safe-area-inset-top)) auto auto;
+    max-height: calc(100dvh - var(--space-4));
+    width: calc(100% - var(--space-4));
+  }
+  .palette .dialogInner {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - var(--space-4));
+    padding: var(--space-4);
+  }
+  .searchField {
+    flex-shrink: 0;
+  }
+  .results {
+    max-height: none;
+    min-height: 0;
+    overscroll-behavior: contain;
+  }
+  .result {
+    min-height: var(--space-12);
+  }
+  .result > span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .commandHint {
+    margin-left: var(--space-2);
+  }
+}

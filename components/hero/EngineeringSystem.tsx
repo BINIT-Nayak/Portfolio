@@ -93,7 +93,10 @@ export function EngineeringSystem() {
         </button>
         <span className={styles.reducedLabel}>Motion reduced</span>
       </figcaption>
-      <p className={styles.hint}>Five layers. One connected experience.</p>
+      <p className={styles.hint}>
+        Five layers. One connected experience.{" "}
+        <span className={styles.touchHint}>Swipe the layers · tap to inspect</span>
+      </p>
       <ol
         className={styles.nodes}
         aria-label="Illustrative system layers, from interface to backend"

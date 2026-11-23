@@ -290,7 +290,8 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
               aria-haspopup="dialog"
               onClick={() => open("palette")}
             >
-              <FiCommand aria-hidden="true" />
+              <FiCommand className={styles.desktopCommandIcon} aria-hidden="true" />
+              <FiSearch className={styles.mobileSearchIcon} aria-hidden="true" />
               <kbd>⌘ K</kbd>
             </button>
             <button

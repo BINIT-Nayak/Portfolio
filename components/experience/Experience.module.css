@@ -302,3 +302,48 @@
     transition: none;
   }
 }
+
+@media (max-width: 959px) {
+  .layout,
+  .rail {
+    min-width: 0;
+  }
+  .header {
+    margin-bottom: var(--space-6);
+  }
+  .steps {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: var(--space-2);
+    scroll-snap-type: x proximity;
+  }
+  .step {
+    flex: 0 0 min(72vw, 17rem);
+    scroll-snap-align: start;
+  }
+  .stepLink {
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    grid-template-columns: var(--space-4) minmax(0, 1fr);
+    height: 100%;
+    padding: var(--space-4);
+  }
+  .step[data-current="true"] .stepLink {
+    border-color: var(--color-accent);
+  }
+  .stepArrow,
+  .track {
+    display: none;
+  }
+  .railHint {
+    margin-top: var(--space-2);
+  }
+  .panel {
+    border-left: var(--space-1) solid var(--color-border-strong);
+  }
+  .panel[data-active="true"] {
+    border-left-color: var(--color-accent);
+  }
+}

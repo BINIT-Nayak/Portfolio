@@ -161,7 +161,7 @@
   line-height: var(--leading-body);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -170,5 +170,29 @@
 @media (prefers-reduced-motion: reduce) {
   .toast {
     animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .root {
+    border-inline: 0;
+    border-radius: 0;
+    padding: var(--space-5) 0;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .controls button {
+    padding-inline: var(--space-2);
+  }
+  .primary {
+    grid-column: 1 / -1;
+  }
+  .code {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    white-space: pre;
   }
 }

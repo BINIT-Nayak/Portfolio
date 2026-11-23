@@ -10,3 +10,9 @@
 .page__listing {
   padding-top: var(--header-space);
 }
+
+@media (max-width: 959px) {
+  .page__listing {
+    padding-top: 0;
+  }
+}

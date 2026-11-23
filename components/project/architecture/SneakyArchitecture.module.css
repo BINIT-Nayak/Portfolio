@@ -211,7 +211,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   .diagram {
     height: auto;
   }
@@ -252,4 +252,34 @@
 
 .textAlternative {
   composes: disclosure from "../../../styles/primitives.module.css";
+}
+
+@media (max-width: 767px) {
+  .architecture {
+    border-inline: 0;
+    border-radius: 0;
+    padding: var(--space-4) 0;
+  }
+  .nodes {
+    gap: var(--space-2);
+  }
+  .node {
+    overflow-wrap: anywhere;
+    padding: var(--space-3);
+  }
+  .controls {
+    align-items: stretch;
+  }
+  .play {
+    width: 100%;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .steps button {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-3);
+  }
 }
