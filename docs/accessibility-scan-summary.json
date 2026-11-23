@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-23",
+  "engine": "axe-core 4.11.4 / Chrome",
+  "scans": [
+    {
+      "name": "dark/",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/projects",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/case-studies",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/case-studies/vibejournal-offline-sync",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/case-studies/cache-first-recommendation-api",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/case-studies/sneaky-recommendation-system",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "dark/labs/comet",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/projects",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/case-studies",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/case-studies/vibejournal-offline-sync",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/case-studies/cache-first-recommendation-api",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/case-studies/sneaky-recommendation-system",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "light/labs/comet",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "aria-valid-attr-value",
+          "nodes": 1
+        },
+        {
+          "rule": "color-contrast",
+          "nodes": 8
+        }
+      ]
+    },
+    {
+      "name": "interactive dialog Toast Messages 2.0",
+      "violations": 0,
+      "manualReview": []
+    },
+    {
+      "name": "interactive dialog Real-Time Plinko",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "color-contrast",
+          "nodes": 3
+        }
+      ]
+    },
+    {
+      "name": "command palette search",
+      "violations": 0,
+      "manualReview": [
+        {
+          "rule": "color-contrast",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "name": "mobile drawer 390",
+      "violations": 0,
+      "manualReview": []
+    },
+    {
+      "name": "mobile drawer 320",
+      "violations": 0,
+      "manualReview": []
+    }
+  ]
+}

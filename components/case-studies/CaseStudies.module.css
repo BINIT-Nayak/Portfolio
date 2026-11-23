@@ -156,13 +156,23 @@
 }
 .caseStudies__modal_overlay {
   align-items: center;
-  background: var(--color-overlay);
+  background: transparent;
+  border: 0;
+  color: var(--color-text);
   display: flex;
+  height: 100dvh;
   inset: 0;
   justify-content: center;
+  margin: 0;
+  max-height: none;
+  max-width: none;
   padding: var(--space-4);
   position: fixed;
+  width: 100%;
   z-index: var(--layer-overlay);
+}
+.caseStudies__modal_overlay::backdrop {
+  background: var(--color-overlay);
 }
 .caseStudies__modal {
   box-shadow: var(--shadow-overlay);
@@ -170,6 +180,7 @@
   max-height: calc(100dvh - var(--space-8));
   max-width: 62rem;
   overflow: auto;
+  overscroll-behavior: contain;
   padding: var(--card-padding);
   position: relative;
   width: 100%;
@@ -291,12 +302,18 @@
   .caseStudies__modal_overlay {
     padding: var(--space-2);
   }
+  .caseStudies__modal_overlay::backdrop {
+    background: var(--color-overlay);
+  }
   .caseStudies__modal {
     max-height: calc(100dvh - var(--space-4));
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .caseStudies__modal_overlay::backdrop {
+    background: var(--color-overlay);
+  }
   .caseStudies__modal {
     animation: none;
   }

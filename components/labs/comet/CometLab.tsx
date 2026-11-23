@@ -191,6 +191,7 @@ export function CometLab() {
           <input
             id={`${id}-duration`}
             type="range"
+            aria-valuetext={`${duration} milliseconds`}
             min="500"
             max="1800"
             step="100"

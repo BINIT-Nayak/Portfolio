@@ -1,3 +1,8 @@
 .section {
   composes: section from "../../styles/primitives.module.css";
 }
+
+.heading {
+  composes: heading from "../../styles/primitives.module.css";
+  margin-bottom: var(--space-6);
+}

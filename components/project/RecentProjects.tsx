@@ -6,6 +6,8 @@ import styles from "./RecentProjects.module.css";
 
 export function RecentProjects({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? "h1" : "h2";
+  const ProjectHeading = standalone ? "h2" : "h3";
+  const DetailHeading = standalone ? "h3" : "h4";
   return (
     <section className={styles.section} id="projects" aria-labelledby="projects-heading">
       <div className={styles.sectionHeader} data-motion="section-reveal">
@@ -23,28 +25,30 @@ export function RecentProjects({ standalone = false }: { standalone?: boolean })
           >
             <header className={styles.projectHeader}>
               <p className={styles.category}>{project.category}</p>
-              <h3 id={`project-${project.id}`} className={styles.title}>
+              <ProjectHeading id={`project-${project.id}`} className={styles.title}>
                 {project.title}
-              </h3>
+              </ProjectHeading>
               <p className={styles.subtitle}>{project.subtitle}</p>
               <p className={styles.statement}>{project.statement}</p>
             </header>
             <ProjectPreview project={project} />
             <div className={styles.engineering}>
               <div className={styles.note}>
-                <h4 className={styles.noteLabel}>The engineering challenge</h4>
+                <DetailHeading className={styles.noteLabel}>
+                  The engineering challenge
+                </DetailHeading>
                 <p>{project.challenge}</p>
               </div>
               <div className={styles.note}>
-                <h4 className={styles.noteLabel}>Architecture</h4>
+                <DetailHeading className={styles.noteLabel}>Architecture</DetailHeading>
                 <p>{project.architecture}</p>
               </div>
-              {project.id === "sneaky" && <SneakyArchitecture />}
+              {project.id === "sneaky" && <SneakyArchitecture headingLevel={standalone ? 3 : 4} />}
               {project.roadmap && (
-                <aside className={styles.roadmap}>
-                  <h4 className={styles.noteLabel}>On the roadmap</h4>
+                <div className={styles.roadmap}>
+                  <DetailHeading className={styles.noteLabel}>On the roadmap</DetailHeading>
                   <p>{project.roadmap}</p>
-                </aside>
+                </div>
               )}
             </div>
             <dl

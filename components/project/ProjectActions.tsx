@@ -9,7 +9,7 @@ import styles from "./RecentProjects.module.css";
 export function ProjectActions({ actions, title }: { actions: ProjectAction[]; title: string }) {
   const pathname = usePathname();
   return (
-    <div className={styles.actions} aria-label={`${title} project links`}>
+    <div className={styles.actions} role="group" aria-label={`${title} project links`}>
       {actions.map((action) => {
         const isExternal = action.href.startsWith("https://");
         const isStudy = action.href.startsWith("#case-study-");

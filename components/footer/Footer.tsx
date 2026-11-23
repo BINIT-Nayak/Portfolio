@@ -5,7 +5,12 @@ import style from "./Footer.module.css";
 const EMAIL = "binitnayak48@gmail.com";
 
 export const Footer = () => (
-  <footer className={style.footer} id="contact" aria-labelledby="contact-heading">
+  <footer
+    role="contentinfo"
+    className={style.footer}
+    id="contact"
+    aria-labelledby="contact-heading"
+  >
     <div className={style.panel}>
       <p className={style.eyebrow}>Let’s work together</p>
       <h2 className={style.heading} id="contact-heading">
@@ -18,7 +23,7 @@ export const Footer = () => (
           production.
         </p>
         <div className={style.connections}>
-          <div className={style.actions} aria-label="Contact links">
+          <div className={style.actions} role="group" aria-label="Contact links">
             <a className={style.primary} href={`mailto:${EMAIL}`}>
               <FiMail aria-hidden="true" /> Email me <FiArrowUpRight aria-hidden="true" />
             </a>

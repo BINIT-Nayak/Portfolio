@@ -11,18 +11,24 @@ import style from "./page.module.css";
 
 const Home = () => {
   return (
-    <main id="main-content" tabIndex={-1} className={style.page__main}>
-      <div className={style.page__container}>
-        <Hero />
-        <Stats />
-        <Grid />
-        <Experience />
-        <RecentProjects />
-        <CaseStudies />
-        <Clients />
-        <Footer />
+    <>
+      <main id="main-content" tabIndex={-1} className={style.page__main}>
+        <div className={style.page__container}>
+          <Hero />
+          <Stats />
+          <Grid />
+          <Experience />
+          <RecentProjects />
+          <CaseStudies />
+          <Clients />
+        </div>
+      </main>
+      <div className={style.page__main}>
+        <div className={style.page__container}>
+          <Footer />
+        </div>
       </div>
-    </main>
+    </>
   );
 };
 

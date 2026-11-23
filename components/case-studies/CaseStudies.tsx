@@ -19,6 +19,7 @@ const getCaseStudyById = (id: string) => caseStudies.find((caseStudy) => caseStu
 
 export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) => {
   const Heading = standalone ? "h1" : "h2";
+  const CardHeading = standalone ? "h2" : "h3";
   const [filter, setFilter] = useState<CaseStudyFilter>("All");
   const gridRef = useRef<HTMLUListElement>(null);
   const previousPositions = useRef<Map<string, DOMRect> | null>(null);
@@ -75,7 +76,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
       ?.focus({ preventScroll: true });
   };
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
-  const dialogRef = useRef<HTMLElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const activeCaseStudy = useMemo(
     () => caseStudies.find((caseStudy) => caseStudy.id === activeCaseStudyId),
@@ -89,7 +90,9 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
 
     const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const previousOverflow = document.body.style.overflow;
-    dialogRef.current?.focus();
+    const dialog = dialogRef.current;
+    dialog?.showModal();
+    dialog?.focus();
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveCaseStudyId(null);
@@ -97,7 +100,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
       if (event.key === "Tab") {
         const targets = Array.from(
           dialogRef.current?.querySelectorAll<HTMLElement>(
-            'button:not([disabled]), a[href], summary, [tabindex="0"]'
+            'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex="0"]'
           ) ?? []
         ).filter((element) => element.getClientRects().length > 0);
         const first = targets[0];
@@ -119,6 +122,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      dialog?.close();
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
       if (opener?.isConnected) opener.focus({ preventScroll: true });
@@ -159,7 +163,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
               {caseStudy.readTime}
             </span>
           </div>
-          <h3 className={style.caseStudies__title}>
+          <CardHeading className={style.caseStudies__title}>
             {caseStudy.detailHref ? (
               <Link href={caseStudy.detailHref} className={style.caseStudies__card_trigger}>
                 {caseStudy.cardTitle}
@@ -174,7 +178,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
                 {caseStudy.cardTitle}
               </button>
             )}
-          </h3>
+          </CardHeading>
           <p className={style.caseStudies__summary}>{caseStudy.problem}</p>
           <ul className={style.caseStudies__tags} aria-label="Main technologies">
             {caseStudy.technologies.map((tag) => (
@@ -269,19 +273,22 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
       </section>
 
       {activeCaseStudy && (
-        <div
+        <dialog
+          ref={dialogRef}
+          tabIndex={-1}
+          aria-labelledby="case-study-modal-title"
           className={style.caseStudies__modal_overlay}
-          role="presentation"
-          onClick={() => setActiveCaseStudyId(null)}
+          onCancel={(event) => {
+            event.preventDefault();
+            setActiveCaseStudyId(null);
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setActiveCaseStudyId(null);
+          }}
         >
           <article
             data-motion-enter="scale-in"
-            ref={dialogRef}
-            tabIndex={-1}
             className={style.caseStudies__modal}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="case-study-modal-title"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -290,18 +297,18 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
               onClick={() => setActiveCaseStudyId(null)}
               aria-label="Close case study"
             >
-              <FaXmark />
+              <FaXmark aria-hidden="true" />
             </button>
 
             <div className={style.caseStudies__modal_header}>
               <p className={style.caseStudies__modal_eyebrow}>Engineering Case Study</p>
               <div className={style.caseStudies__modal_meta}>
                 <span className={style.caseStudies__meta_item}>
-                  <FaCalendarDays />
+                  <FaCalendarDays aria-hidden="true" />
                   {activeCaseStudy.date}
                 </span>
                 <span className={style.caseStudies__meta_item}>
-                  <FaClock />
+                  <FaClock aria-hidden="true" />
                   {activeCaseStudy.readTime}
                 </span>
               </div>
@@ -413,7 +420,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
               </div>
             )}
           </article>
-        </div>
+        </dialog>
       )}
     </>
   );

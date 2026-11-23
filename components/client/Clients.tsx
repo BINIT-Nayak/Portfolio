@@ -55,7 +55,7 @@ export const Clients = () => {
           >
             <span className={style.clients__number}>{String(index + 1).padStart(2, "0")}</span>
             <div>
-              <h2 className={style.clients__title}>{strength.title}</h2>
+              <h3 className={style.clients__title}>{strength.title}</h3>
               <p className={style.clients__description}>{strength.description}</p>
             </div>
           </article>

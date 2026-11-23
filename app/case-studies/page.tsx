@@ -10,11 +10,21 @@ export const metadata: Metadata = {
 };
 export default function CaseStudiesPage() {
   return (
-    <main id="main-content" tabIndex={-1} className={`${style.page__main} ${style.page__listing}`}>
-      <div className={style.page__container}>
-        <CaseStudies standalone />
-        <Footer />
+    <>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`${style.page__main} ${style.page__listing}`}
+      >
+        <div className={style.page__container}>
+          <CaseStudies standalone />
+        </div>
+      </main>
+      <div className={style.page__main}>
+        <div className={style.page__container}>
+          <Footer />
+        </div>
       </div>
-    </main>
+    </>
   );
 }

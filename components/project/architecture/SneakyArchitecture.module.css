@@ -249,3 +249,7 @@
     display: none;
   }
 }
+
+.textAlternative {
+  composes: disclosure from "../../../styles/primitives.module.css";
+}

@@ -363,6 +363,7 @@ export function FloatingNav({ navItems, className }: { navItems: NavItem[]; clas
                   href={destination(item.link)}
                   aria-current={active === item.link ? "location" : undefined}
                   onClick={(event) => {
+                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                     event.preventDefault();
                     navigate(item.link);
                   }}

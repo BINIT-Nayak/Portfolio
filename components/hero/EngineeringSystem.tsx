@@ -87,7 +87,6 @@ export function EngineeringSystem() {
           type="button"
           className={styles.pause}
           aria-label={paused ? "Play event animation" : "Pause event animation"}
-          aria-pressed={paused}
           onClick={() => setPaused((value) => !value)}
         >
           {paused ? <FiPlay aria-hidden="true" /> : <FiPause aria-hidden="true" />}
@@ -155,6 +154,16 @@ export function EngineeringSystem() {
           </p>
         ))}
       </div>
+      <details className={styles.textAlternative}>
+        <summary>Read the system explanation</summary>
+        <ol>
+          {nodes.map((node) => (
+            <li key={node.name}>
+              <strong>{node.name}.</strong> {node.explanation}
+            </li>
+          ))}
+        </ol>
+      </details>
       <p className={styles.caption}>Illustrative event flow · not a live connection</p>
     </figure>
   );

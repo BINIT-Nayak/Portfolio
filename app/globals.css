@@ -35,6 +35,7 @@
   :focus-visible {
     outline: var(--focus-width) solid var(--color-focus);
     outline-offset: var(--focus-offset);
+    scroll-margin-block: var(--header-space) var(--space-6);
   }
 
   button,

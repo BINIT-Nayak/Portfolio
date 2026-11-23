@@ -55,7 +55,10 @@
   line-height: var(--leading-body);
 }
 .bentoGridItem:first-child .bentoGridItem__title {
-  color: var(--color-on-image);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  padding: var(--space-3);
 }
 
 @media (max-width: 767px) {

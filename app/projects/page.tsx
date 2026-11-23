@@ -10,11 +10,21 @@ export const metadata: Metadata = {
 };
 export default function ProjectsPage() {
   return (
-    <main id="main-content" tabIndex={-1} className={`${style.page__main} ${style.page__listing}`}>
-      <div className={style.page__container}>
-        <RecentProjects standalone />
-        <Footer />
+    <>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`${style.page__main} ${style.page__listing}`}
+      >
+        <div className={style.page__container}>
+          <RecentProjects standalone />
+        </div>
+      </main>
+      <div className={style.page__main}>
+        <div className={style.page__container}>
+          <Footer />
+        </div>
       </div>
-    </main>
+    </>
   );
 }

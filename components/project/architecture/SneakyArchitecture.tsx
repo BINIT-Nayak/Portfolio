@@ -6,7 +6,8 @@ import { architectureEdges, architectureNodes, requestSteps } from "@/data/sneak
 import { initialRequestFlow, requestFlowReducer } from "@/lib/request-flow.mjs";
 import styles from "./SneakyArchitecture.module.css";
 
-export function SneakyArchitecture() {
+export function SneakyArchitecture({ headingLevel = 4 }: { headingLevel?: 3 | 4 }) {
+  const Heading = headingLevel === 3 ? "h3" : "h4";
   const [selected, setSelected] = useState<(typeof architectureNodes)[number]["id"]>("client");
   const [reduced, setReduced] = useState(true);
   const [flow, dispatch] = useReducer(requestFlowReducer, initialRequestFlow);
@@ -56,9 +57,9 @@ export function SneakyArchitecture() {
       <div className={styles.header}>
         <div>
           <p className={styles.eyebrow}>System walkthrough</p>
-          <h4 id={`${id}-title`} className={styles.title}>
+          <Heading id={`${id}-title`} className={styles.title}>
             Inside Sneaky’s recommendation feed
-          </h4>
+          </Heading>
         </div>
         <span className={styles.badge}>Cache-hit example</span>
       </div>
@@ -201,6 +202,23 @@ export function SneakyArchitecture() {
         </p>
         <p>{step.detail}</p>
       </div>
+      <details className={styles.textAlternative}>
+        <summary>Read the architecture and request flow</summary>
+        <ul>
+          {architectureNodes.map((node) => (
+            <li key={node.id}>
+              <strong>{node.name}.</strong> {node.description}
+            </li>
+          ))}
+        </ul>
+        <ol>
+          {requestSteps.map((item) => (
+            <li key={item.title}>
+              <strong>{item.title}.</strong> {item.detail}
+            </li>
+          ))}
+        </ol>
+      </details>
       <p className={styles.note}>
         On a cache hit, candidate scoring and optional ML reranking are skipped. On a miss, the API
         falls back to ranking and refreshes Redis. Kafka processes activity asynchronously; it is

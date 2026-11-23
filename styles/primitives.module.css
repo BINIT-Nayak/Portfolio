@@ -135,3 +135,27 @@
     opacity: 1;
   }
 }
+
+.disclosure {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin-top: var(--space-4);
+}
+.disclosure summary {
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  min-height: var(--control-height);
+  padding-block: var(--space-3);
+}
+.disclosure ul,
+.disclosure ol {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+}
+.disclosure ol {
+  list-style: decimal;
+}
+.disclosure ul {
+  list-style: disc;
+}

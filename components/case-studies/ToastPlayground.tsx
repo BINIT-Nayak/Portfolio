@@ -91,10 +91,29 @@ export function ToastPlayground() {
           Stack Multiple
         </button>
       </div>
+      <div className={styles.controls}>
+        <button
+          type="button"
+          className={styles.action}
+          onClick={() => setPaused((value) => !value)}
+        >
+          {paused ? "Resume timers" : "Pause timers"}
+        </button>
+        <button
+          type="button"
+          className={styles.action}
+          onClick={() => {
+            dispatch({ type: "reset" });
+            setPaused(false);
+          }}
+        >
+          Clear playground
+        </button>
+      </div>
       <div className={styles.layout}>
         <div>
           <p className={styles.route}>Producer → local Pub/Sub → queue → toast stack</p>
-          <pre className={styles.code} aria-label="Conceptual publish API">
+          <pre className={styles.code} role="group" aria-label="Conceptual publish API">
             <code>{`publish("toast", {\n  type: "${example.type}",\n  message: "${example.message}"\n})`}</code>
           </pre>
           <p className={styles.caption}>
@@ -176,26 +195,6 @@ export function ToastPlayground() {
             </details>
           )}
         </div>
-      </div>
-      <div className={styles.controls}>
-        <button
-          type="button"
-          className={styles.action}
-          aria-pressed={paused}
-          onClick={() => setPaused((value) => !value)}
-        >
-          {paused ? "Resume timers" : "Pause timers"}
-        </button>
-        <button
-          type="button"
-          className={styles.action}
-          onClick={() => {
-            dispatch({ type: "reset" });
-            setPaused(false);
-          }}
-        >
-          Clear playground
-        </button>
       </div>
       <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">
         {state.notice}

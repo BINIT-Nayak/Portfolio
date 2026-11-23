@@ -4,7 +4,10 @@ import style from "./Grid.module.css";
 
 export const Grid = () => {
   return (
-    <section id="about" className={style.section}>
+    <section id="about" className={style.section} aria-labelledby="about-heading">
+      <h2 id="about-heading" className={style.heading}>
+        About my engineering work
+      </h2>
       <BentoGrid>
         {gridItems.map((item, index) => (
           <BentoGridItem

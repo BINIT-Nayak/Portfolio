@@ -127,7 +127,7 @@ export function PlinkoPipeline() {
             </li>
           ))}
         </ol>
-        <aside className={styles.thread} aria-labelledby={`${id}-thread`}>
+        <div className={styles.thread} role="group" aria-labelledby={`${id}-thread`}>
           <h4 id={`${id}-thread`}>Main thread / work scheduling</h4>
           <p className={styles.caption}>Conceptual activity, not a performance measurement.</p>
           <div className={styles.lane}>
@@ -160,8 +160,18 @@ export function PlinkoPipeline() {
             <span className={styles.eyebrow}>Presentation outcome</span>
             <p>{active ? event.result : "Play to trace a round through all five stages."}</p>
           </div>
-        </aside>
+        </div>
       </div>
+      <details className={styles.textAlternative}>
+        <summary>Read all example event outcomes</summary>
+        <ol>
+          {events.map((item) => (
+            <li key={item.name}>
+              <strong>{item.name}.</strong> {item.result}
+            </li>
+          ))}
+        </ol>
+      </details>
       <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">
         {flow.phase === "idle"
           ? "Ready to play."

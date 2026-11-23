@@ -127,3 +127,10 @@ dialog[data-motion-enter]::backdrop {
     animation: none !important;
   }
 }
+
+/* Never keep a keyboard-focused control invisible during entrance motion. */
+[data-motion]:focus-within,
+[data-motion-enter]:focus-within,
+[data-motion="stagger-list"] > :focus-within {
+  animation: none;
+}

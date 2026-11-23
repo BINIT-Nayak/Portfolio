@@ -17,7 +17,7 @@ export const Hero = () => (
         bring these together through full-stack product development, from the first interaction to
         the backend that powers it.
       </p>
-      <div className={style.actions} aria-label="Explore my work">
+      <div className={style.actions} role="group" aria-label="Explore my work">
         <a className={style.primaryAction} href="#projects">
           View My Work <FiArrowDownRight aria-hidden="true" />
         </a>
