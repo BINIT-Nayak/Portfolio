@@ -1,54 +1,42 @@
 # Binit Nayak Portfolio
 
-A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS, CSS Modules, Framer Motion, and Three.js. The site showcases projects, work experience, engineering case studies, tech stack, social links, resume download, and contact actions.
+An interactive engineering portfolio built with Next.js 15, React 18 and TypeScript. It presents production experience, project architecture, accessible educational demos and open-source work.
 
-## Live Links
+- [Live portfolio](https://binit-nayak.netlify.app/)
+- [Repository](https://github.com/BINIT-Nayak/my-portfolio-website)
+- [Architecture and engineering decisions](docs/portfolio-architecture.md)
+- [Production-readiness results](docs/production-readiness.md)
 
-- Live site: [https://binit-nayak.netlify.app/](https://binit-nayak.netlify.app/)
-- Repository: [https://github.com/BINIT-Nayak/my-portfolio-website](https://github.com/BINIT-Nayak/my-portfolio-website)
+## Development
+
+Use Node 24 LTS and npm.
+
+```sh
+npm ci
+npm run dev
+```
+
+## Validation
+
+```sh
+npm run typecheck
+npm run check
+npm test
+npm run build
+npm start
+```
+
+`check` runs ESLint, Stylelint and Prettier. Browser audit setup is documented in the architecture guide.
 
 ## Features
 
-- Sticky responsive navigation with smooth section scrolling
-- Hero section with scroll-to-about CTA
-- Bento-style about and tech stack section
-- Interactive globe and animated visual effects
-- Responsive project cards with repository links and case study actions
-- Interactive engineering case study modals
-- Work experience cards
-- "What I Bring" recruiter-focused strengths section
-- Contact section with email and social links
-- Resume download
-- SEO metadata with Open Graph and Twitter card support
+- Responsive navigation, theme switching and a keyboard command palette
+- Engineering snapshot, interactive career timeline and project showcases
+- Filterable case studies with shareable article routes
+- Sneaky architecture, Plinko event pipeline and isolated Pub/Sub toast demos
+- Comet Canvas engineering lab and a user-controlled seven-stop portfolio tour
+- Accessible text explanations, reduced-motion support and mobile-specific layouts
+- Contact actions with copy-email feedback
+- Per-route metadata, structured data, sitemap and social previews
 
-## Design System
-
-Current palette:
-
-- Background: `#0F172A`
-- Primary text: `#F4F4F4`
-- Layout elements: `#64748B`
-- Accent / CTA: `#22D3EE`
-
-Shared palette variables live in [app/globals.css](app/globals.css).
-
-## Tech Stack
-
-- Next.js 14
-- React 18
-- TypeScript
-- Tailwind CSS
-- CSS Modules
-- Framer Motion
-- Three.js / React Three Fiber
-- Sentry integration, enabled only when Sentry env vars are present
-
-## Project Structure
-
-```text
-app/                  App Router pages, layout, providers, global styles
-components/           UI sections and shared interactive components
-data/                 Navigation, projects, experience, and social data
-public/assests/       Images, SVGs, resume, and static media
-lib/                  Shared utility helpers
-```
+Design tokens live in `styles/tokens.css`; CSS Modules own component styling. Motion uses CSS, SVG and Web Animations API. Sentry is optional and environment-configured. No resume download or backend contact form is configured.

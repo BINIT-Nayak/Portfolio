@@ -34,18 +34,18 @@ function harness() {
   const cache = new Map();
   function load(filename) {
     if (cache.has(filename)) return cache.get(filename).exports;
-    const module = { exports: {} };
-    cache.set(filename, module);
+    const loadedModule = { exports: {} };
+    cache.set(filename, loadedModule);
     const source = ts.transpileModule(fs.readFileSync(filename, "utf8"), {
       compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS },
     }).outputText;
     vm.runInNewContext(source, {
       ...globals,
-      module,
-      exports: module.exports,
+      module: loadedModule,
+      exports: loadedModule.exports,
       require: (name) => load(path.resolve(path.dirname(filename), name + ".ts")),
     });
-    return module.exports;
+    return loadedModule.exports;
   }
   const { CometEngine } = load(path.resolve("components/labs/comet/engine/CometEngine.ts"));
   function canvas() {

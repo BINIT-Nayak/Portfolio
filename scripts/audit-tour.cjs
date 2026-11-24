@@ -52,7 +52,11 @@ const base = process.env.AUDIT_URL || "http://127.0.0.1:4188";
         assert.equal(await page.locator("[data-tour-highlight]").count(), 1);
         const position = await page.evaluate(() => scrollY);
         await page.waitForTimeout(350);
-        assert.equal(await page.evaluate(() => scrollY), position, "No timed scrolling");
+        // Chromium may round fractional layout/scroll offsets by one CSS pixel.
+        assert.ok(
+          Math.abs((await page.evaluate(() => scrollY)) - position) <= 1,
+          "No timed scrolling"
+        );
         assert.equal(
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
           true

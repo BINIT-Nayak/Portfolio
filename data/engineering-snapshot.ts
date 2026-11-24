@@ -38,4 +38,3 @@ export const engineeringSnapshot = [
     source: "Free Chips case study",
   },
 ] as const;
-

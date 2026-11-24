@@ -18,13 +18,13 @@ This made the recommendation system faster, easier to scale, and easier to evolv
 
 The recommendation system had to support a swipe-based product feed with several competing requirements:
 
-* Return products quickly for the home feed.
-* Personalize recommendations when enough user behavior exists.
-* Support guest users with no activity history.
-* Avoid showing products already saved, carted, recently viewed, or passed.
-* Keep the feed diverse across brand, category, and merchant.
-* Use Redis and Kafka so ranking work does not always sit in the request path.
-* Keep ML optional so product discovery still works if the ML service is unavailable.
+- Return products quickly for the home feed.
+- Personalize recommendations when enough user behavior exists.
+- Support guest users with no activity history.
+- Avoid showing products already saved, carted, recently viewed, or passed.
+- Keep the feed diverse across brand, category, and merchant.
+- Use Redis and Kafka so ranking work does not always sit in the request path.
+- Keep ML optional so product discovery still works if the ML service is unavailable.
 
 The important challenge was not only how to score products. The harder problem was deciding **when scoring should happen**.
 
@@ -103,22 +103,22 @@ The live scoring fallback uses a rule-based ranking model.
 
 Positive signals include:
 
-* Brand affinity
-* Category affinity
-* Merchant affinity
-* Similar price range
-* Wishlist history
-* Cart history
-* Recently viewed products
-* Product popularity
+- Brand affinity
+- Category affinity
+- Merchant affinity
+- Similar price range
+- Wishlist history
+- Cart history
+- Recently viewed products
+- Product popularity
 
 Negative signals include:
 
-* Products the user already passed
-* Products already in wishlist
-* Products already in cart
-* Products recently viewed too often
-* Repeated brand, category, or merchant values in a tight feed window
+- Products the user already passed
+- Products already in wishlist
+- Products already in cart
+- Products recently viewed too often
+- Repeated brand, category, or merchant values in a tight feed window
 
 The system uses a personalization threshold before switching from guest ranking to user-specific ranking:
 
@@ -146,10 +146,10 @@ CACHE_TTL = 15 minutes
 
 A short TTL gives a useful balance:
 
-* Repeat feed requests become faster.
-* Rankings do not stay stale for too long.
-* New behavior can affect recommendations quickly.
-* Redis can be cleared or regenerated without risking permanent data loss.
+- Repeat feed requests become faster.
+- Rankings do not stay stale for too long.
+- New behavior can affect recommendations quickly.
+- Redis can be cleared or regenerated without risking permanent data loss.
 
 The backend also preserves Redis order when fetching product records from the database. This is important because a database `IN` query does not always return rows in the same order as the input IDs.
 
@@ -161,18 +161,18 @@ The recommendation cache becomes more useful when user behavior can refresh it i
 
 Sneaky publishes activity events for:
 
-* Product views
-* Product passes
-* Cart actions
-* Wishlist actions
+- Product views
+- Product passes
+- Cart actions
+- Wishlist actions
 
 These events can be processed asynchronously to update:
 
-* Redis popularity counters
-* Recently viewed products
-* Passed-product memory
-* User preference profiles
-* Recommendation cache invalidation or refresh
+- Redis popularity counters
+- Recently viewed products
+- Passed-product memory
+- User preference profiles
+- Recommendation cache invalidation or refresh
 
 This means the API request that records a product action does not need to wait for every recommendation update to finish.
 
@@ -200,14 +200,14 @@ The biggest lesson was that recommendation systems are not only about scoring fo
 
 A useful recommendation API needs to answer practical engineering questions:
 
-* Where does ranking happen?
-* How often should ranking happen?
-* What data should be cached?
-* What should remain in the database?
-* What happens when Redis is unavailable?
-* What happens when ML is unavailable?
-* How do we avoid stale or repeated feed items?
-* How do we personalize without overfitting to weak early behavior?
+- Where does ranking happen?
+- How often should ranking happen?
+- What data should be cached?
+- What should remain in the database?
+- What happens when Redis is unavailable?
+- What happens when ML is unavailable?
+- How do we avoid stale or repeated feed items?
+- How do we personalize without overfitting to weak early behavior?
 
 I also learned that caching product IDs is often cleaner than caching full objects. The cache controls ranking, while the database remains responsible for product truth.
 

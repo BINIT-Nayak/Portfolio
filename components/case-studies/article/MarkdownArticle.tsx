@@ -1,0 +1,187 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import { studySchema } from "@/lib/structured-data";
+import type { CaseStudy } from "@/data/case-studies";
+import fs from "node:fs";
+import path from "node:path";
+import Link from "next/link";
+import style from "./MarkdownArticle.module.css";
+
+const renderInline = (text: string) => {
+  const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>;
+    }
+
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return <code key={`${part}-${index}`}>{part.slice(1, -1)}</code>;
+    }
+
+    return part;
+  });
+};
+
+const parseMarkdown = (content: string) => {
+  const lines = content.split("\n");
+  const blocks: JSX.Element[] = [];
+  let index = 0;
+
+  while (index < lines.length) {
+    const line = lines[index];
+    const trimmedLine = line.trim();
+
+    if (!trimmedLine) {
+      index += 1;
+      continue;
+    }
+
+    if (trimmedLine.startsWith("```")) {
+      const codeLines: string[] = [];
+      index += 1;
+
+      while (index < lines.length && !lines[index].trim().startsWith("```")) {
+        codeLines.push(lines[index]);
+        index += 1;
+      }
+
+      blocks.push(
+        <pre
+          tabIndex={0}
+          role="group"
+          aria-label="Code example; scroll horizontally to read"
+          className={style.article__code_block}
+          key={`code-${index}`}
+        >
+          <code>{codeLines.join("\n")}</code>
+        </pre>
+      );
+      index += 1;
+      continue;
+    }
+
+    if (trimmedLine === "---") {
+      blocks.push(<hr className={style.article__divider} key={`divider-${index}`} />);
+      index += 1;
+      continue;
+    }
+
+    if (trimmedLine.startsWith("# ")) {
+      blocks.push(
+        <h1 className={style.article__title} key={`h1-${index}`}>
+          {renderInline(trimmedLine.slice(2))}
+        </h1>
+      );
+      index += 1;
+      continue;
+    }
+
+    if (trimmedLine.startsWith("## ")) {
+      blocks.push(
+        <h2 className={style.article__heading} key={`h2-${index}`}>
+          {renderInline(trimmedLine.slice(3))}
+        </h2>
+      );
+      index += 1;
+      continue;
+    }
+
+    if (trimmedLine.startsWith("### ")) {
+      blocks.push(
+        <h3 className={style.article__subheading} key={`h3-${index}`}>
+          {renderInline(trimmedLine.slice(4))}
+        </h3>
+      );
+      index += 1;
+      continue;
+    }
+
+    if (/^[-*] /.test(trimmedLine)) {
+      const items: string[] = [];
+
+      while (index < lines.length && /^[-*] /.test(lines[index].trim())) {
+        items.push(lines[index].trim().slice(2));
+        index += 1;
+      }
+
+      blocks.push(
+        <ul className={style.article__list} key={`ul-${index}`}>
+          {items.map((item) => (
+            <li className={style.article__list_item} key={item}>
+              {renderInline(item)}
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    if (/^\d+\.\s/.test(trimmedLine)) {
+      const items: string[] = [];
+
+      while (index < lines.length && /^\d+\.\s/.test(lines[index].trim())) {
+        items.push(lines[index].trim().replace(/^\d+\.\s/, ""));
+        index += 1;
+      }
+
+      blocks.push(
+        <ol className={style.article__list} key={`ol-${index}`}>
+          {items.map((item) => (
+            <li className={style.article__list_item} key={item}>
+              {renderInline(item)}
+            </li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    const paragraphLines = [trimmedLine];
+    index += 1;
+
+    while (
+      index < lines.length &&
+      lines[index].trim() &&
+      !lines[index].trim().startsWith("#") &&
+      !/^[-*] /.test(lines[index].trim()) &&
+      !/^\d+\.\s/.test(lines[index].trim()) &&
+      !lines[index].trim().startsWith("```") &&
+      lines[index].trim() !== "---"
+    ) {
+      paragraphLines.push(lines[index].trim());
+      index += 1;
+    }
+
+    blocks.push(
+      <p className={style.article__paragraph} key={`p-${index}`}>
+        {renderInline(paragraphLines.join(" "))}
+      </p>
+    );
+  }
+
+  return blocks;
+};
+
+export function MarkdownArticle({
+  study,
+  source,
+}: {
+  study: CaseStudy;
+  source: "cache-first-recommendation-api" | "sneaky-recommendation-system";
+}) {
+  const article = fs.readFileSync(
+    path.join(process.cwd(), "data/case-studies", `${source}.md`),
+    "utf8"
+  );
+  return (
+    <main id="main-content" tabIndex={-1} className={style.article}>
+      <div className={style.article__container}>
+        <JsonLd data={studySchema(study)} />
+        <Link className={style.article__back_link} href="/case-studies">
+          Back to Case Studies
+        </Link>
+        <article className={style.article__content}>{parseMarkdown(article)}</article>
+      </div>
+    </main>
+  );
+}

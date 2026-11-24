@@ -1,0 +1,41 @@
+.panel {
+  align-content: center;
+  display: grid;
+  gap: var(--space-6);
+  margin-inline: auto;
+  max-width: 48rem;
+  min-height: 60vh;
+  padding: var(--space-10) var(--space-6);
+}
+
+.panel h1 {
+  font-size: var(--text-section);
+  line-height: var(--leading-heading);
+}
+
+.panel p {
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.actions a,
+.actions button {
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  display: inline-flex;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+}
+
+.actions a:hover,
+.actions button:hover {
+  background: var(--color-surface-hover);
+}
