@@ -87,6 +87,7 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --layer-route: 40;
   --layer-header: 50;
+  --layer-tour: 75;
   --layer-overlay: 100;
   --anchor-offset: 5rem;
   --grid-size: 48px;

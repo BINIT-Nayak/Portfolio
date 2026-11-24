@@ -53,7 +53,12 @@ export function SneakyArchitecture({ headingLevel = 4 }: { headingLevel?: 2 | 3 
   }, [count]);
 
   return (
-    <section ref={rootRef} className={styles.architecture} aria-labelledby={`${id}-title`}>
+    <section
+      data-tour-target="sneaky"
+      ref={rootRef}
+      className={styles.architecture}
+      aria-labelledby={`${id}-title`}
+    >
       <div className={styles.header}>
         <div>
           <p className={styles.eyebrow}>System walkthrough</p>

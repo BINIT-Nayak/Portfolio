@@ -65,7 +65,7 @@ export function ToastPlayground({ headingLevel = 3 }: { headingLevel?: 2 | 3 }) 
   };
 
   return (
-    <section className={styles.root} aria-labelledby={`${id}-title`}>
+    <section data-tour-target="toast" className={styles.root} aria-labelledby={`${id}-title`}>
       <p className={styles.eyebrow}>Isolated notification playground</p>
       <Heading id={`${id}-title`}>Publish once. Coordinate feedback centrally.</Heading>
       <p className={styles.intro}>

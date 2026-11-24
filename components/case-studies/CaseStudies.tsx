@@ -281,6 +281,7 @@ export const CaseStudies = ({ standalone = false }: { standalone?: boolean }) =>
       <section
         className={style.caseStudies__open_source}
         id="open-source"
+        data-tour-target="open-source"
         aria-labelledby="open-source-title"
       >
         <div>

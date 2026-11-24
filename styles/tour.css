@@ -1,0 +1,17 @@
+[data-tour-highlight="true"] {
+  outline: var(--focus-width) solid var(--color-accent);
+  outline-offset: var(--space-2);
+  scroll-margin-top: var(--space-4);
+}
+html[data-portfolio-tour="active"] {
+  scroll-padding-bottom: calc(var(--tour-panel-height, 20rem) + var(--space-8));
+}
+html[data-portfolio-tour="active"] body {
+  padding-bottom: calc(var(--tour-panel-height, 20rem) + var(--space-8));
+}
+
+@media (forced-colors: active) {
+  [data-tour-highlight="true"] {
+    outline-color: Highlight;
+  }
+}

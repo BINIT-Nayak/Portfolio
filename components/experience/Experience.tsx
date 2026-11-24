@@ -77,6 +77,7 @@ export function Experience() {
     <section
       ref={sectionRef}
       id="experience"
+      data-tour-target="experience"
       className={style.experience}
       aria-labelledby="experience-heading"
     >

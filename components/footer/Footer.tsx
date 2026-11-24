@@ -9,6 +9,7 @@ export const Footer = () => (
     role="contentinfo"
     className={style.footer}
     id="contact"
+    data-tour-target="contact"
     aria-labelledby="contact-heading"
   >
     <div className={style.panel}>

@@ -59,7 +59,7 @@ export function PlinkoPipeline({ headingLevel = 3 }: { headingLevel?: 2 | 3 }) {
   }, []);
 
   return (
-    <section className={styles.root} aria-labelledby={`${id}-title`}>
+    <section data-tour-target="plinko" className={styles.root} aria-labelledby={`${id}-title`}>
       <p className={styles.eyebrow}>Interactive architecture · one round</p>
       <Heading id={`${id}-title`}>From server event to coordinated animation</Heading>
       <p className={styles.intro}>

@@ -1,10 +1,11 @@
+import { TourButton } from "@/components/tour/PortfolioTour";
 import { FiArrowDownRight, FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { EngineeringSystem } from "./EngineeringSystem";
 import style from "./Hero.module.css";
 
 export const Hero = () => (
   <section className={style.hero} aria-labelledby="hero-heading">
-    <div className={style.copy}>
+    <div className={style.copy} data-tour-target="identity">
       <div className={style.identity}>
         <p className={style.name}>Binit Nayak</p>
         <p className={style.role}>Frontend / Full-Stack Engineer</p>
@@ -34,6 +35,7 @@ export const Hero = () => (
           GitHub<span className={style.srOnly}> (opens in a new tab)</span>
         </a>
       </div>
+      <TourButton />
       <p className={style.status}>
         <span className={style.statusDot} aria-hidden="true" />
         Building production frontend systems · Hyderabad, India

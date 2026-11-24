@@ -1,0 +1,97 @@
+.start {
+  composes: action from "../../styles/primitives.module.css";
+  margin-top: var(--space-5);
+}
+.start span {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+.panel {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  bottom: max(var(--space-4), env(safe-area-inset-bottom));
+  box-shadow: var(--shadow-overlay);
+  display: grid;
+  gap: var(--space-3);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  left: 50%;
+  max-height: min(50dvh, 26rem);
+  max-width: 44rem;
+  padding: var(--space-4);
+  position: fixed;
+  transform: translateX(-50%);
+  width: calc(100% - var(--page-gutter) * 2);
+  z-index: var(--layer-tour);
+}
+.header {
+  align-items: center;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.eyebrow {
+  composes: label from "../../styles/primitives.module.css";
+}
+.exit {
+  composes: action from "../../styles/primitives.module.css";
+  flex-shrink: 0;
+}
+.copy {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-2);
+}
+.heading {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-heading);
+  margin-bottom: var(--space-2);
+}
+.copy > p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+.copy .hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  margin-top: var(--space-2);
+}
+.controls {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.action {
+  composes: action from "../../styles/primitives.module.css";
+}
+.next {
+  composes: action primary from "../../styles/primitives.module.css";
+}
+.controls button:disabled {
+  opacity: 0.5;
+}
+
+@media (max-width: 479px) {
+  .start {
+    flex-wrap: wrap;
+  }
+  .panel {
+    bottom: max(var(--space-2), env(safe-area-inset-bottom));
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+}
+
+.explore {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  min-height: var(--control-height);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+.returnLink {
+  composes: action from "../../styles/primitives.module.css";
+  margin-top: var(--space-4);
+}

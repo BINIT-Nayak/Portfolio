@@ -1,3 +1,4 @@
+import { PortfolioTourProvider } from "@/components/tour/PortfolioTour";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -37,10 +38,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <PointerEffects />
-          <ViewportMotion />
-          <FloatingNav navItems={navItems} />
-          <RouteTransitions>{children}</RouteTransitions>
+          <PortfolioTourProvider>
+            <PointerEffects />
+            <ViewportMotion />
+            <FloatingNav navItems={navItems} />
+            <RouteTransitions>{children}</RouteTransitions>
+          </PortfolioTourProvider>
         </ThemeProvider>
       </body>
     </html>
