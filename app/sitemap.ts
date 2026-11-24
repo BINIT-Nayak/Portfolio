@@ -3,6 +3,6 @@ import { caseStudies } from "@/data/case-studies";
 import { absoluteUrl, studyPath } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   return Array.from(
-    new Set(["/", "/projects", "/case-studies", ...caseStudies.map(studyPath)])
+    new Set(["/", "/projects", "/case-studies", "/playground", ...caseStudies.map(studyPath)])
   ).map((path) => ({ url: absoluteUrl(path) }));
 }

@@ -37,6 +37,7 @@ RootLayout
           Experience
           RecentProjects → ProjectPreview + ProjectActions + SneakyArchitecture
           CaseStudies → filtered cards + native preview dialog + open-source links
+          EngineeringPlayground → one selected, lazy-loaded experiment
           Clients (engineering strengths)
           Footer → CopyEmail
         Projects → RecentProjects + Footer
@@ -50,7 +51,7 @@ RootLayout
 
 The root layout persists navigation, theme and tour state between routes. Client boundaries are concentrated around interaction and browser lifecycle needs. Article text, metadata and structured data remain server-rendered. Section components are reused on the home page and dedicated listing routes.
 
-The eight `/case-studies/[slug]` pages use `generateStaticParams`, reject unknown slugs and await Next 15 route parameters. Explicit routes cover the two Markdown articles, VibeJournal offline sync and `/labs/comet`. Twelve case-study destinations and three primary pages form the 15-entry sitemap.
+The eight `/case-studies/[slug]` pages use `generateStaticParams`, reject unknown slugs and await Next 15 route parameters. Explicit routes cover the two Markdown articles, VibeJournal offline sync and `/labs/comet`. Twelve case-study destinations and three primary pages plus the playground form the 16-entry sitemap.
 
 `data/case-studies.ts` is the typed metadata source for filters, previews, article routes, tour destinations and SEO. `data/projects.ts` owns project capabilities and actions. Unavailable demos remain visibly unavailable instead of linking to empty URLs. A resume download is intentionally unavailable because no resume file was supplied.
 
@@ -98,8 +99,8 @@ Continuous work is reserved for explicit demonstrations. Timers, animation frame
 
 ## Performance decisions
 
-- All portfolio content routes are statically generated. Build output generated 23 entries including framework/metadata routes.
-- Production build reports shared first-load JavaScript of **103kB**, home **161kB**, projects **121kB**, case-study explorer **139kB**, and Comet **114kB**. These are Next build estimates, not Lighthouse scores or field Core Web Vitals.
+- All portfolio content routes are statically generated. Build output generated 24 entries including framework/metadata routes.
+- Production build reports shared first-load JavaScript of **103kB**, home **163kB**, projects **121kB**, case-study explorer **139kB**, and Comet **114kB**. These are Next build estimates, not Lighthouse scores or field Core Web Vitals.
 - `next/image` serves dimensioned screenshots with responsive sizes and lazy loading. Local product imagery is reused; decorative diagrams use SVG/CSS rather than extra image downloads.
 - Removed unreachable globe, legacy animation/button/approach components, unused utilities and their Three.js/React Three Fiber/Drei/Framer Motion dependencies. This reduces installation and maintenance overhead; the old unmounted components were not necessarily shipped in page bundles.
 - Removed the obsolete Vercel CLI dependency and its deployment script; the documented public site is hosted on Netlify. Build/start remain host-independent.
@@ -150,3 +151,7 @@ node scripts/audit-seo.mjs
 ```
 
 The final pass uses an isolated source copy under `/tmp/portfolio-production-qa` so a running development server cannot corrupt the production artifacts. Results are recorded in `docs/production-readiness.md`. Generated audit reports/screenshots live under `/tmp`, not in the shipped application. Repeat audits after changing global layout, dialog behavior, tokens, routes or dependencies.
+
+## Engineering Playground extension
+
+The home section and `/playground` share five dynamically imported experiments, with only the selected experiment mounted. Worker computation, event delivery and animation scheduling are real browser behavior; Redis and recommendation infrastructure are explicitly local simulations. See [Engineering Playground](engineering-playground.md) for lifecycle, accessibility, verification and fidelity boundaries. `/playground` reports 113kB first-load JavaScript in the production build.

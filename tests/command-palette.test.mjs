@@ -7,9 +7,9 @@ import {
   validRecents,
 } from "../lib/command-palette.mjs";
 
-test("all eleven commands have unique stable IDs", () => {
-  assert.equal(paletteCommands.length, 11);
-  assert.equal(new Set(paletteCommands.map((c) => c.id)).size, 11);
+test("all twelve commands have unique stable IDs", () => {
+  assert.equal(paletteCommands.length, 12);
+  assert.equal(new Set(paletteCommands.map((c) => c.id)).size, 12);
 });
 test("fuzzy search supports partial sequences, aliases, casing, and no matches", () => {
   assert.equal(searchCommands("  PLNK ")[0].id, "plinko");

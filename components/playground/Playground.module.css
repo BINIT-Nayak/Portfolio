@@ -1,0 +1,212 @@
+.section {
+  composes: section from "../../styles/primitives.module.css";
+}
+.heading {
+  composes: heading from "../../styles/primitives.module.css";
+}
+.action {
+  composes: action from "../../styles/primitives.module.css";
+}
+.primary {
+  composes: action primary from "../../styles/primitives.module.css";
+}
+.intro {
+  color: var(--color-text-secondary);
+  margin-block: var(--space-4) var(--space-6);
+  max-width: var(--reading-width);
+}
+.eyebrow {
+  composes: label from "../../styles/primitives.module.css";
+  margin-bottom: var(--space-3);
+}
+.selector {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-block: var(--space-6);
+}
+.selector button {
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+.selector button[aria-pressed="true"] {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+}
+.panel {
+  composes: surface from "../../styles/primitives.module.css";
+  min-width: 0;
+  padding: var(--card-padding);
+}
+.panel h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+.controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-5);
+}
+.controls label {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-height: var(--control-height);
+}
+.controls select,
+.controls input[type="text"] {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  max-width: 100%;
+  min-height: var(--control-height);
+  padding: var(--space-2);
+}
+.controls input[type="checkbox"] {
+  accent-color: var(--color-accent);
+  height: 20px;
+  width: 20px;
+}
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.note {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin-block: var(--space-4);
+  max-width: var(--reading-width);
+}
+.status {
+  color: var(--color-accent);
+  margin-block: var(--space-4);
+  min-height: 3.5em;
+  overflow-wrap: anywhere;
+}
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin-block: var(--space-5);
+  padding: 0;
+}
+.flow li {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  flex: 1 1 7rem;
+  font-size: var(--text-sm);
+  padding: var(--space-3);
+}
+.flow li[aria-current="step"] {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+}
+.grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cell {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: var(--space-4);
+}
+.cell strong {
+  display: block;
+}
+.code {
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+  padding: var(--space-4);
+}
+.track {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+.pulse {
+  background: var(--color-accent);
+  border-radius: var(--radius-round);
+  height: 12px;
+  left: 0;
+  position: absolute;
+  top: 16px;
+  width: 12px;
+}
+.rail {
+  background: var(--color-accent);
+  height: 4px;
+  margin-block: var(--space-4);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.scene {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block: var(--space-6);
+}
+.actor {
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  text-align: center;
+}
+.results {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style-position: inside;
+  padding: 0;
+}
+.results li {
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+}
+.results small {
+  color: var(--color-text-secondary);
+  display: block;
+}
+.link {
+  color: var(--color-accent);
+  display: inline-block;
+  min-height: var(--control-height);
+  padding-block: var(--space-3);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+  .selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .selector button:last-child {
+    grid-column: 1 / -1;
+  }
+  .grid,
+  .scene,
+  .results {
+    grid-template-columns: 1fr;
+  }
+  .actor {
+    padding: var(--space-3);
+  }
+}

@@ -34,6 +34,7 @@ npm start
 - Engineering snapshot, interactive career timeline and project showcases
 - Filterable case studies with shareable article routes
 - Sneaky architecture, Plinko event pipeline and isolated Pub/Sub toast demos
+- Five interactive [Engineering Playground experiments](docs/engineering-playground.md)
 - Comet Canvas engineering lab and a user-controlled seven-stop portfolio tour
 - Accessible text explanations, reduced-motion support and mobile-specific layouts
 - Contact actions with copy-email feedback

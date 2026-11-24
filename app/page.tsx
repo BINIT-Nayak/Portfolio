@@ -1,3 +1,4 @@
+import { EngineeringPlayground } from "@/components/playground/EngineeringPlayground";
 import { pageMetadata } from "@/lib/seo";
 import { profileSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -31,6 +32,7 @@ const Home = () => {
           <Experience />
           <RecentProjects />
           <CaseStudies />
+          <EngineeringPlayground />
           <Clients />
         </div>
       </main>

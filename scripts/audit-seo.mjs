@@ -21,7 +21,7 @@ const robots = await (await get("/robots.txt")).text();
 assert.ok(robots.includes(`Sitemap: ${site}/sitemap.xml`));
 const xml = await (await get("/sitemap.xml")).text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => decode(match[1]));
-assert.equal(urls.length, 15);
+assert.equal(urls.length, 16);
 assert.equal(new Set(urls).size, urls.length);
 const titles = new Set(),
   descriptions = new Set();
@@ -87,8 +87,8 @@ for (const [path, width, height] of [
 assert.match(await (await get("/icon.svg")).text(), /<svg/);
 assert.equal((await fetch(base + "/case-studies/not-a-real-study")).status, 404);
 const index = await (await get("/case-studies")).text();
-for (const url of urls.slice(3))
+for (const url of urls.filter((url) => /\/(case-studies\/|labs\/)/.test(new URL(url).pathname)))
   assert.ok(index.includes(`href="${new URL(url).pathname}"`), `Crawlable link to ${url}`);
 console.log(
-  "PASS: 15 canonical pages, crawlable study links, 12 unique study destinations, robots, sitemap, image dimensions, icons and unknown-slug 404."
+  `${urls.length} canonical pages, crawlable study links, 12 unique study destinations, robots, sitemap, image dimensions, icons and unknown-slug 404.`
 );
